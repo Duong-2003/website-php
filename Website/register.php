@@ -10,19 +10,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <title>Register</title>
 
-  <?php
-  include_once('../sources/linkFIle.php');
-  ?>
+  <?php include_once('../sources/linkFIle.php'); ?>
 </head>
 
 <body>
 
-
-  <?php
-  include($linkFE . 'top_header.php');
-  include($linkFE . 'header.php');
-
-  ?>
+  <?php include($linkFE . 'top_header.php'); ?>
+  <?php include($linkFE . 'header.php'); ?>
 
   <style>
     .error>p {
@@ -32,68 +26,52 @@
     }
 
     #font-register {
-      border: 1px solid;
-      color: #ac7d7d;
+      border: 1px solid #ced4da;
       border-radius: 20px;
-      box-shadow: 0 0 12px 4px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      background-color: #ffffff;
     }
   </style>
 
-
-
   <div class="container py-4">
-    <div class="row">
-      <div class="col-lg-6 ">
-        <img src=<?= $linkImgIndex . "img-login1.webp" ?> width="100%" alt="">
-      </div>
-
-      <div class="col-lg-6 py-2" id="font-register">
-        <h2 style="text-align:center; color: #da7070;">ĐĂNG KÝ TÀI KHOẢN</h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8 col-sm-10" id="font-register">
+        <h2 class="text-center text-danger">ĐĂNG KÝ TÀI KHOẢN</h2>
         <div class="error">
-          <p name="notifi" id="notifi_register" class="text-primary"><?= isset($_GET["notifi"]) ? $_GET["notifi"] : '' ?></p>
-          <p name="error" id="error_register" class="text-danger"><?= isset($_GET["error"]) ? $_GET["error"] : '' ?></p>
+          <p id="notifi_register" class="text-primary"><?= isset($_GET["notifi"]) ? $_GET["notifi"] : '' ?></p>
+          <p id="error_register" class="text-danger"><?= isset($_GET["error"]) ? $_GET["error"] : '' ?></p>
         </div>
 
-        <form action=<?= $linkBE . "register_process.php" ?> method="post">
+        <form action="<?= $linkBE . 'register_process.php' ?>" method="post">
           <div class="form-group">
-            <strong>Email: </strong>
-
-
-            <input id="email" placeholder="Email để lấy lại mật khẩu" type="email" class="form-control" name="email" >
-
-          </div>
-          <div class="form-group">
-            <strong>Tài khoản: <span style="color: red;">*</span></strong>
-
-            <input id="account" placeholder="Tài khoản bạn muốn đăng ký" type="text" class="form-control" name="username" >
-
-          </div>
-
-
-          <div class="form-group">
-            <strong>Nhập mật khẩu:  <span style="color: red;">*</span></strong>
-            <input id="password" placeholder="Nhập mật khẩu" type="password" name="password" autocomplete="new-password" class="form-control" >
-
+            <label for="email"><strong>Email: </strong></label>
+            <input id="email" placeholder="Email để lấy lại mật khẩu" type="email" class="form-control" name="email" required>
           </div>
 
           <div class="form-group">
-
-            <strong>Nhập lại mật khẩu:  <span style="color: red;">*</span></strong>
-
-            <input name="rePass" placeholder="Nhập lại mật khẩu" id="rePass" type="password" class="form-control" >
-
+            <label for="account"><strong>Tài khoản: <span class="text-danger">*</span></strong></label>
+            <input id="account" placeholder="Tài khoản bạn muốn đăng ký" type="text" class="form-control" name="username" required>
           </div>
-            <div class="form-group">
-            <strong> Địa chỉ: <span style="color: red;">*</span></strong>
 
-            <input id="address" placeholder="Địa chỉ bạn muốn đăng ký" type="text" class="form-control" name="address" >
+          <div class="form-group">
+            <label for="password"><strong>Nhập mật khẩu: <span class="text-danger">*</span></strong></label>
+            <input id="password" placeholder="Nhập mật khẩu" type="password" name="password" autocomplete="new-password" class="form-control" required>
+          </div>
 
+          <div class="form-group">
+            <label for="rePass"><strong>Nhập lại mật khẩu: <span class="text-danger">*</span></strong></label>
+            <input name="rePass" placeholder="Nhập lại mật khẩu" id="rePass" type="password" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="address"><strong>Địa chỉ: <span class="text-danger">*</span></strong></label>
+            <input id="address" placeholder="Địa chỉ bạn muốn đăng ký" type="text" class="form-control" name="address" required>
           </div>
 
           <div class="text-center p-3">
             <button type="submit" name="submit" id="reg_submit" class="btn btn-primary">Đăng ký</button>
-          
-            <!-- <a class="btn btn-primary" href="./login.php">Đăng nhập</a> -->
+            <a class="btn btn-primary" href="./login.php">Đăng nhập</a>
             <a class="btn btn-danger" href="./resetpass.php">Quên mật khẩu</a>
           </div>
         </form>
@@ -101,10 +79,7 @@
     </div>
   </div>
 
-
-  <?php
-  include($linkFE . 'footer.php');
-  ?>
+  <?php include($linkFE . 'footer.php'); ?>
 </body>
 
 </html>

@@ -78,7 +78,7 @@
 					</div>
 					<div class="contentsv">
 						<h4>
-							Giao hàng 2H
+							Giao hàng trong 24H
 						</h4>
 						<p>
 							Theo từng sản phẩm

@@ -56,7 +56,7 @@
     </div>
 
     <?php
-    include_once($linkconnWebsite);
+    include_once("../sources/connect.php");
     $valueCart = 20;
     $sql = "SELECT * FROM sanpham LIMIT $valueCart";
     $result = $connect->query($sql);

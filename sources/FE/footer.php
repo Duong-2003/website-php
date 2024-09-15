@@ -4,8 +4,9 @@
         background-image: url(../Assets/img/index/backg-footer.webp);
 
     }
-    .footerul{
-        margin-left:-30px
+
+    .footerul {
+        margin-left: -30px
     }
 
     a {
@@ -13,17 +14,20 @@
     }
 
     .top-social {
-    font-size: 24px; /* Adjust icon size */
-}
+        font-size: 24px;
+        /* Adjust icon size */
+    }
 
-.top-social a {
-    color: #333; /* Default color */
-    transition: color 0.3s;
-}
+    .top-social a {
+        color: #333;
+        /* Default color */
+        transition: color 0.3s;
+    }
 
-.top-social a:hover {
-    color: #007bff; /* Change color on hover */
-}
+    .top-social a:hover {
+        color: #007bff;
+        /* Change color on hover */
+    }
 </style>
 
 </head>
@@ -48,7 +52,7 @@
                         <li>
                             <a href="" class="text-white">Youtube</a>
                         </li>
-                       
+
 
                     </ul>
                 </div>
@@ -60,7 +64,7 @@
                     <ul class="list-unstyled mb-0">
                         <li>
                             <a href="" class="text-white">Hướng dẫn mua hàng</a>
-                          
+
                         </li>
                         <li>
                             <a href="" class="text-white">Chính sách ưu đãi</a>
@@ -68,12 +72,12 @@
 
                         <li>
                             <a href="" class="text-white">Chính sách chiết khấu</a>
-                          
+
                         </li>
 
                         <li>
                             <a href="" class="text-white">Câu hỏi thường gặp</a>
-                          
+
                         </li>
                     </ul>
                 </div>
@@ -132,7 +136,7 @@
                                     fill="#9C8350"></path>
                             </svg>
                             <strong>Tổng đài:</strong>
-                           19006750
+                            19006750
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"
@@ -151,14 +155,14 @@
                                         d="M13.6607 1.60693H1.33942C0.909571 1.60693 0.579094 1.75209 0.347583 2.0421C0.115881 2.33224 0.000221252 2.6951 0.000221252 3.13026C0.000221252 3.48176 0.153709 3.86262 0.460547 4.27294C0.767386 4.68311 1.09389 5.00528 1.43989 5.23962C1.62957 5.37363 2.20158 5.7713 3.15592 6.43247C3.67109 6.78947 4.11911 7.10064 4.50411 7.36916C4.83227 7.59781 5.11528 7.79582 5.34894 7.96015C5.37576 7.97897 5.41795 8.00914 5.47394 8.04918C5.53426 8.0925 5.6106 8.14749 5.70477 8.21549C5.88612 8.34665 6.03677 8.45267 6.15676 8.53366C6.27659 8.61468 6.42177 8.70517 6.59209 8.80566C6.76227 8.90602 6.92278 8.98148 7.07344 9.03167C7.22412 9.08184 7.36361 9.107 7.49193 9.107H7.50027H7.5086C7.6369 9.107 7.77641 9.08184 7.92712 9.03167C8.07775 8.98148 8.23813 8.90618 8.40845 8.80566C8.5786 8.70517 8.72359 8.61449 8.8438 8.53366C8.96379 8.45267 9.11444 8.34667 9.29582 8.21549C9.3898 8.14749 9.46614 8.09248 9.52646 8.04931C9.58248 8.00912 9.62464 7.97913 9.65162 7.96015C9.83365 7.83349 10.1173 7.63629 10.4987 7.37147C11.1927 6.88931 12.2147 6.17963 13.569 5.23962C13.9764 4.95511 14.3167 4.61178 14.5902 4.21012C14.8632 3.80845 15.0001 3.38712 15.0001 2.94627C15.0001 2.57794 14.8674 2.26277 14.6025 2.00027C14.3374 1.73809 14.0234 1.60693 13.6607 1.60693Z"
                                         fill="#9C8350"></path>
                                 </g>
-                               
+
                             </svg>
                             <strong>Email:</strong>
                             support.vn
                         </li>
 
                     </ul>
-                    
+
 
                 </div>
                 <div class="col-md-6">
@@ -182,57 +186,55 @@
 
             </div>
             <hr style="color:#dc3545">
+
+
             <div class="row">
-    <div class="col-md-12 col-lg-12 text-center" style="font-size: 20px;">
-        <div>
-            CÔNG TY CỔ PHẦN THƯƠNG MẠI
-        </div>
-        <ul class="list-inline top-social" style="padding: 0; margin: 10px 0;">
-            <li class="list-inline-item">
-                <a href="#" target="_blank">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" target="_blank">
-                    <i class="fa-brands fa-twitter"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" target="_blank">
-                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" target="_blank">
-                    <i class="fa-brands fa-google"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" target="_blank">
-                    <i class="fa-brands fa-pinterest-p" aria-hidden="true"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" target="_blank">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" target="_blank">
-                    <i class="fa-brands fa-github"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+                <div class="col-md-6 col-lg-6" style="font-size: 1.25rem;">
+                    <div>
+                        CÔNG TY CỔ PHẦN THƯƠNG MẠI
+                    </div>
+                </div>
 
+                <div class="col-md-6 col-lg-6 ">
+                    <ul class="list-inline top-social">
+                        <li class="list-inline-item">
+                            <a href="#" target="_blank">
+                                <i class="fa-brands fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" target="_blank">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" target="_blank">
+                                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" target="_blank">
+                                <i class="fa-brands fa-google"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" target="_blank">
+                                <i class="fa-brands fa-pinterest-p" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" target="_blank">
+                                <i class="fa-brands fa-tiktok"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" target="_blank">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-
-
-
-
-        </div>
 
 </body>
 
