@@ -10,7 +10,7 @@
     <title>Document</title>
 
     <style>
-        .navbar {
+        #navbar1 {
           background: linear-gradient(to right, #7FACD6, #BFB8DA);
             color: #fff;
             box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.3);
@@ -99,15 +99,14 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" id="navbar1">
         <div class="container">
-            <!-- <a class="navbar-brand" href="#">
-                <img src="logo.png" alt="Tech of World Logo">  
-            </a> -->
+           
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            
+            <div class="collapse navbar-collapse" >
                 <div class="top-slogan me-auto">Chào mừng bạn đến với <strong>Tech of World</strong>. Cùng vui mua sắm.</div>
                 <ul class="navbar-nav" id="ic-notuser">
                     <li class="nav-item">

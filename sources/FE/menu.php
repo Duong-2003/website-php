@@ -52,7 +52,7 @@
 
                 <div class="col-2" id="vpp">
                    <a href="../Source/menu_add/menu_student.php"> <img src="../Assets/img/index/cate_1.webp" alt="">
-                   <div class="py-3"><strong>STUDENT STATIONERY</strong></a></div>
+                   <div class="py-3"><strong>Vpp Học Sinh</strong></a></div>
                 </div>
 
 
@@ -60,25 +60,25 @@
 
                 <div class="col-2" id="vpp">
                     <a href="../Source/menu_add/menu_office.php"><img src="../Assets/img/index/cate_2.webp" alt="">
-                    <div class="py-3"><strong> OFFICE STATIONERY</strong></a></div>
+                    <div class="py-3"><strong> Vpp Văn Phòng</strong></a></div>
                 </div>
 
 
                 <div class="col-2" id="vpp" style="margin-top:6px">
                     <a href="../Source/menu_add/menu_accsessory.php"><img src="../Assets/img/index/cate_3.webp" alt="">
-                    <div class="py-3"><strong> STATIONERY ACCESSORY </strong></a></div>
+                    <div class="py-3"><strong> Phụ Kiện</strong></a></div>
                 </div>
 
 
 
                 <div class="col-2" id="vpp">
                   <a href="../Source/menu_add/menu_bag.php">  <img src="../Assets/img/index/cate_4.webp" alt="">
-                    <div class="py-3"><strong>BACKPACK-BOOK BAG</strong></a></div>
+                    <div class="py-3"><strong>Balo-Túi </strong></a></div>
                 </div>
 
                 <div class="col-2" id="vpp">
                   <a href="../Source/menu_add/menu_equipment.php">  <img src="../Assets/img/index/cate_5.webp" alt="">
-                    <div class="py-3"><strong>OFFICE EQUIPMENT</strong></a></div>
+                    <div class="py-3"><strong>  Dụng cụ văn phòng</strong></a></div>
                 </div>
 
                 <div class="col-1"></div>

@@ -12,7 +12,18 @@
         text-decoration: none;
     }
 
-  
+    .top-social {
+    font-size: 24px; /* Adjust icon size */
+}
+
+.top-social a {
+    color: #333; /* Default color */
+    transition: color 0.3s;
+}
+
+.top-social a:hover {
+    color: #007bff; /* Change color on hover */
+}
 </style>
 
 </head>
@@ -172,11 +183,49 @@
             </div>
             <hr style="color:#dc3545">
             <div class="row">
-                <div class="col-md-12 col-lg-12" style="font-size: 20px;text-align:center">
-                CÔNG TY CỔ PHẦN THƯƠNG MẠI
-                </div>
-
-
+    <div class="col-md-12 col-lg-12 text-center" style="font-size: 20px;">
+        <div>
+            CÔNG TY CỔ PHẦN THƯƠNG MẠI
+        </div>
+        <ul class="list-inline top-social" style="padding: 0; margin: 10px 0;">
+            <li class="list-inline-item">
+                <a href="#" target="_blank">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="#" target="_blank">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="#" target="_blank">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="#" target="_blank">
+                    <i class="fa-brands fa-google"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="#" target="_blank">
+                    <i class="fa-brands fa-pinterest-p" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="#" target="_blank">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="#" target="_blank">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
 
             </div>
 
