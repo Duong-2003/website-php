@@ -13,6 +13,10 @@
   <?php include_once('../sources/linkFIle.php'); ?>
 
   <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
     .error > p {
       font-size: 20px;
       text-align: center;
@@ -22,30 +26,46 @@
     #font-register {
       border: 1px solid #ced4da;
       border-radius: 20px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
       background-color: #ffffff;
+      transition: transform 0.3s;
+    }
+
+    #font-register:hover {
+      transform: scale(1.02);
     }
 
     #main_login {
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 100vh;
     }
 
     .form-group {
       margin-bottom: 15px;
     }
+
+    .btn-primary {
+      width: 100%;
+      border-radius: 25px;
+      transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 
 <body>
-<?php include($linkFE . 'top_header.php'); ?>
+  <?php include($linkFE . 'top_header.php'); ?>
   <?php include($linkFE . 'header.php'); ?>
 
-  <div id="main_login" class="container py-4">
+  <div id="main_login" class="container">
     <div class="row">
-      <div class="col-lg-12" id="font-register">
+      <div class="col-lg-6 col-md-8 col-sm-10" id="font-register">
         <form action="<?= $linkBE . 'resetpass_process.php' ?>" method="post">
           <h2 class="text-center">QUÊN MẬT KHẨU</h2>
           <div class="error">

@@ -19,10 +19,9 @@
     }
 
     .top-social a {
-        color: #333;
-        /* Default color */
-        transition: color 0.3s;
-    }
+    color: #e9ecef;
+    transition: color 0.3s;
+}
 
     .top-social a:hover {
         color: #007bff;

@@ -1,11 +1,13 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <title>Header Menu</title>
 
     <style>
@@ -18,7 +20,7 @@
             left: 0;
             top: 100%;
             min-width: 100%;
-            z-index: 9999;
+            z-index: 1000;
             display: none; /* Ẩn menu mặc định */
         }
 
@@ -64,6 +66,10 @@
         nav.navbar.navbar-expand-lg {
             bottom: -8px;
         }
+        #nav-link2{
+            color:#fff;
+        }
+      
     </style>
 </head>
 
@@ -73,7 +79,7 @@
             <nav class="navbar navbar-expand-lg">
                 <ul class="navbar-nav" id="navbar2">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="danhmucsanpham" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="nav-link2" href="#" id="danhmucsanpham" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i style="font-size: 20px; margin: 0 2px;" class="fa-solid fa-list"></i>
                             ĐỒ DÙNG HỌC SINH
                         </a>
@@ -102,7 +108,7 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="khuyenmai" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="nav-link2" href="#" id="khuyenmai" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-tag" style="font-size: 20px; margin: 0 2px;"></i>
                             VĂN PHÒNG PHẨM
                         </a>
@@ -113,7 +119,7 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="tintuc" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="nav-link2" href="#" id="tintuc" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-envelope" style="font-size: 20px; margin: 0 2px;"></i>
                             TIN TỨC
                         </a>
@@ -124,7 +130,7 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="lienhe" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="nav-link2" href="#" id="lienhe" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-envelope" style="font-size: 20px; margin: 0 2px;"></i>
                             LIÊN HỆ
                         </a>
@@ -135,7 +141,7 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="showroom" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="nav-link2"  href="#" id="showroom" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-store" style="font-size: 20px; margin: 0 2px;"></i>
                             SHOWROOM360
                         </a>
@@ -146,7 +152,7 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="khuyenmai2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="nav-link2" href="#" id="khuyenmai2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-gift" style="font-size: 20px; margin: 0 2px;"></i>
                             KHUYẾN MÃI
                         </a>
@@ -157,7 +163,7 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="blog" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="nav-link2" href="#" id="blog" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-book" style="font-size: 20px; margin: 0 2px;"></i>
                             BLOG
                         </a>
@@ -175,4 +181,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-</html>
+</html> -->

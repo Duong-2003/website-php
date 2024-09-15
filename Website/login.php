@@ -66,7 +66,7 @@
 
           <div class="text-center p-3">
             <button type="submit" id="loginSubmit" name="submit" class="btn btn-primary">Đăng nhập</button>
-            <a class="btn btn-primary" href="./register.php">Đăng ký</a>
+            <a class="btn btn-secondary" href="./register.php">Đăng ký</a>
             <a class="btn btn-danger" href="./resetpass.php">Quên mật khẩu</a>
           </div>
         </form>

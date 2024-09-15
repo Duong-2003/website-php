@@ -4,17 +4,26 @@
 <head>
   <meta charset="utf-8">
   <title>Product List</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.1/css/bootstrap.min.css">
+  <style>
+    .content {
+      padding: 50px 30px;
+    }
+    .error-message {
+      text-align: center;
+      font-size: 20px;
+    }
+    .form-label {
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
 
-  <?php
-  include("./MenuAdmin.php");
-  ?>
+  <?php include("./MenuAdmin.php"); ?>
 
-
-
-  <div class="content" style="padding: 100px 30px;">
+  <div class="content">
     <?php
     include_once($linkconnPages);
     $sqlLSP = "SELECT * FROM loaisp";
@@ -31,11 +40,11 @@
     $sqlSP = "SELECT * FROM sanpham WHERE sp_ma = '$dataKey'";
     $result = $connect->query($sqlSP);
     if ($result->num_rows != 1) {
-      echo ('ERROR');
+      echo ('<div class="alert alert-danger">ERROR: Không tìm thấy sản phẩm.</div>');
     }
     $sp = $result->fetch_assoc();
-    // var_dump(($danhsachSP));
     ?>
+
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
@@ -51,149 +60,100 @@
       </thead>
       <tbody>
         <tr>
-          <td>
-            <?= $sp['sp_ma'] ?>
-          </td>
-          <td>
-            <?= $sp['sp_ten'] ?>
-          </td>
-          <td>
-            <?= $sp['loaisp_ten'] ?>
-          </td>
-          <td>
-            <?= number_format($sp['sp_gia'], 0, '.', ',') ?>
-          </td>
-          <td>
-            <?= $sp['sp_mota'] ?>
-          </td>
-          <td>
-            <?= $sp['sp_motachitiet'] ?>
-          </td>
-          <td>
-            <?= $sp['sp_img'] ?>
-          </td>
-          <td>
-            <?= $sp['sp_soluong'] ?>
-          </td>
+          <td><?= htmlspecialchars($sp['sp_ma']) ?></td>
+          <td><?= htmlspecialchars($sp['sp_ten']) ?></td>
+          <td><?= htmlspecialchars($sp['loaisp_ten']) ?></td>
+          <td><?= number_format($sp['sp_gia'], 0, '.', ',') ?> VNĐ</td>
+          <td><?= htmlspecialchars($sp['sp_mota']) ?></td>
+          <td><?= htmlspecialchars($sp['sp_motachitiet']) ?></td>
+          <td><img src="<?= htmlspecialchars($sp['sp_img']) ?>" alt="Image" style="max-width: 100px;"></td>
+          <td><?= htmlspecialchars($sp['sp_soluong']) ?></td>
         </tr>
-
       </tbody>
     </table>
 
-    <div>
-      <span class="log_heading text-dark mb-3">
-        <h5>Sửa sản phẩm</h5>
-      </span>
-      <div id="error-message" class="text-danger" style="text-align:center ;font-size:25px"></div>
-      <div class="text-danger" style="text-align:center ;font-size:25px">
-        <?= isset($_GET['error']) ? $_GET['error'] : '' ?>
-      </div>
+    <div class="mt-4">
+      <h5 class="text-dark mb-3">Sửa sản phẩm</h5>
+      <div id="error-message" class="text-danger"></div>
       <form action="<?= $linkBE ?>Edit_product.php" method="post" enctype="multipart/form-data">
-        <!-- Trường ẩn hidden -->
-        <input type="hidden" name="sp_ma" value="<?= $sp['sp_ma'] ?>">
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="">Tên sp<span style="color: red;">*</span></span>
-          <input value="<?= $sp['sp_ten'] ?>" name="sp_ten" type="text" class="form-control">
+        <input type="hidden" name="sp_ma" value="<?= htmlspecialchars($sp['sp_ma']) ?>">
+        
+        <div class="mb-3">
+          <label class="form-label">Tên sp <span class="text-danger">*</span></label>
+          <input value="<?= htmlspecialchars($sp['sp_ten']) ?>" name="sp_ten" type="text" class="form-control" required>
         </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="">Tên Loại sp<span style="color: red;">*</span></span>
-          <select name="productType" class="form-select" aria-label="Default select example">
-            <?php
-            foreach ($danhsachLSP as $Lsp) : ?>
-              <option value="<?= $Lsp['loaisp_ten'] ?>">
-                <?= $Lsp['loaisp_ten'] ?>
-              </option>
-            <?php endforeach;
-            ?>
+        
+        <div class="mb-3">
+          <label class="form-label">Tên Loại sp <span class="text-danger">*</span></label>
+          <select name="productType" class="form-select" required>
+            <?php foreach ($danhsachLSP as $Lsp) : ?>
+              <option value="<?= htmlspecialchars($Lsp['loaisp_ten']) ?>"><?= htmlspecialchars($Lsp['loaisp_ten']) ?></option>
+            <?php endforeach; ?>
           </select>
         </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="">Giá sp<span style="color: red;">*</span></span>
-          <input value="<?= $sp['sp_gia'] ?>" name="sp_gia" type="text" class="form-control">
-        </div>
+
         <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">Mô tả sp</label>
-          <textarea name="sp_mota" class="form-control" id="exampleFormControlTextarea1" rows="3"><?= $sp['sp_mota'] ?></textarea>
+          <label class="form-label">Giá sp <span class="text-danger">*</span></label>
+          <input value="<?= htmlspecialchars($sp['sp_gia']) ?>" name="sp_gia" type="text" class="form-control" required>
         </div>
+
         <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">Mô tả sp chi tiết<span style="color: red;">*</span></span></label>
-          <textarea name="sp_motachitiet" class="form-control" id="exampleFormControlTextarea1" rows="3"><?= $sp['sp_motachitiet'] ?></textarea>
+          <label class="form-label">Mô tả sp</label>
+          <textarea name="sp_mota" class="form-control" rows="3"><?= htmlspecialchars($sp['sp_mota']) ?></textarea>
         </div>
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" role="switch" onchange="toggleSection()" id="checkbox_Img">
-          <label class="form-check-label" for="flexCheckDefault">Sửa ảnh sản phẩm</label>
+
+        <div class="mb-3">
+          <label class="form-label">Mô tả sp chi tiết <span class="text-danger">*</span></label>
+          <textarea name="sp_motachitiet" class="form-control" rows="3" required><?= htmlspecialchars($sp['sp_motachitiet']) ?></textarea>
         </div>
-        <div class="input-group mb-3">
-          <input name="sp_img" type="file" class="form-control" id="input_Img" style="display:none">
+
+        <div class="form-check form-switch mb-3">
+          <input class="form-check-input" type="checkbox" role="switch" id="checkbox_Img" onchange="toggleSection()">
+          <label class="form-check-label" for="checkbox_Img">Sửa ảnh sản phẩm</label>
         </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="">Số lượng<span style="color: red;">*</span></span>
-          <input value="<?= $sp['sp_soluong'] ?>" name="sp_soluong" type="number" min='0' value="1" class="form-control">
+
+        <div class="mb-3" id="image-section" style="display:none;">
+          <input name="sp_img" type="file" class="form-control">
         </div>
-        <button type="submit" name="submit" type="button" class="btn btn-dark">Sửa</button>
+
+        <div class="mb-3">
+          <label class="form-label">Số lượng <span class="text-danger">*</span></label>
+          <input value="<?= htmlspecialchars($sp['sp_soluong']) ?>" name="sp_soluong" type="number" min='0' class="form-control" required>
+        </div>
+
+        <button type="submit" name="submit" class="btn btn-primary">Sửa</button>
       </form>
     </div>
   </div>
-  </div>
 
-</body>
-<script>
-  function MoveToError() {
-    var targetElement = document.getElementById("error-message");
-    if (targetElement) {
-      // Sử dụng JavaScript để di chuyển đến thẻ
-      window.scrollTo({
-        top: targetElement.offsetTop - 150,
-        behavior: "smooth"
+  <script>
+    function toggleSection() {
+      var checkBoxImg = document.getElementById("checkbox_Img");
+      var imageSection = document.getElementById("image-section");
+      imageSection.style.display = checkBoxImg.checked ? "block" : "none";
+    }
+
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function(event) {
+      const requiredInputs = form.querySelectorAll('input[required], textarea[required]');
+      let allFilled = true;
+
+      requiredInputs.forEach(input => {
+        if (!input.value.trim()) {
+          allFilled = false;
+        }
       });
-    }
-  }
 
-  function toggleSection() {
-    var checkBoxImg = document.getElementById("checkbox_Img");
-    var inputImg = document.getElementById("input_Img");
+      if (!allFilled) {
+        document.getElementById("error-message").textContent = "Vui lòng nhập đầy đủ thông tin.";
+        event.preventDefault();
+      }
+    });
 
-    // Kiểm tra trạng thái của checkbox và ẩn/hiện phần tử tương ứng
-    if (checkBoxImg.checked) {
-      inputImg.style.display = "block";
-    } else {
-      inputImg.style.display = "none";
-      inputImg.value = null;
-    }
-  }
-  // Lấy form và nút "Sửa"
-  const form = document.querySelector("form");
-  const submitButton = document.querySelector('button[name="submit"]');
-
-  // Xử lý sự kiện khi form được gửi
-  form.addEventListener("submit", function(event) {
-    // Kiểm tra các trường nhập liệu
-    const productNewName = document.querySelector('input[name="sp_ten"]').value;
-    const productNewType = document.querySelector('select[name="productType"]').value;
-    const productNewPrice = document.querySelector('input[name="sp_gia"]').value;
-    const productNewDetail = document.querySelector('textarea[name="sp_motachitiet"]').value;
-    const productNewQuantity = document.querySelector('input[name="sp_soluong"]').value;
-
-    if (
-      productNewName.trim() === "" ||
-      productNewType.trim() === "" ||
-      productNewPrice.trim() === "" ||
-      productNewDetail.trim() === "" ||
-      productNewImage.trim() === "" ||
-      productNewQuantity.trim() === ""
-    ) {
-      // Hiển thị thông báo lỗi
-      document.getElementById("error-message").textContent = "Vui lòng nhập đầy đủ thông tin.";
-      MoveToError();
-      event.preventDefault(); // Ngăn chặn gửi form
-
-    }
-  });
-
-  // Xóa thông báo lỗi và thành công khi người dùng bắt đầu nhập liệu
-  form.addEventListener("input", function() {
-    document.getElementById("error-message").textContent = "";
-  });
-</script>
+    form.addEventListener("input", function() {
+      document.getElementById("error-message").textContent = "";
+    });
+  </script>
+</body>
 
 </html>
