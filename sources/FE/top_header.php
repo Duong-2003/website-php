@@ -40,7 +40,9 @@ if (isset($_SESSION['username'])) {
         .top-slogan {
             font-size: 20px;
         }
-
+        .nav-link:focus, .nav-link:hover {
+    color: rgb(173 114 114 / 80%);
+}
         /* .nav-link {
             padding: 10px 15px;
             border-radius: 5px;
@@ -73,11 +75,9 @@ if (isset($_SESSION['username'])) {
         a.nav-link.user {
          border: 1px solid;
         background: aliceblue;
+        border-radius:10px
         }
-        a.nav-link.user:hover {
-        border: 1px solid;
-        background: aliceblue;
-}
+     
     </style>
 </head>
 
@@ -115,10 +115,10 @@ if (isset($_SESSION['username'])) {
                         <a class="nav-link home" id="navbar" href="./webiste.php"><i class="fas fa-home"></i> Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"id="" href="../sources/FE/profile_user.php"><i class="fas fa-sign-out-alt"></i>Hồ sơ của tôi</a>
+                        <a class="nav-link" id="" href="../sources/FE/profile_user.php"><i class="fas fa-user-edit"></i>Hồ sơ của tôi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"id="" href="../sources/BE/logout_process.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+                        <a class="nav-link" id="" href="../sources/BE/logout_process.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
                     </li>
                    
                     <li class="nav-item">
