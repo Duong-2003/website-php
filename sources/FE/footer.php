@@ -27,6 +27,9 @@
         color: #007bff;
         /* Change color on hover */
     }
+    .list-inline-item:not(:last-child) {
+    margin-right: 20px ;
+}
 </style>
 
 </head>
