@@ -1,3 +1,21 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+include_once("../sources/connect.php"); // Kết nối cơ sở dữ liệu
+
+$user = null; // Khởi tạo biến người dùng
+
+if (isset($_SESSION['username'])) {
+    $loggedInUsername = $_SESSION['username'];
+    $sql = "SELECT * FROM users WHERE name = '$loggedInUsername'";
+    $result = $connect->query($sql);
+    if ($result->num_rows > 0) {
+        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,29 +41,43 @@
             font-size: 20px;
         }
 
-        .nav-link {
+        /* .nav-link {
             padding: 10px 15px;
             border-radius: 5px;
             border: 2px solid transparent;
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-        }
+        } */
 
-        .nav-link:hover {
+        /* .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.2);
             color: #fff;
             border-color: rgba(255, 255, 255, 0.5);
-        }
+        } */
 
-        .nav-link.active {
+        /* .nav-link.active {
             background-color: rgba(255, 255, 255, 0.3);
             color: #fff;
             border-color: rgba(255, 255, 255, 0.5);
-        }
+        } */
 
         a.nav-link {
             color: #8ab0d5;
         }
-     
+
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        a.nav-link.user {
+         border: 1px solid;
+        background: aliceblue;
+        }
+        a.nav-link.user:hover {
+        border: 1px solid;
+        background: aliceblue;
+}
     </style>
 </head>
 
@@ -62,7 +94,7 @@
                 </div>
                 <ul class="navbar-nav" id="ic-notuser">
                     <li class="nav-item">
-                        <a class="nav-link home" href="./index.php"><i class="fas fa-home"></i> Trang chủ</a>
+                        <a class="nav-link home" href="./webiste.php"><i class="fas fa-home"></i> Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link login" href="./login.php"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
@@ -78,46 +110,28 @@
                         <a class="nav-link contact" href="./contact.php"><i class="fas fa-envelope"></i> Liên hệ</a>
                     </li>
                 </ul>
-                
-
                 <ul class="navbar-nav ms-auto" id="ic-user" style="display: none;">
                 <li class="nav-item">
-                        <a class="nav-link home" href="./website.php"><i class="fas fa-home"></i> Trang chủ</a>
+                        <a class="nav-link home" id="navbar" href="./webiste.php"><i class="fas fa-home"></i> Trang chủ</a>
                     </li>
-                
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item">
+                        <a class="nav-link"id="" href="../sources/FE/profile_user.php"><i class="fas fa-sign-out-alt"></i>Hồ sơ của tôi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"id="" href="../sources/BE/logout_process.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link user"id="navbar1" >
                            
-                            <span id="username-display" class="ms-2"><?= htmlspecialchars($user['name']) ?></span>
+                            <span id="username-display"><?= htmlspecialchars($user['name']) ?></span>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li>
-                                <a class="dropdown-item" href="../sources/FE/profile_user.php"><i
-                                        class="fas fa-user"></i> Hồ sơ của tôi</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="../sources/BE/logout_process.php"><i
-                                        class="fas fa-sign-out-alt"></i> Đăng xuất</a>
-                            </li>
-                        </ul>
                     </li>
-                </ul>
-                </li>
+                   
                 </ul>
             </div>
         </div>
     </nav>
-
-    <?php
-    include_once($linkFE . "User.php");
-
-    // Kiểm tra xem người dùng đã đăng nhập chưa
-    if (isset($_SESSION['username'])) {
-        // Sử dụng thông tin đăng nhập từ session
-        $loggedInUsername = $_SESSION['username'];
-    }
-    ?>
 
     <script>
         var username = <?php echo isset($loggedInUsername) ? json_encode($loggedInUsername) : 'null'; ?>;
@@ -125,7 +139,6 @@
         // Xử lý hiển thị thông tin người dùng
         function myFunction() {
             if (username) {
-                document.getElementById("username-display").textContent = username;
                 document.getElementById("ic-user").style.display = 'flex';
                 document.getElementById("ic-notuser").style.display = 'none';
             } else {
@@ -133,7 +146,6 @@
                 document.getElementById("ic-notuser").style.display = 'flex';
             }
         }
-
         document.addEventListener("DOMContentLoaded", myFunction);
     </script>
 </body>

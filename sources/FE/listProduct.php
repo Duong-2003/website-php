@@ -27,7 +27,7 @@
         .sidebar {
             position: sticky;
             top: 0;
-            height: calc(100vh - 10px);
+            height: calc(122 - 10px);
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 20px;
@@ -85,7 +85,7 @@
 
                         <?php
                         include_once("../sources/connect.php");
-                        $valueCart = 5; // Số sản phẩm trên mỗi trang
+                        $valueCart = 6; // Số sản phẩm trên mỗi trang
                         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Trang hiện tại
                         $offset = ($page - 1) * $valueCart; // Tính toán offset
 
