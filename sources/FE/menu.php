@@ -85,7 +85,6 @@
                 
                
             </div>
-            <div class="icon-title"><img src="../Assets/img/index/icon_after_title.webp" alt=""></div>
         </div>
 
 

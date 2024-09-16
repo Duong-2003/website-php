@@ -15,49 +15,12 @@
 
     <style>
         #navbar1 {
-            /* background: linear-gradient(to right, #7FACD6, #BFB8DA); */
             color: #8ab0d5;
             box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.3);
         }
 
-       
-
         .top-slogan {
             font-size: 20px;
-            opacity: 0;
-            animation: fadeUp 1s ease-out forwards, glow 2s ease-in-out infinite;
-        }
-
-        @keyframes fadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 0 rgba(255, 255, 255, 0);
-            }
-
-            50% {
-                text-shadow: 0 0 10px rgba(255, 255, 255, 1);
-            }
-
-            100% {
-                text-shadow: 0 0 0 rgba(255, 255, 255, 0);
-            }
-        }
-
-        .top-social a {
-            color: #fff;
-            padding: 0 10px;
-            font-size: 27px;
         }
 
         .nav-link {
@@ -71,59 +34,18 @@
             background-color: rgba(255, 255, 255, 0.2);
             color: #fff;
             border-color: rgba(255, 255, 255, 0.5);
-            /* Border on hover */
         }
 
         .nav-link.active {
             background-color: rgba(255, 255, 255, 0.3);
             color: #fff;
             border-color: rgba(255, 255, 255, 0.5);
-            /* Active border color */
-        }
-
-        /* Distinct hover styles */
-        .nav-link.home:hover {
-            background-color: rgba(255, 99, 71, 0.7);
-            /* Tomato */
-            color: #fff;
-            /* Change text color on hover */
-        }
-
-        .nav-link.login:hover {
-            background-color: rgba(30, 144, 255, 0.7);
-            /* Dodger Blue */
-            color: #fff;
-        }
-
-        .nav-link.register:hover {
-            background-color: rgba(60, 179, 113, 0.7);
-            /* Medium Sea Green */
-            color: #fff;
-        }
-
-        .nav-link.contact:hover {
-            background-color: RGBA(255, 182, 193, 1);
-            /* Gold */
-            color: #fff;
-        }
-
-        .nav-link.forgot-password:hover {
-            background-color: RGBA(255, 160, 122, 1);
-            /* Orange */
-            color: #fff;
-        }
-
-        .navbar-toggler {
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .navbar-toggler:hover {
-            background-color: rgba(255, 255, 255, 0.1);
         }
 
         a.nav-link {
             color: #8ab0d5;
         }
+     
     </style>
 </head>
 
@@ -156,6 +78,33 @@
                         <a class="nav-link contact" href="./contact.php"><i class="fas fa-envelope"></i> Liên hệ</a>
                     </li>
                 </ul>
+                
+
+                <ul class="navbar-nav ms-auto" id="ic-user" style="display: none;">
+                <li class="nav-item">
+                        <a class="nav-link home" href="./website.php"><i class="fas fa-home"></i> Trang chủ</a>
+                    </li>
+                
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                           
+                            <span id="username-display" class="ms-2"><?= htmlspecialchars($user['name']) ?></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li>
+                                <a class="dropdown-item" href="../sources/FE/profile_user.php"><i
+                                        class="fas fa-user"></i> Hồ sơ của tôi</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="../sources/BE/logout_process.php"><i
+                                        class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -169,24 +118,22 @@
         $loggedInUsername = $_SESSION['username'];
     }
     ?>
+
     <script>
         var username = <?php echo isset($loggedInUsername) ? json_encode($loggedInUsername) : 'null'; ?>;
 
-        // Xử lý thay đổi icone user
+        // Xử lý hiển thị thông tin người dùng
         function myFunction() {
-            if (typeof username !== 'undefined' && username !== null) {
-                console.log("Đăng nhập: " + username);
-                var newElement = document.getElementById("ic-user");
-                var oldElement = document.getElementById("ic-notuser");
-                if (newElement && oldElement) {
-                    var clonedElement = newElement.cloneNode(true);
-                    clonedElement.style.display = 'block';
-                    oldElement.parentNode.replaceChild(clonedElement, oldElement);
-                }
+            if (username) {
+                document.getElementById("username-display").textContent = username;
+                document.getElementById("ic-user").style.display = 'flex';
+                document.getElementById("ic-notuser").style.display = 'none';
             } else {
-                console.log("Chưa đăng nhập");
+                document.getElementById("ic-user").style.display = 'none';
+                document.getElementById("ic-notuser").style.display = 'flex';
             }
         }
+
         document.addEventListener("DOMContentLoaded", myFunction);
     </script>
 </body>

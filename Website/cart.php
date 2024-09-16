@@ -22,6 +22,7 @@
     <?php
     session_start();
     ob_start();
+    include($linkFE . 'top_header.php');
     include($linkFE . 'header.php');
     ob_end_flush();
 

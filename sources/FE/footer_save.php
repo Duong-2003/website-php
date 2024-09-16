@@ -10,7 +10,7 @@
 
 	.itemsv {
 		text-align: center;
-		padding-bottom: 20px;
+	
 	}
 
 	.contentsv {
@@ -20,13 +20,16 @@
 	h4 {
 		margin-bottom: 0px !important;
 	}
+	section.section_service.container {
+		padding-top: 30px;
+	}
 </style>
 </head>
 
 <body>
-	<section class="section_service container">
+	<section class="section_service container ">
 		<div class="row">
-			<div class="col-lg-3 col-md-6">
+			<div class="col-lg-3 col-md-6 ">
 				<div class="itemsv">
 					<div class="image">
 						<img class="lazyload loaded" src="//bizweb.dktcdn.net/100/494/102/themes/918846/assets/ico_sv1.png?1697617558740" data-src="//bizweb.dktcdn.net/100/494/102/themes/918846/assets/ico_sv1.png?1697617558740" alt="Hàng chính hãng">
