@@ -188,11 +188,11 @@ background-image: url(../Assets/img/index/bg_sp_noibat.jpg);
                 <div class="social-login text-center">
 
 
-                  <a href="javascript:void(0)" class="social-login--facebook" onclick="loginFacebook()">
+                  <a href="" class="social-login--facebook" onclick="loginFacebook()">
                     <img width="129px" height="37px" alt="facebook-login-button"
                       src="//bizweb.dktcdn.net/assets/admin/images/login/fb-btn.svg">
                   </a>
-                  <a href="javascript:void(0)" class="social-login--google" onclick="loginGoogle()">
+                  <a href="" class="social-login--google" onclick="loginGoogle()">
                     <img width="129px" height="37px" alt="google-login-button"
                       src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg">
                   </a>

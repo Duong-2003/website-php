@@ -55,6 +55,7 @@
             border-radius: 30px;
             color: #fff;
             font-size: 14px;
+            border: 1px solid;
         }
 
         #buy {
@@ -170,10 +171,7 @@
                                                     </p>
 
 
-                                                    <div
-                                                        class="action-cart group-buttons d-flex align-items-center justify-content-center">
-
-
+                                                    <div class="action-cart group-buttons d-flex align-items-center justify-content-center">
 
                                                         <button class="cart-button btn-buy add_to_cart "
                                                             title="Thêm vào giỏ">

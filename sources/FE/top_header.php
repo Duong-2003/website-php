@@ -134,7 +134,7 @@ if (isset($_SESSION['username'])) {
     </nav>
 
     <script>
-        var username = <?php echo isset($loggedInUsername) ? json_encode($loggedInUsername) : 'null'; ?>;
+        var username =<?php echo isset($loggedInUsername) ? json_encode($loggedInUsername) : 'null'; ?>;
 
         // Xử lý hiển thị thông tin người dùng
         function myFunction() {

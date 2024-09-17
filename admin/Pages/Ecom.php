@@ -1,6 +1,6 @@
 <?php
 include_once('./MenuAdmin.php');
-?>
+ ?>
 <style>
     .widget-flat {
         position: relative;

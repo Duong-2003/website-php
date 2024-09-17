@@ -66,6 +66,17 @@
             color: #fff;
             border: 1px solid #dd9aa0;
         }
+
+        a#cart {
+            text-decoration: none;
+            color: #0dcaf0;
+
+        }
+
+        a#cart:hover {
+
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -88,18 +99,15 @@
                 </form>
 
                 <div class="d-flex align-items-center">
-                    <div class="dropdown me-3">
-                        <button class="btn header-btn" id="order" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class=" me-3">
+                        <button class="btn header-btn" id="order">
                             <i class="fa fa-shopping-cart text-gray-700"></i>
-                            <span class="ms-2">Giỏ hàng</span>
+                            <span class="ms-2"><a id="cart" href="../Website/cart.php">Giỏ hàng</a></span>
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="./cart.php">Xem giỏ hàng</a></li>
-                            <li><a class="dropdown-item" href="./checkout.php">Thanh toán</a></li>
-                        </ul>
+
                     </div>
 
-                    <div class="dropdown">
+                    <div class="">
                         <button class="btn header-btn" id="orderCall">
                             <i class="fa fa-phone text-gray-700"></i>
                             <span class="ms-2">Gọi đặt hàng:</span>01234567890
@@ -107,7 +115,7 @@
 
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </header>
