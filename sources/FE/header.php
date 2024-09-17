@@ -82,7 +82,7 @@
                 <form action="./listSearch.php" method="GET" class="d-flex flex-grow-1 mx-3">
                     <input id="searchInput" type="text" class="form-control me-2"
                         placeholder="Vui lòng nhập từ khóa để tìm kiếm!" name="search" required>
-                    <button type="button" id="searchClick" class="btn btn-secondary">
+                    <button type="button" id="searchClick" class="btn btn-primary">
                         <i class="fa fa-search"></i>
                     </button>
                 </form>

@@ -94,7 +94,7 @@ if (isset($_SESSION['username'])) {
                 </div>
                 <ul class="navbar-nav" id="ic-notuser">
                     <li class="nav-item">
-                        <a class="nav-link home" href="./webiste.php"><i class="fas fa-home"></i> Trang chủ</a>
+                        <a class="nav-link home" href="../Website/website.php"><i class="fas fa-home"></i> Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link login" href="./login.php"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
@@ -103,16 +103,16 @@ if (isset($_SESSION['username'])) {
                         <a class="nav-link register" href="./register.php"><i class="fas fa-user-plus"></i> Đăng ký</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link forgot-password" href="./forgot-password.php"><i class="fas fa-key"></i> Quên
+                        <a class="nav-link forgot-password" href="../Website/resetpass.php"><i class="fas fa-key"></i> Quên
                             mật khẩu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link contact" href="./contact.php"><i class="fas fa-envelope"></i> Liên hệ</a>
+                        <a class="nav-link contact" href="../Website/contact.php"><i class="fas fa-envelope"></i> Liên hệ</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto" id="ic-user" style="display: none;">
                 <li class="nav-item">
-                        <a class="nav-link home" id="navbar" href="./webiste.php"><i class="fas fa-home"></i> Trang chủ</a>
+                        <a class="nav-link home" id="navbar" href="../Website/website.php"><i class="fas fa-home"></i> Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="" href="../sources/FE/profile_user.php"><i class="fas fa-user-edit"></i>Hồ sơ của tôi</a>
