@@ -1,6 +1,6 @@
 <?php
 include_once('./MenuAdmin.php');
- ?>
+?>
 <style>
     .widget-flat {
         position: relative;
@@ -60,6 +60,12 @@ include_once('./MenuAdmin.php');
     h3 {
         font-weight: 700;
     }
+
+    .chart-container {
+        position: relative;
+        height: 40vh;
+        width: 100%;
+    }
 </style>
 
 <script>
@@ -71,13 +77,14 @@ include_once('./MenuAdmin.php');
     <h2 class="mb-4">Thống kê tổng quan</h2>
 
     <div class="row">
+        <!-- Thống kê đơn hàng -->
         <div class="col-xl-4 col-lg-6 mb-4">
             <div class="card widget-flat">
                 <div class="card-body text-bg-info">
                     <div class="float-end">
                         <i class="fas fa-shopping-cart widget-icon"></i>
                     </div>
-                    <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Số lượng đơn</h5>
+                    <h5 class="text-muted fw-normal mt-0">Số lượng đơn</h5>
                     <h3 class="mt-3 mb-3">36,254</h3>
                     <p class="mb-0 text-muted">
                         <span class="text-success me-2"><i class="fas fa-arrow-up"></i> 5.27%</span>
@@ -87,13 +94,14 @@ include_once('./MenuAdmin.php');
             </div>
         </div>
 
+        <!-- Thống kê chờ xác nhận -->
         <div class="col-xl-4 col-lg-6 mb-4">
             <div class="card widget-flat">
                 <div class="card-body text-bg-warning">
                     <div class="float-end">
                         <i class="fas fa-clock widget-icon"></i>
                     </div>
-                    <h5 class="text-muted fw-normal mt-0" title="Pending Orders">Chờ xác nhận</h5>
+                    <h5 class="text-muted fw-normal mt-0">Chờ xác nhận</h5>
                     <h3 class="mt-3 mb-3">5,543</h3>
                     <p class="mb-0 text-muted">
                         <span class="text-danger me-2"><i class="fas fa-arrow-down"></i> 1.08%</span>
@@ -103,13 +111,14 @@ include_once('./MenuAdmin.php');
             </div>
         </div>
 
+        <!-- Thống kê đơn hủy -->
         <div class="col-xl-4 col-lg-6 mb-4">
             <div class="card widget-flat">
                 <div class="card-body text-bg-danger">
                     <div class="float-end">
                         <i class="fas fa-ban widget-icon"></i>
                     </div>
-                    <h5 class="text-muted fw-normal mt-0" title="Cancelled Orders">Đơn hủy</h5>
+                    <h5 class="text-muted fw-normal mt-0">Đơn hủy</h5>
                     <h3 class="mt-3 mb-3">1,234</h3>
                     <p class="mb-0 text-muted">
                         <span class="text-danger me-2"><i class="fas fa-arrow-down"></i> 2.00%</span>
@@ -122,6 +131,7 @@ include_once('./MenuAdmin.php');
 
     <h3 class="mb-4">Sản phẩm</h3>
     <div class="row">
+        <!-- Số sản phẩm -->
         <div class="col-xl-4 col-lg-6 mb-4">
             <div class="card widget-flat">
                 <div class="card-body text-bg-info">
@@ -138,6 +148,7 @@ include_once('./MenuAdmin.php');
             </div>
         </div>
 
+        <!-- Sản phẩm hết -->
         <div class="col-xl-4 col-lg-6 mb-4">
             <div class="card widget-flat">
                 <div class="card-body text-bg-danger">
@@ -154,6 +165,7 @@ include_once('./MenuAdmin.php');
             </div>
         </div>
 
+        <!-- Sản phẩm còn -->
         <div class="col-xl-4 col-lg-6 mb-4">
             <div class="card widget-flat">
                 <div class="card-body text-bg-success">
@@ -189,4 +201,35 @@ include_once('./MenuAdmin.php');
             </div>
         </div>
     </div>
+
+    <h3 class="mb-4">Thống kê sản phẩm mua thực tế</h3>
+    <div class="chart-container">
+        <canvas id="salesChart"></canvas>
+    </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4'],
+            datasets: [{
+                label: 'Sản phẩm đã bán',
+                data: [120, 190, 300, 250],
+                backgroundColor: 'rgba(25, 135, 84, 0.5)',
+                borderColor: 'rgba(25, 135, 84, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

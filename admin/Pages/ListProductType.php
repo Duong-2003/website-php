@@ -70,7 +70,7 @@
             <thead class="table-dark">
                 <tr>
                     <th>Loại sản phẩm</th>
-                    <th>Thao tác</th>
+                    <th style="text-align:center">Thao tác</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,7 +80,7 @@
                         <td>
                             <div class="d-flex justify-content-center">
                                 <a href="<?= $linkBE . "DeleteSQL.php?key=loaisp_ten&table=loaisp&datakey=" . $lsp['loaisp_ten'] ?>" class="btn btn-danger mx-1">Xóa</a>
-                                <a href="#" class="btn btn-warning mx-1">Sửa</a>
+                                <!-- <a href="#" class="btn btn-warning mx-1">Sửa</a> -->
                             </div>
                         </td>
                     </tr>
