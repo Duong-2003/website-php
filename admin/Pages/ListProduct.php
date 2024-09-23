@@ -68,7 +68,7 @@
             'sp_ten' => htmlspecialchars($row['sp_ten']),
             'loaisanpham' => htmlspecialchars($row['loaisanpham']),
             'loaisp_ten' => htmlspecialchars($row['loaisp_ten']),
-            'sp_gia' => number_format($row['sp_gia'], 0, '.', ','),
+            'sp_gia' => number_format($row['sp_gia'], 0, ',', ','),
             'sp_mota' => htmlspecialchars($row['sp_mota']),
             'sp_motachitiet' => htmlspecialchars($row['sp_motachitiet']),
             'sp_img' => htmlspecialchars($row['sp_img']),

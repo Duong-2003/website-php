@@ -30,7 +30,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="sp_gia" class="form-label">Giá sản phẩm <span class="text-danger">*</span></label>
-                        <input name="sp_gia" type="number" step="0.01" class="form-control" id="sp_gia" required>
+                        <input name="sp_gia" type="text" class="form-control" id="sp_gia">
                     </div>
                     <div class="mb-3">
                         <label for="sp_mota" class="form-label">Mô tả sản phẩm</label>
