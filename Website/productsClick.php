@@ -64,9 +64,8 @@
 <?php
 include('../sources/FE/top_header.php');
 include('../sources/FE/header.php');
-include( '../sources/FE/nav.php');
-
 include('../sources/FE/menu.php');
+include( '../sources/FE/nav.php');
 ?>
 
 <body>

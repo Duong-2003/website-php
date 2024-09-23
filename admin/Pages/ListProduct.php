@@ -14,19 +14,24 @@
             background-color: #f8f9fa;
         }
 
-        .content {
-            margin: 40px auto;
-            max-width: 1200px;
-        }
-
+      
         h1 {
             color: tomato;
         }
-
         .table th,
-        .table td {
-            vertical-align: middle;
-        }
+    .table td {
+        vertical-align: middle;
+        text-align: center; /* Căn giữa nội dung */
+    }
+
+    .table th {
+        width: 1%; 
+    }
+
+    .table td {
+        width: 1%; 
+    }
+
 
         p#notifi_log {
             font-weight: 900;
@@ -72,7 +77,7 @@
     }
     ?>
     
-    <div class="content">
+    <div class="container-fluid">
         <h1 class="text-center">Danh mục sản phẩm</h1>
         <hr style="color:red">
         <?php
@@ -81,7 +86,7 @@
         <p id="notifi_log" class="text-success"><?= $notifi ?></p>
       
         <div class="text-end mb-3">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddProduct">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddProduct">
                 Thêm sản phẩm
             </button>
         </div>
@@ -89,11 +94,11 @@
         <table id="danhsach" class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Mã sp</th>
-                    <th>Tên sp</th>
-                    <th>Loại sp</th>
-                    <th>Tên loại sp</th>
-                    <th>Giá sp</th>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Loại sản phẩm</th>
+                    <th>Tên loại sản phẩm</th>
+                    <th>Giá sản phẩm</th>
                     <th>Mô tả</th>
                     <th>Mô tả chi tiết</th>
                     <th>Hình ảnh</th>

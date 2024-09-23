@@ -33,7 +33,7 @@
         myDiv.classList.add("active");
     </script>
 
-    <div class="content container mt-5">
+    <div class="container-fluid">
         <h1 class="text-center">Danh sách người dùng</h1>
         <hr style="color:red">
         <?php
@@ -43,7 +43,7 @@
         <p id="notifi_log" class="text-success"><?= $notifi ?></p>
   
         <div class="text-end mb-3">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddProduct">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddProduct">
                 Thêm người dùng
             </button>
         </div>

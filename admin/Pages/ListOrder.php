@@ -37,7 +37,7 @@
         myDiv.classList.add("active");
     </script>
 
-    <div class="content">
+    <div class="container-fluid">
         <h1 class="text-center">Danh sách đơn hàng</h1>
         <hr style="color:red">
 

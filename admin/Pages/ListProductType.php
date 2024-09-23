@@ -87,7 +87,7 @@
                     <span class="input-group-text">Loại sản phẩm<span style="color: red;">*</span></span>
                     <input name="loaisanpham" type="text" class="form-control" required>
                 </div>
-                <button type="submit" name="submit" class="btn btn-dark">Thêm</button>
+                <button type="submit" name="submit" class="btn btn-success">Thêm</button>
             </form>
         </div>
     </div>
