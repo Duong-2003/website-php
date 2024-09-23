@@ -41,41 +41,42 @@
     <?php include('./MenuAdmin.php'); ?>
     <?php
     include_once($linkconnPages);
+
+    // Lấy danh sách loại sản phẩm
     $sqlLSP = "SELECT * FROM loaisp";
     $resultLSP = $connect->query($sqlLSP);
-
     $danhsachLSP = [];
     while ($row = mysqli_fetch_array($resultLSP, MYSQLI_ASSOC)) {
         $danhsachLSP[] = array(
-            'loaisp_ten' => $row['loaisp_ten'],
+            'loaisanpham' => htmlspecialchars($row['loaisanpham']),
+            'loaisp_ten' => htmlspecialchars($row['loaisp_ten']),
         );
     }
 
+    // Lấy danh sách sản phẩm
     $sqlSP = "SELECT * FROM sanpham";
     $resultSP = $connect->query($sqlSP);
-
     $danhsachSP = [];
     while ($row = mysqli_fetch_array($resultSP, MYSQLI_ASSOC)) {
         $danhsachSP[] = array(
             'sp_ma' => $row['sp_ma'],
-            'sp_ten' => $row['sp_ten'],
-            'loaisp_ten' => $row['loaisp_ten'],
-            'sp_gia' => $row['sp_gia'],
-            'sp_mota' => $row['sp_mota'],
-            'sp_motachitiet' => $row['sp_motachitiet'],
-            'sp_img' => $row['sp_img'],
+            'sp_ten' => htmlspecialchars($row['sp_ten']),
+            'loaisanpham' => htmlspecialchars($row['loaisanpham']),
+            'loaisp_ten' => htmlspecialchars($row['loaisp_ten']),
+            'sp_gia' => number_format($row['sp_gia'], 0, '.', ','),
+            'sp_mota' => htmlspecialchars($row['sp_mota']),
+            'sp_motachitiet' => htmlspecialchars($row['sp_motachitiet']),
+            'sp_img' => htmlspecialchars($row['sp_img']),
             'sp_soluong' => $row['sp_soluong']
         );
     }
-
-    // var_dump(($danhsachSP));
     ?>
+    
     <div class="content">
         <h1 class="text-center">Danh mục sản phẩm</h1>
         <hr style="color:red">
         <?php
-       
-        $notifi = isset($_GET["notifi"]) ? $_GET["notifi"] : '';
+        $notifi = isset($_GET["notifi"]) ? htmlspecialchars($_GET["notifi"]) : '';
         ?>
         <p id="notifi_log" class="text-success"><?= $notifi ?></p>
       
@@ -91,26 +92,24 @@
                     <th>Mã sp</th>
                     <th>Tên sp</th>
                     <th>Loại sp</th>
+                    <th>Tên loại sp</th>
                     <th>Giá sp</th>
                     <th>Mô tả</th>
                     <th>Mô tả chi tiết</th>
-                    <th>Image</th>
+                    <th>Hình ảnh</th>
                     <th>Số lượng</th>
                     <th>Thao tác</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                include_once($linkconnPages);
-                $sqlSP = "SELECT * FROM sanpham";
-                $resultSP = $connect->query($sqlSP);
-
-                while ($row = mysqli_fetch_array($resultSP, MYSQLI_ASSOC)) {
+                foreach ($danhsachSP as $row) {
                     echo "<tr>
                         <td>{$row['sp_ma']}</td>
                         <td>{$row['sp_ten']}</td>
+                        <td>{$row['loaisanpham']}</td>
                         <td>{$row['loaisp_ten']}</td>
-                        <td>" . number_format($row['sp_gia'], 0, '.', ',') . "</td>
+                        <td>{$row['sp_gia']}</td>
                         <td>{$row['sp_mota']}</td>
                         <td>{$row['sp_motachitiet']}</td>
                         <td><img style='max-height: 100px;' src='{$linkSanPham}{$row['sp_img']}' alt=''></td>

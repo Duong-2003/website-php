@@ -13,10 +13,18 @@
                         <input name="sp_ten" type="text" class="form-control" id="sp_ten" required>
                     </div>
                     <div class="mb-3">
-                        <label for="productType" class="form-label">Tên loại sản phẩm <span class="text-danger">*</span></label>
+                        <label for="productType" class="form-label">Loại sản phẩm <span class="text-danger">*</span></label>
                         <select name="productType" class="form-select" id="productType" required>
                             <?php foreach ($danhsachLSP as $Lsp) : ?>
-                                <option value="<?= $Lsp['loaisp_ten'] ?>"><?= $Lsp['loaisp_ten'] ?></option>
+                                <option value="<?= htmlspecialchars($Lsp['loaisanpham']) ?>"><?= htmlspecialchars($Lsp['loaisanpham']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="productTypeName" class="form-label">Tên loại sản phẩm <span class="text-danger">*</span></label>
+                        <select name="productTypeName" class="form-select" id="productTypeName" required>
+                            <?php foreach ($danhsachLSP as $Lsp) : ?>
+                                <option value="<?= htmlspecialchars($Lsp['loaisp_ten']) ?>"><?= htmlspecialchars($Lsp['loaisp_ten']) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -48,26 +56,25 @@
 </div>
 
 <script>
-    // Lấy form và xử lý sự kiện khi form được gửi
-    const form = document.querySelector("form");
-    const errorMessage = document.getElementById("error-message");
+    document.querySelector("form").addEventListener("submit", function(event) {
+        const errorMessage = document.getElementById("error-message");
+        const fields = {
+            productName: document.querySelector('input[name="sp_ten"]').value.trim(),
+            productType: document.querySelector('select[name="productType"]').value.trim(),
+            productPrice: document.querySelector('input[name="sp_gia"]').value.trim(),
+            productDetail: document.querySelector('textarea[name="sp_motachitiet"]').value.trim(),
+            productImage: document.querySelector('input[name="sp_img"]').value.trim(),
+            productQuantity: document.querySelector('input[name="sp_soluong"]').value.trim(),
+        };
 
-    form.addEventListener("submit", function(event) {
-        const productName = document.querySelector('input[name="sp_ten"]').value.trim();
-        const productType = document.querySelector('select[name="productType"]').value.trim();
-        const productPrice = document.querySelector('input[name="sp_gia"]').value.trim();
-        const productDetail = document.querySelector('textarea[name="sp_motachitiet"]').value.trim();
-        const productImage = document.querySelector('input[name="sp_img"]').value.trim();
-        const productQuantity = document.querySelector('input[name="sp_soluong"]').value.trim();
-
-        if (!productName || !productType || !productPrice || !productDetail || !productImage || !productQuantity) {
+        const emptyFields = Object.entries(fields).filter(([key, value]) => !value);
+        if (emptyFields.length > 0) {
             errorMessage.textContent = "Vui lòng nhập đầy đủ thông tin.";
             event.preventDefault();
         }
     });
 
-    // Xóa thông báo lỗi khi người dùng bắt đầu nhập liệu
-    form.addEventListener("input", function() {
-        errorMessage.textContent = "";
+    document.querySelector("form").addEventListener("input", function() {
+        document.getElementById("error-message").textContent = "";
     });
 </script>

@@ -242,7 +242,10 @@ a.btn-link-style {
     </div>
   </div>
 
-  <?php include($linkFE . "footer.php"); ?>
+  <?php 
+  include($linkFE.'footer_save.php');
+  include($linkFE . "footer.php"); 
+   ?>
 
 </body>
 

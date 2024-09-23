@@ -67,7 +67,7 @@
 
   <div class="container contact page-contacts" style="padding-top: 50px;">
     <div class="row contact-padding">
-      <div class="col-lg-6 col-sm-12 leave-your-message order-md-2">
+      <div class="col-lg-5 col-sm-12 leave-your-message order-md-2">
         <h3>Liên hệ chúng tôi</h3>
         <p class="p-bottom">Để liên hệ và nhận các thông tin khuyến mãi sớm nhất, chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất.</p>
         <form method="post" action="/postcontact" id="contact" accept-charset="UTF-8" class="has-validation-callback">
@@ -87,25 +87,25 @@
           <div class="row">
             <div class="col-sm-12">
               <fieldset class="form-group">
-                <label>Họ và tên<span class="required">*</span></label>
+                <label>Họ và tên<span class="required" style="color:red">*</span></label>
                 <input placeholder="Nhập họ và tên" type="text" name="contact[name]" id="name" class="form-control form-control-lg" required>
               </fieldset>
             </div>
             <div class="col-sm-12">
               <fieldset class="form-group">
-                <label>Email<span class="required">*</span></label>
+                <label>Email<span class="required" style="color:red">*</span></label>
                 <input placeholder="Nhập địa chỉ Email" type="email" name="contact[email]" id="email" class="form-control form-control-lg" required>
               </fieldset>
             </div>
             <div class="col-sm-12">
               <fieldset class="form-group">
-                <label>Điện thoại<span class="required">*</span></label>
+                <label>Điện thoại<span class="required" style="color:red">*</span></label>
                 <input placeholder="Nhập số điện thoại" type="tel" name="contact[phone]" id="tel" class="form-control form-control-lg" required>
               </fieldset>
             </div>
             <div class="col-sm-12">
               <fieldset class="form-group">
-                <label>Nội dung<span class="required">*</span></label>
+                <label>Nội dung<span class="required" style="color:red">*</span></label>
                 <textarea placeholder="Nội dung liên hệ" name="contact[body]" id="comment" class="form-control form-control-lg" rows="5" required></textarea>
               </fieldset>
               <fieldset class="form-group">
@@ -116,7 +116,7 @@
         </form>
       </div>
 
-      <div class="col-lg-6 col-12 order-md-1">
+      <div class="col-lg-7 col-12 order-md-1">
         <div class="contact-maps">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.9041492965453!2d105.81368901540243!3d21.036520892888156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab128b45bf23%3A0xd1d32b58169417cd!2zMjY2IMSQ4buZaSBD4bqlbiwgTGnhu4V1IEdpYWksIEJhIMSQw6xuaCwgSMOgIE7hu5lpLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1628424473479!5m2!1sen!2s" style="border:0; width: 100%; height: 100%;" allowfullscreen="" loading="lazy"></iframe>
         </div>
@@ -124,7 +124,10 @@
     </div>
   </div>
 
-  <?php include($linkFE . "footer.php"); ?>
+  <?php 
+  include($linkFE.'footer_save.php');
+  include($linkFE . "footer.php"); 
+  ?>
 
 </body>
 

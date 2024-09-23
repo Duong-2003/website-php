@@ -64,7 +64,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <a href="" style="color: red; text-decoration: none; font-size: 30px">
+          <a href="../sources/FE/listProduct.php" style="color: red; text-decoration: none; font-size: 30px">
             <hr>Sản phẩm mới nhất
             <hr>
           </a>
@@ -73,7 +73,7 @@
     </div>
 
     <?php
-    include_once($linkconnWebsite);
+    include_once("../sources/connect.php");
     $valueCart = 20;
     $sql = "SELECT * FROM sanpham LIMIT $valueCart";
     $result = $connect->query($sql);

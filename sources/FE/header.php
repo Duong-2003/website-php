@@ -55,7 +55,7 @@
 
         button#order:hover {
 
-            background: #6c757d;
+            background: #c5e3dd;
             color: #fff;
             border: 1px solid #6c757d;
 
@@ -86,15 +86,15 @@
             <div class="d-flex justify-content-between align-items-center py-3">
                 <div id="logo">
                     <a href="./website.php">
-                        <img src="<?= $linkImgIndex . 'logo1.webp' ?>" alt="Logo" class="img-fluid">
+                        <img src="<?= '../Assets/img/index/logo1.webp' ?>" alt="Logo" class="">
                     </a>
                 </div>
 
                 <form action="./listSearch.php" method="GET" class="d-flex flex-grow-1 mx-3">
                     <input id="searchInput" type="text" class="form-control me-2"
                         placeholder="Vui lòng nhập từ khóa để tìm kiếm!" name="search" required>
-                    <button type="button" id="searchClick" class="btn btn-primary">
-                        <i class="fa fa-search"></i>
+                    <button style="background-color:#8095b3" type="button" id="searchClick" class="btn ">
+                        <i style="color: #fff;" class="fa fa-search"></i>
                     </button>
                 </form>
 

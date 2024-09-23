@@ -11,11 +11,10 @@
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <title>Login</title>
-  <?php include('../sources/linkFIle.php'); ?>
+  <title>Admin Login</title>
 
   <style>
-    .error>p {
+    .error > p {
       font-size: 20px;
       text-align: center;
       font-weight: 600;
@@ -31,7 +30,6 @@
     .account-box-shadow .account-content .auth-block__menu-list li {
       flex: 1 1;
       text-align: center;
-     
       position: relative;
     }
 
@@ -98,7 +96,7 @@
       margin-bottom: 5px;
     }
 
-   a#link-style {
+    a.btn-link-style {
       margin-top: 0;
       color: #9c8350;
       font-size: 13px;
@@ -106,7 +104,6 @@
     }
 
     .page-login input[type="text"],
-    .page-login input[type="email"],
     .page-login input[type="password"] {
       background: #fafafa;
       height: 40px;
@@ -115,19 +112,12 @@
       outline: none;
       box-shadow: none;
     }
-    #ctn{
-
-background-image: url(../Assets/img/index/bg_sp_noibat.jpg);
-    }
   </style>
 </head>
 
 <body>
 
-  <?php include($linkFE . 'top_header.php'); ?>
-  <?php include($linkFE . 'header.php'); ?>
-
-  <div class="container py-5 " id="ctn">
+  <div class="container py-5" id="ctn">
     <div class="row justify-content-md-center">
       <div class="col-lg-7 col-md-12">
         <div class="page-login account-box-shadow">
@@ -137,69 +127,31 @@ background-image: url(../Assets/img/index/bg_sp_noibat.jpg);
               $error = isset($_GET["error"]) ? $_GET["error"] : '';
               $notifi = isset($_GET["notifi"]) ? $_GET["notifi"] : '';
               ?>
-              <p id="notifi_log" class="text-success"><?= $notifi ?></p>
-              <p id="error_log" class="text-danger"><?= $error ?></p>
+              <p id="notifi_log" class="text-success"><?= htmlspecialchars($notifi) ?></p>
+              <p id="error_log" class="text-danger"><?= htmlspecialchars($error) ?></p>
             </div>
             <div class="col-lg-12 col-md-12 account-content">
               <ul class="auth-block__menu-list">
                 <li class="active">
-                  <a href="../Website/login.php" title="Đăng nhập">Đăng nhập</a>
-                </li>
-                <li>
-                  <a href="../Website/register.php" title="Đăng ký">Đăng ký</a>
+                  <a href="#" title="Đăng nhập">Đăng nhập</a>
                 </li>
               </ul>
               <div id="nd-login">
-                <form action="<?= $linkBE . 'login_process.php' ?>" method="post" id="customer_login"
-                  accept-charset="UTF-8" class="has-validation-callback">
-                  <input name="FormType" type="hidden" value="customer_login">
-                  <input name="utf8" type="hidden" value="true">
-                  <input name="ReturnUrl" type="hidden" value="/account">
+              <form action="../Website/admin/Includes/FE/LoginProcess.php" method="post">
+  <fieldset class="form-group margin-bottom-10">
+    <label for="account">Tài khoản<span style="color: red;">*</span></label>
+    <input id="account" placeholder="Nhập tài khoản" type="text" class="form-control" name="username" required autocomplete="username">
+  </fieldset>
 
-                  <fieldset class="form-group margin-bottom-10">
-                    <label>Tài khoản<span style="color: red;">*</span></label>
-                    <input id="account" placeholder="Nhập tài khoản" type="text" class="form-control" name="account"
-                      required>
-                  </fieldset>
+  <fieldset class="form-group margin-bottom-0">
+    <label for="password">Mật khẩu<span style="color: red;">*</span></label>
+    <input type="password" placeholder="Nhập mật khẩu" id="password" class="form-control" name="password" required autocomplete="current-password">
+  </fieldset>
 
-                  <fieldset class="form-group margin-bottom-0">
-                    <label>Mật khẩu<span style="color: red;">*</span></label>
-                    <input type="password" placeholder="Nhập mật khẩu" id="password" class="form-control"
-                      name="password" required>
-                  </fieldset>
-
-                  <div class="clearfix"></div>
-                  <p class="text-right recover">
-                    <a href="#" class="" id="link-style" title="Quên mật khẩu?">
-                      <a  id="link-style"  href="../website/resetpass.php">Quên mật khẩu?</a>
-                  </p>
-
-                  <div class="text-center" style="margin-top: 15px;">
-                    <button class="btn btn-style btn-blues" type="submit" id="loginSubmit" name="submit">Đăng
-                      nhập</button>
-                  </div>
-
-                  <p class="login--notes">Chúng tôi cam kết bảo mật và sẽ không bao giờ chia sẻ thông tin của bạn.</p>
-                </form>
-
-                <div class="line-break text-center">
-                  <span>hoặc đăng nhập qua</span>
-                </div>
-                <div class="social-login text-center">
-
-
-                  <a href="" class="social-login--facebook" onclick="loginFacebook()">
-                    <img width="129px" height="37px" alt="facebook-login-button"
-                      src="//bizweb.dktcdn.net/assets/admin/images/login/fb-btn.svg">
-                  </a>
-                  <a href="" class="social-login--google" onclick="loginGoogle()">
-                    <img width="129px" height="37px" alt="google-login-button"
-                      src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg">
-                  </a>
-                </div>
-              </div>
-
-            
+  <div class="text-center" style="margin-top: 15px;">
+    <button class="btn btn-style btn-blues" type="submit" id="loginSubmit" name="submit">Đăng nhập</button>
+  </div>
+</form>
               </div>
             </div>
           </div>
@@ -207,12 +159,6 @@ background-image: url(../Assets/img/index/bg_sp_noibat.jpg);
       </div>
     </div>
   </div>
-
-  <?php 
-  include($linkFE.'footer_save.php');
-  include($linkFE . "footer.php"); 
-  
-  ?>
 
 </body>
 

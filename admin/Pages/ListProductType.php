@@ -32,43 +32,30 @@
     <?php include("./MenuAdmin.php"); ?>
     <?php
     include_once($linkconnPages);
-    $sql =  "SELECT * FROM loaisp";
+    $sql = "SELECT * FROM loaisp";
     $result = $connect->query($sql);
 
     $danhsachLSP = [];
-    while ($row =  mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-      $danhsachLSP[] = array(
-        'loaisp_ten' => $row['loaisp_ten'],
-      );
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $danhsachLSP[] = array(
+            'loaisp_ten' => $row['loaisp_ten'],
+            'loaisanpham' => $row['loaisanpham'], // Thêm trường loại sản phẩm
+        );
     }
-
-    // var_dump(($danhsachSP));
     ?>
+
     <div class="content container mt-5">
         <h1 class="text-center">Danh sách loại sản phẩm</h1>
         <hr style="color:red">
         <?php
-        
         $notifi = isset($_GET["notifi"]) ? $_GET["notifi"] : '';
         ?>
         <p id="notifi_log" class="text-success"><?= $notifi ?></p>
-       
-        <?php
-        include_once($linkconnPages);
-        $sql = "SELECT * FROM loaisp";
-        $result = $connect->query($sql);
-
-        $danhsachLSP = [];
-        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $danhsachLSP[] = array(
-                'loaisp_ten' => $row['loaisp_ten'],
-            );
-        }
-        ?>
 
         <table id="danhsach" class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
+                    <th>Tên loại sản phẩm</th>
                     <th>Loại sản phẩm</th>
                     <th style="text-align:center">Thao tác</th>
                 </tr>
@@ -77,6 +64,7 @@
                 <?php foreach ($danhsachLSP as $lsp) : ?>
                     <tr>
                         <td><?= $lsp['loaisp_ten'] ?></td>
+                        <td><?= $lsp['loaisanpham'] ?></td> <!-- Hiển thị loại sản phẩm -->
                         <td>
                             <div class="d-flex justify-content-center">
                                 <a href="<?= $linkBE . "DeleteSQL.php?key=loaisp_ten&table=loaisp&datakey=" . $lsp['loaisp_ten'] ?>" class="btn btn-danger mx-1">Xóa</a>
@@ -92,8 +80,12 @@
             <h5 class="text-dark">Thêm loại sản phẩm</h5>
             <form action="<?= $linkBE . 'Add_productType.php' ?>" method="post">
                 <div class="input-group mb-3">
-                    <span class="input-group-text">Tên loại sp<span style="color: red;">*</span></span>
+                    <span class="input-group-text">Tên loại sản phẩm<span style="color: red;">*</span></span>
                     <input name="loaisp" type="text" class="form-control" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Loại sản phẩm<span style="color: red;">*</span></span>
+                    <input name="loaisanpham" type="text" class="form-control" required>
                 </div>
                 <button type="submit" name="submit" class="btn btn-dark">Thêm</button>
             </form>

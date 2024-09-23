@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2023 at 01:44 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Sep 23, 2024 at 05:49 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,17 +44,24 @@ CREATE TABLE `donhang` (
 --
 
 CREATE TABLE `loaisp` (
-  `loaisp_ten` varchar(250) NOT NULL
+  `loaisp_ten` varchar(250) NOT NULL,
+  `loaisanpham` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `loaisp`
 --
 
-INSERT INTO `loaisp` (`loaisp_ten`) VALUES
-('Khác'),
-('Ốp lưng điện thoại'),
-('Điện thoại');
+INSERT INTO `loaisp` (`loaisp_ten`, `loaisanpham`) VALUES
+('Bìa kẹp', 'biakep'),
+('Bút', 'but'),
+('Hộp', 'hop'),
+('Khác', 'KHAC'),
+('Máy tính', 'maytinh'),
+('Nhãn dán', 'nhandan'),
+('Sổ tay', 'sotay'),
+('Túi', 'tui'),
+('Vở', 'Vo');
 
 -- --------------------------------------------------------
 
@@ -70,25 +77,20 @@ CREATE TABLE `sanpham` (
   `sp_mota` varchar(300) DEFAULT NULL,
   `sp_motachitiet` varchar(300) NOT NULL,
   `sp_img` varchar(50) NOT NULL,
-  `sp_soluong` int(250) NOT NULL DEFAULT 1
+  `sp_soluong` int(250) NOT NULL DEFAULT 1,
+  `loaisanpham` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `sanpham`
 --
 
-INSERT INTO `sanpham` (`sp_ma`, `loaisp_ten`, `sp_ten`, `sp_gia`, `sp_mota`, `sp_motachitiet`, `sp_img`, `sp_soluong`) VALUES
-(70, 'Điện thoại', 'IP 12 PRO MAX', '20000', 'ip 12 PRO MAX 64GB', 'ip 12 PRO MAX 64GB', 'iphone-12-64gb-chinh-hang-vn-a1.webp', 1),
-(74, 'Điện thoại', 'IP 11 PRO MAX', '20000', 'cũ', 'cũ', 'iphone-11-pro-max-64gb-chinh-hang-vna-1.webp', 2),
-(84, 'Điện thoại', 'IP XS PRO MAX 64GB', '20000', 'CHẤT LƯỢNG CŨ', 'CHẤT LƯỢNG CŨ', 'iphone-xs-cu-64gb-nguyen-ban-dep', 1),
-(85, 'Điện thoại', 'XIAOMI REDMI K60', '20000', '8GB 128GB BẢN CHÍNH HÃNG', '8GB 128GB BẢN CHÍNH HÃNG', 'Xiaomi redmi K60 pro 5g 8gb 128gb.webp', 1),
-(86, 'Điện thoại', 'REDMI NOTE 12 TURBO ', '20000', '256GB ', '256GB ', 'redmi-note-12-turbo-8gb-256gb-ch.webp', 1),
-(88, 'Ốp lưng điện thoại', 'Ốp lưng ', '1000', 'Ốp lưng xịn xò', 'Ốp lưng xịn xò', 'oplung1.jfif', 100),
-(89, 'Ốp lưng điện thoại', 'Ốp lưng ', '1000', 'Ốp lưng xìn xòa', 'Ốp lưng xìn xòa', 'oplung2.jfif', 100),
-(90, 'Ốp lưng điện thoại', 'Ốp lưng ', '1000', 'Ốp lưng ', 'Ốp lưng ', 'oplung3.jfif', 100),
-(91, 'Ốp lưng điện thoại', 'Ốp lưng ', '3334', 'Ốp lưng ', 'Ốp lưng ', 'oplung1.jfif', 12),
-(92, 'Điện thoại', 'IP 14 PRO MAX', '20000000', 'IP 14 PRO MAX', 'IP 14 PRO MAX', 'iphone-14-pro-max.webp', 100),
-(93, 'Điện thoại', 'IP XS PRO MAX', '20000000', 'IP 14 PRO MAX chất lựng đã cũ nhưng vẫn còn sai được ', 'IP 14 PRO MAX chất lựng đã cũ nhưng vẫn còn sai được ', 'iphone-xs-cu-64gb-nguyen-ban-dep', 15);
+INSERT INTO `sanpham` (`sp_ma`, `loaisp_ten`, `sp_ten`, `sp_gia`, `sp_mota`, `sp_motachitiet`, `sp_img`, `sp_soluong`, `loaisanpham`) VALUES
+(99, 'Sổ tay', 'Sổ tay mini hoạt hình dễ thương', '20', 'Sổ Tay Cá Nhân Mini/ Sổ Noted 32 Trang \r\n\r\n-  Sổ noted có 16 tờ- 32 trang.\r\n-  Kích thước cả bìa : 8.1*10.3cm được làm từ giấy chất lượng, bề mặt mịn, viết êm.\r\n-  Giấy bắt mực tốt, không gây lem, cho chữ viết rõ ràng, đẹp mắt.\r\n-  Sản phẩm phù hợp với nhiều mục đích sử dụng trong lĩnh vực văn phòng', 'Sổ Tay Cá Nhân Mini/ Sổ Noted 32 Trang \r\n\r\n-  Sổ noted có 16 tờ- 32 trang.\r\n-  Kích thước cả bìa : 8.1*10.3cm được làm từ giấy chất lượng, bề mặt mịn, viết êm.\r\n-  Giấy bắt mực tốt, không gây lem, cho chữ viết rõ ràng, đẹp mắt.\r\n-  Sản phẩm phù hợp với nhiều mục đích sử dụng trong lĩnh vực văn phòng', 'sp7.webp', 999, 'sotay'),
+(100, 'but', 'Màu Sắc Bút Đánh Dấu Hai Đầu Màu Graffiti ', '20', 'Đặc điểm kỹ thuật:\r\nLoại: Bút màu nước hai đầu\r\nChiều dài: 15cm\r\nChất liệu: Nhựa\r\nMàu sắc: 1 Bộ có 6 màu', 'Đặc điểm kỹ thuật:\r\nLoại: Bút màu nước hai đầu\r\nChiều dài: 15cm\r\nChất liệu: Nhựa\r\nMàu sắc: 1 Bộ có 6 màu', 'sp14.webp', 123, 'but'),
+(101, 'biakep', 'Bìa kẹp tài liệu thương hiệu Helix đến từ Anh Quốc', '20', '- Loại bìa: Bìa kẹp\r\n\r\n- Dùng để kẹp tài liệu, hồ sơ...\r\n\r\n- Sản phẩm của thương hiệu Helix đến từ Anh Quốc\r\n\r\n- Làm từ chất liệu PP chắc chắn, chịu va đập cao.\r\n\r\n- Có kẹp giấy cứng cáp, giúp giữ giấy tờ luôn gọn gàng, thẳng nếp.\r\n\r\n- Màu sắc tươi sáng, chống thấm nước, không bám bụi bẩn, dễ lau ch', '- Loại bìa: Bìa kẹp\r\n\r\n- Dùng để kẹp tài liệu, hồ sơ...\r\n\r\n- Sản phẩm của thương hiệu Helix đến từ Anh Quốc\r\n\r\n- Làm từ chất liệu PP chắc chắn, chịu va đập cao.\r\n\r\n- Có kẹp giấy cứng cáp, giúp giữ giấy tờ luôn gọn gàng, thẳng nếp.\r\n\r\n- Màu sắc tươi sáng, chống thấm nước, không bám bụi bẩn, dễ lau ch', 'sp9.webp', 999, 'biakep'),
+(102, 'Máy tính', 'Máy Tính Mini Gấu Bỏ Túi Dễ Thương', '20', 'Thông tin sản phẩm: Máy tính\r\n-  Chất liệu: Nhựa\r\n-  Kích thước : 6.5 x 9.5cm\r\n-  Màu Sắc Nhiều Màu được lựa chọn\r\n-  Hoạ Tiết Hình Gấu Dễ Thương\r\nLƯU Ý : MÁY TÍNH ĐỂ IM TỰ TẮT SAU 5-10PHÚT NHA CÁC BẠN !!!\r\n\r\n-  Phụ kiện Văn phòng phẩm không thể thiếu với các bạn học sinh, sinh viên, công sở trong v', 'Thông tin sản phẩm: Máy tính\r\n-  Chất liệu: Nhựa\r\n-  Kích thước : 6.5 x 9.5cm\r\n-  Màu Sắc Nhiều Màu được lựa chọn\r\n-  Hoạ Tiết Hình Gấu Dễ Thương\r\nLƯU Ý : MÁY TÍNH ĐỂ IM TỰ TẮT SAU 5-10PHÚT NHA CÁC BẠN !!!\r\n\r\n-  Phụ kiện Văn phòng phẩm không thể thiếu với các bạn học sinh, sinh viên, công sở trong v', 'sp6.webp', 999, 'maytinh'),
+(103, 'Vở', 'Vở viết kẻ ngang nhiều hình siêu ngộ nghĩnh', '20', '???????????? SỔ VỞ ĐÁNG YÊU - HỌC TẬP THÊM PHIÊUUUUU ????????????\r\n\r\n✔Size: Khổ A5( 20,7cm * 14cm) gồm 120 trang giấy dày dặn \r\n✔ Chất liệu: giấy chống lóa mắt cao cấp, không gây mỏi mắt khi nhìn lâu\r\n✔Bìa của quyển sổ/vở là bìa giấy cứng cáp, chắc chắn. Đặc biệt được in hình thù siêu dễ thương kết ', '???????????? SỔ VỞ ĐÁNG YÊU - HỌC TẬP THÊM PHIÊUUUUU ????????????\r\n\r\n✔Size: Khổ A5( 20,7cm * 14cm) gồm 120 trang giấy dày dặn \r\n✔ Chất liệu: giấy chống lóa mắt cao cấp, không gây mỏi mắt khi nhìn lâu\r\n✔Bìa của quyển sổ/vở là bìa giấy cứng cáp, chắc chắn. Đặc biệt được in hình thù siêu dễ thương kết ', 'sp10-4.webp', 999, 'Vo');
 
 -- --------------------------------------------------------
 
@@ -119,10 +121,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`name`, `pass`, `email`, `address`, `role`) VALUES
-('1234', '$2y$10$68uAC8dUjwMJ0d3cpLfXIeZVzQl9xUqF8cHpHMoEn/De3FTfXddUK', 'admin3@gmail.com', 'Hồ Chí minh', 0),
-('admin14', '$2y$10$trvZXHb1JPblBG6v3bxwZ.Pp/FOO.ywnQmdcVof5CKkwI36EoZOBq', 'Admin20000@gmail.com', 'Hồ Chí minh1', 0),
-('admin2', '1234', 'Admin2000@gmail.com', 'hà nội', 0),
-('duong1234', '$2y$10$hSbSiP6ob///KHi/t/zP/.d6CotoPtKdXIIl.0fHmsdFlQDf.eRu.', 'Admin1@gmail.com', 'Hà nội1', 0);
+('admin', '$2y$10$/lM3mo1pmEhbxmfr5ZfUjuJWuh4keFkmS0JNUSGD0O6aB0b5FWDyO', 'anhtustyle2003@gmail.com', 'Ha Noi', 0);
 
 --
 -- Indexes for dumped tables
@@ -140,14 +139,14 @@ ALTER TABLE `donhang`
 -- Indexes for table `loaisp`
 --
 ALTER TABLE `loaisp`
-  ADD PRIMARY KEY (`loaisp_ten`);
+  ADD PRIMARY KEY (`loaisanpham`);
 
 --
 -- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`sp_ma`),
-  ADD KEY `loaisp_ten` (`loaisp_ten`);
+  ADD KEY `fk_loaisanpham` (`loaisanpham`);
 
 --
 -- Indexes for table `trangthaidonhang`
@@ -175,7 +174,7 @@ ALTER TABLE `donhang`
 -- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `sp_ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `sp_ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- Constraints for dumped tables
@@ -192,7 +191,7 @@ ALTER TABLE `donhang`
 -- Constraints for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`loaisp_ten`) REFERENCES `loaisp` (`loaisp_ten`);
+  ADD CONSTRAINT `fk_loaisanpham` FOREIGN KEY (`loaisanpham`) REFERENCES `loaisp` (`loaisanpham`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -45,20 +45,34 @@
     $sqlLSP = "SELECT * FROM loaisp";
     $resultLSP = $connect->query($sqlLSP);
 
+    if ($resultLSP === false) {
+        echo ('<div class="alert alert-danger">ERROR: Không thể truy cập dữ liệu loại sản phẩm.</div>');
+        exit();
+    }
+
     $danhsachLSP = [];
     while ($row = mysqli_fetch_array($resultLSP, MYSQLI_ASSOC)) {
       $danhsachLSP[] = array(
         'loaisp_ten' => $row['loaisp_ten'],
+        'loaisanpham' => $row['loaisanpham']
       );
     }
-    $dataKey = $_GET['datakey'];
+    
+    $dataKey = isset($_GET['datakey']) ? $_GET['datakey'] : null;
+
+    if ($dataKey === null) {
+        echo ('<div class="alert alert-danger">ERROR: Không tìm thấy mã sản phẩm.</div>');
+        exit();
+    }
 
     $sqlSP = "SELECT * FROM sanpham WHERE sp_ma = '$dataKey'";
     $result = $connect->query($sqlSP);
-    if ($result->num_rows != 1) {
+    
+    if ($result === false || $result->num_rows != 1) {
       echo ('<div class="alert alert-danger">ERROR: Không tìm thấy sản phẩm.</div>');
       exit();
     }
+    
     $sp = $result->fetch_assoc();
     ?>
 
@@ -85,7 +99,7 @@
               <td><?= htmlspecialchars($sp['sp_ma']) ?></td>
               <td><?= htmlspecialchars($sp['sp_ten']) ?></td>
               <td><?= htmlspecialchars($sp['loaisp_ten']) ?></td>
-              <td><?= number_format($sp['sp_gia'], 0, '.', ',') ?> VNĐ</td>
+              <td><?= number_format($sp['sp_gia'], 0, ',', '.') ?> VNĐ</td>
               <td><?= htmlspecialchars($sp['sp_mota']) ?></td>
               <td><?= htmlspecialchars($sp['sp_motachitiet']) ?></td>
               <td><img src="<?= htmlspecialchars($sp['sp_img']) ?>" alt="Image" style="max-width: 100px;"></td>
@@ -109,14 +123,23 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Tên Loại sp <span class="text-danger">*</span></label>
+            <label class="form-label">Loại sp <span class="text-danger">*</span></label>
             <select name="productType" class="form-select" required>
+              <?php foreach ($danhsachLSP as $Lsp) : ?>
+                <option value="<?= htmlspecialchars($Lsp['loaisanpham']) ?>" <?= ($sp['loaisanpham'] == $Lsp['loaisanpham']) ? 'selected' : ''; ?>><?= htmlspecialchars($Lsp['loaisanpham']) ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Tên Loại sp <span class="text-danger">*</span></label>
+            <select name="productTypeName" class="form-select" required>
               <?php foreach ($danhsachLSP as $Lsp) : ?>
                 <option value="<?= htmlspecialchars($Lsp['loaisp_ten']) ?>" <?= ($sp['loaisp_ten'] == $Lsp['loaisp_ten']) ? 'selected' : ''; ?>><?= htmlspecialchars($Lsp['loaisp_ten']) ?></option>
               <?php endforeach; ?>
             </select>
           </div>
-
+         
           <div class="mb-3">
             <label class="form-label">Giá sp <span class="text-danger">*</span></label>
             <input value="<?= htmlspecialchars($sp['sp_gia']) ?>" name="sp_gia" type="text" class="form-control" required>
@@ -155,14 +178,14 @@
 
   <script>
     function toggleSection() {
-      var checkBoxImg = document.getElementById("checkbox_Img");
-      var imageSection = document.getElementById("image-section");
+      const checkBoxImg = document.getElementById("checkbox_Img");
+      const imageSection = document.getElementById("image-section");
       imageSection.style.display = checkBoxImg.checked ? "block" : "none";
       document.getElementById("image-preview").style.display = "none"; // Ẩn hình ảnh khi chuyển đổi
     }
 
     function previewImage(event) {
-      var imagePreview = document.getElementById("image-preview");
+      const imagePreview = document.getElementById("image-preview");
       imagePreview.src = URL.createObjectURL(event.target.files[0]);
       imagePreview.style.display = "block"; // Hiển thị hình ảnh
     }

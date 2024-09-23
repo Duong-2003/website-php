@@ -40,27 +40,11 @@ if (isset($_SESSION['username'])) {
         .top-slogan {
             font-size: 20px;
         }
-        .nav-link:focus, .nav-link:hover {
-    color: rgb(173 114 114 / 80%);
-}
-        /* .nav-link {
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 2px solid transparent;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-        } */
 
-        /* .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.5);
-        } */
-
-        /* .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.3);
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.5);
-        } */
+        .nav-link:focus,
+        .nav-link:hover {
+            color: rgb(173 114 114 / 80%);
+        }
 
         a.nav-link {
             color: #8ab0d5;
@@ -72,12 +56,12 @@ if (isset($_SESSION['username'])) {
             border-radius: 50%;
             margin-right: 5px;
         }
+
         a.nav-link.user {
-         border: 1px solid;
-        background: aliceblue;
-        border-radius:10px
+            border: 1px solid;
+            background: aliceblue;
+            border-radius: 10px
         }
-     
     </style>
 </head>
 
@@ -103,38 +87,43 @@ if (isset($_SESSION['username'])) {
                         <a class="nav-link register" href="./register.php"><i class="fas fa-user-plus"></i> Đăng ký</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link forgot-password" href="../Website/resetpass.php"><i class="fas fa-key"></i> Quên
+                        <a class="nav-link forgot-password" href="../Website/resetpass.php"><i class="fas fa-key"></i>
+                            Quên
                             mật khẩu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link contact" href="../Website/contact.php"><i class="fas fa-envelope"></i> Liên hệ</a>
+                        <a class="nav-link contact" href="../Website/contact.php"><i class="fas fa-envelope"></i> Liên
+                            hệ</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto" id="ic-user" style="display: none;">
-                <li class="nav-item">
-                        <a class="nav-link home" id="navbar" href="../Website/website.php"><i class="fas fa-home"></i> Trang chủ</a>
+                    <li class="nav-item">
+                        <a class="nav-link home" id="navbar" href="../Website/website.php"><i class="fas fa-home"></i>
+                            Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="" href="../sources/FE/profile_user.php"><i class="fas fa-user-edit"></i>Hồ sơ của tôi</a>
+                        <a class="nav-link" id="" href="../sources/FE/profile_user.php"><i
+                                class="fas fa-user-edit"></i>Hồ sơ của tôi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="" href="../sources/BE/logout_process.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+                        <a class="nav-link" id="" href="../sources/BE/logout_process.php"><i
+                                class="fas fa-sign-out-alt"></i>Đăng xuất</a>
                     </li>
-                   
+
                     <li class="nav-item">
-                        <a class="nav-link user"id="navbar1" >
-                           
+                        <a class="nav-link user" id="navbar1">
+
                             <span id="username-display"><?= htmlspecialchars($user['name']) ?></span>
                         </a>
                     </li>
-                   
+
                 </ul>
             </div>
         </div>
     </nav>
 
     <script>
-        var username =<?php echo isset($loggedInUsername) ? json_encode($loggedInUsername) : 'null'; ?>;
+        var username = <?php echo isset($loggedInUsername) ? json_encode($loggedInUsername) : 'null'; ?>;
 
         // Xử lý hiển thị thông tin người dùng
         function myFunction() {

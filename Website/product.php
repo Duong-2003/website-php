@@ -25,8 +25,8 @@
             display: inline-block;
             height: 40px;
             line-height: 40px;
-            color: #fff;
-            background: #65717d;
+            color: #000000;
+            background: #cdd5dd;
             padding: 0 20px;
             font-weight: bold;
             font-size: 16px;
@@ -105,7 +105,7 @@
                     <h2 id="item-head"><?= $sp['sp_ten'] ?></h2>
                     <h4 class="text-secondary">Mã sản phẩm: <?= $sp['sp_ma'] ?></h4>
                     <strong class="text-danger" style="font-size: 25px;">
-                        <?= number_format($sp['sp_gia'], 0, '.', ',') ?><sup>đ</sup>
+                        <!-- <?= number_format($sp['sp_gia'], 0, '.', ',') ?><sup>đ</sup> -->
                     </strong>
                     <hr>
                     <strong id="item">Loại sản phẩm: <?= $sp['loaisp_ten'] ?></strong>
@@ -117,7 +117,7 @@
                     <strong id="item">Chi tiết: <?= $sp['sp_motachitiet'] ?></strong>
 
                     <div class="text-center my-3" id='pay'>
-                        <strong>Giá phải trả: <?= number_format($sp['sp_gia'], 0, '.', ',') ?><sup>đ</sup></strong>
+                        <strong style="color:red">Giá : <?= number_format($sp['sp_gia'], 0, '.', ',') ?><sup>đ</sup></strong>
                     </div>
 
                     <script>

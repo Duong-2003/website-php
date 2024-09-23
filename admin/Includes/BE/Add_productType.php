@@ -3,28 +3,39 @@ include("../linkAdmin.php");
 include('../connect.php');
 session_start();
 ob_start();
-if(isset($_POST['submit']) && $_POST['loaisp'] != ''){
-    $type = $_POST['loaisp'];
 
-    $queryCheck = "SELECT * FROM loaisp WHERE loaisp_ten = '$type'";
-    if ($connect->query($queryCheck)->num_rows > 0) {
-        $connect->close();  
+if (isset($_POST['submit']) && !empty($_POST['loaisp']) && !empty($_POST['loaisanpham'])) {
+    $loaisp = $_POST['loaisp'];
+    $loaisanpham = $_POST['loaisanpham'];
+
+    // Sử dụng Prepared Statement để kiểm tra loại sản phẩm đã tồn tại
+    $stmt = $connect->prepare("SELECT * FROM loaisp WHERE loaisp_ten = ? AND loaisanpham = ?");
+    $stmt->bind_param("ss", $loaisp, $loaisanpham);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $stmt->close();
+        $connect->close();
         echo "Lỗi: Giá trị đã tồn tại trong cơ sở dữ liệu.";
         exit();
     }
-    $queryAdd = "INSERT INTO loaisp (loaisp_ten) VALUES ('$type')";
+
+    // Thêm loại sản phẩm mới vào cơ sở dữ liệu
+    $stmt = $connect->prepare("INSERT INTO loaisp (loaisp_ten, loaisanpham) VALUES (?, ?)");
+    $stmt->bind_param("ss", $loaisp, $loaisanpham);
     
-    if ($connect->query($queryAdd) === TRUE) {
-        header("location:".$linkPages."ListProductType.php");
-    }else {
-        echo "Lỗi không thêm được sản phẩm: " . $connect->error;
+    if ($stmt->execute()) {
+        header("Location: " . $linkPages . "ListProductType.php?notifi=Thêm loại sản phẩm thành công!");
+        exit();
+    } else {
+        echo "Lỗi không thêm được loại sản phẩm: " . $stmt->error;
     }
+
+    $stmt->close();
     $connect->close();
-}
-else{
-    $connect->close();
-    // header("location:./adminIndex.php");
-    echo ("chưa nhập toàn bộ ");
+} else {
+    echo "Chưa nhập toàn bộ thông tin.";
     exit(); 
 }
 ?>
