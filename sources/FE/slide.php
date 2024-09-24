@@ -24,14 +24,14 @@
   </div>
   <div class="carousel-inner" id="carouselInner">
     <div class="carousel-item active">
-    <a href=""><img id="slide"  src=<?= $linkImgIndex . "slider_5.webp" ?> class="d-block w-100" alt="..."></a>
-    <!-- <img id="slide" onclick="changeimg()" src=<?= $linkImgIndex . "slide_1.webp" ?> class="d-block w-100" alt="..."> -->
+    <a href="../website/List.php"><img id="slide"  src=<?= $linkImgIndex . "slider_5.webp" ?> class="d-block w-100" alt="..."></a>
+   
     </div>
     <div class="carousel-item">
-   <a href=""> <img id="slide"  src=<?= $linkImgIndex . "slider_3.webp" ?> class="d-block w-100" alt="..."></a>
+   <a href="../website/List.php"> <img id="slide"  src=<?= $linkImgIndex . "slider_3.webp" ?> class="d-block w-100" alt="..."></a>
     </div>
     <div class="carousel-item">
-    <a href=""><img id="slide"   src=<?= $linkImgIndex . "slider_20.webp" ?> class="d-block w-100" alt="..."></a>
+    <a href="../website/List.php"><img id="slide"   src=<?= $linkImgIndex . "slider_20.webp" ?> class="d-block w-100" alt="..."></a>
     </div>
     
   </div>

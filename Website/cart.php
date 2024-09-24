@@ -14,18 +14,54 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
         }
+
         .card {
             border: 1px solid #ccc;
-            border-radius: 8px;
+            border-radius: 12px;
             margin-bottom: 20px;
+            transition: transform 0.3s;
         }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
         .card-title a {
-            color: #333;
+            color: #007bff;
             text-decoration: none;
         }
+
         .card-title a:hover {
             text-decoration: underline;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .modal-header {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .pagination .page-link {
+            color: #007bff;
+        }
+
+        .pagination .page-link:hover {
+            background-color: #f1f1f1;
         }
     </style>
 </head>
@@ -72,7 +108,7 @@
 
     <div class="container">
         <hr style="color:red">
-        <h1 style="color:red">Giỏ hàng</h1>
+        <h1 class="text-center" style="color:red;">Giỏ hàng</h1>
         <hr style="color:red">
 
         <div class="row">
@@ -88,7 +124,7 @@
                     $stmt->close();
             ?>
                 <div class="col-md-6 mb-3">
-                    <div class="card">
+                    <div class="card shadow-sm">
                         <div class="row g-0">
                             <div class="col-md-4">
                                 <img src="<?= $linkImgSp . $sp['sp_img'] ?>" class="img-fluid rounded-start" alt="...">
@@ -104,7 +140,7 @@
                                     <p class="card-text <?php echo ($donhang['donhang_trangthai'] == 'Đã hủy') ? 'text-danger' : ''; ?>">
                                         Trạng thái: <?= $donhang['donhang_trangthai'] ?>
                                     </p>
-                                    <p class="card-text"><small class="text-body-secondary">Ngày đặt: <?= $donhang['timeorder'] ?></small></p>
+                                    <p class="card-text"><small class="text-muted">Ngày đặt: <?= $donhang['timeorder'] ?></small></p>
 
                                     <div class="d-grid gap-2 col-6 mx-auto">
                                         <?php if ($donhang['donhang_trangthai'] != "Đã hủy") : ?>

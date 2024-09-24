@@ -102,7 +102,7 @@ if (isset($_SESSION['username'])) {
                             Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="" href="../sources/FE/profile_user.php"><i
+                        <a class="nav-link" id="" href="../website/profile_user.php"><i
                                 class="fas fa-user-edit"></i>Hồ sơ của tôi</a>
                     </li>
                     <li class="nav-item">
