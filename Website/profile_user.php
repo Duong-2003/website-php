@@ -8,28 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Hồ Sơ Người Dùng</title>
     <style>
-        .avatar {
-            width: 150px;  /* Increased size */
-            height: 150px; /* Increased size */
-            border-radius: 50%;
-            margin-right: 10px; /* Adjusted margin */
-            object-fit: cover; /* Ensure the image is not distorted */
-        }
-
+      
         body {
-            font-family: Arial, sans-serif; /* Font style */
+            font-family: Arial, sans-serif; 
         }
     </style>
 </head>
 
 <?php
-$linkFE = '../sources/FE/'; // Ensure this path is correct
+$linkFE = '../sources/FE/'; 
 include($linkFE . 'top_header.php');
 include($linkFE . 'header.php');
 
-// Assuming you have a function to get user data
-// Example: $userData = getUserData(); 
-// Here is a dummy array for demonstration purposes
+
 $userData = [
     'username' => 'Tên người dùng',
     'email' => 'email@example.com',
@@ -64,7 +55,7 @@ $userData = [
                         <label for="phone" class="form-label">Số điện thoại</label>
                         <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $userData['phone']; ?>">
                     </div>
-                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    <!-- <button type="submit" class="btn btn-primary">Cập nhật</button> -->
                 </form>
             </div>
         </div>

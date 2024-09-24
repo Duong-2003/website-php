@@ -13,15 +13,9 @@
   <?php include_once('../sources/linkFIle.php'); ?>
 
   <style>
-    /* body {
-      background-color: #f8f9fa;
-    } */
+    
 
-    .error > p {
-      font-size: 20px;
-      text-align: center;
-      font-weight: 600;
-    }
+  
 
     .error>p {
       font-size: 20px;

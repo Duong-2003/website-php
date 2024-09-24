@@ -182,7 +182,34 @@
             <?php endif; ?>
         </div>
 
-        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+        <div class="text-center">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                Thanh toán đơn hàng
+            </button>
+        </div>
+
+        <!-- Modal Thanh Toán -->
+        <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="paymentModalLabel">Xác nhận thanh toán</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Bạn có chắc chắn muốn thanh toán cho các đơn hàng trong giỏ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <form action="./pay.php" method="post">
+                            <button type="submit" class="btn btn-success" name="submit">Xác nhận thanh toán</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav aria-label="Page navigation " class="d-flex justify-content-center">
             <ul class="pagination">
                 <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
                     <a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Previous">

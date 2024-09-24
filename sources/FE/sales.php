@@ -6,7 +6,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <title>Sales Page</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <title>Trang Sản Phẩm Khuyến Mãi</title>
     <style>
         .section_flash_sale {
             margin-bottom: 90px;
@@ -18,8 +19,8 @@
 
         .section_flash_sale .block-title h2 {
             margin-bottom: 15px;
-            font-size: 2rem; /* Increased font size */
-            color: #DC2028; /* Title color */
+            font-size: 2rem;
+            color: #DC2028;
         }
 
         .timer {
@@ -37,18 +38,6 @@
             border-radius: 15px;
             padding: 50px 45px;
             background: #fff;
-        }
-
-        .swiper-container {
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .swiper-button-next, .swiper-button-prev {
-            background: #DC2028;
-            color: #fff;
         }
 
         .product-block-item {
@@ -93,7 +82,7 @@
     <section class="section_flash_sale">
         <div class="container">
             <div class="block-title">
-                <h2><a href="san-pham-noi-bat" title="Flash sale">Flash Sale</a></h2>
+                <img src="../Assets/img/index/img_title.webp" alt="">
                 <div class="timer" data-countdown="countdown" data-date="12-10-2022-09-15-45">
                     <div class="lof-labelexpired d-none"> Hết hạn</div>
                 </div>
@@ -102,6 +91,7 @@
             <div class="block-product">
                 <div class="flash-sale-swiper swiper-container">
                     <div class="swiper-wrapper">
+                        <!-- Sản phẩm 1 -->
                         <div class="swiper-slide">
                             <form action="/cart/add" method="post" class="variants">
                                 <div class="product-block-item">
@@ -127,6 +117,7 @@
                                 </div>
                             </form>
                         </div>
+                        <!-- Sản phẩm 2 -->
                         <div class="swiper-slide">
                             <form action="/cart/add" method="post" class="variants">
                                 <div class="product-block-item">
@@ -152,13 +143,97 @@
                                 </div>
                             </form>
                         </div>
-                        <!-- Add more swiper-slide items as needed -->
+                        <!-- Sản phẩm 3 -->
+                        <div class="swiper-slide">
+                            <form action="/cart/add" method="post" class="variants">
+                                <div class="product-block-item">
+                                    <a href="/sach-huong-dan-lap-trinh">
+                                        <img class="product-thumbnail lazy loaded" 
+                                             src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp9.jpg?v=1629774327897"
+                                             alt="Sách hướng dẫn lập trình">
+                                    </a>
+                                    <div class="product-info">
+                                        <a href="/sach-huong-dan-lap-trinh" 
+                                           class="item-product-name">Sách hướng dẫn lập trình</a>
+                                        <div class="product__price">
+                                            <span class="price">25.000₫</span>
+                                            <span class="old-price">50.000₫</span>
+                                        </div>
+                                    </div>
+                                    <div class="action-cart">
+                                        <button class="cart-button" type="button" 
+                                                onclick="window.location.href='/sach-huong-dan-lap-trinh'">
+                                            Tùy chọn
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Sản phẩm 4 -->
+                        <div class="swiper-slide">
+                            <form action="/cart/add" method="post" class="variants">
+                                <div class="product-block-item">
+                                    <a href="/bong-bong-bat-ngo">
+                                        <img class="product-thumbnail lazy loaded" 
+                                             src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp11.jpg?v=1629774327897"
+                                             alt="Bóng bóng bất ngờ">
+                                    </a>
+                                    <div class="product-info">
+                                        <a href="/bong-bong-bat-ngo" 
+                                           class="item-product-name">Bóng bóng bất ngờ</a>
+                                        <div class="product__price">
+                                            <span class="price">30.000₫</span>
+                                            <span class="old-price">60.000₫</span>
+                                        </div>
+                                    </div>
+                                    <div class="action-cart">
+                                        <button class="cart-button" type="button" 
+                                                onclick="window.location.href='/bong-bong-bat-ngo'">
+                                            Tùy chọn
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
-                <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
+                <div class="d-flex justify-content-between mt-3">
+                    <button class="btn btn-primary" id="prev-slide">Trước</button>
+                    <button class="btn btn-primary" id="next-slide">Tiếp theo</button>
+                </div>
             </div>
         </div>
     </section>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            slidesPerView: 3,
+            spaceBetween: 30,
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+        });
+
+        document.getElementById('prev-slide').addEventListener('click', () => {
+            swiper.slidePrev();
+        });
+
+        document.getElementById('next-slide').addEventListener('click', () => {
+            swiper.slideNext();
+        });
+    </script>
 </body>
 </html>

@@ -117,7 +117,7 @@
     }
     #ctn{
 
-background-image: url(../Assets/img/index/bg_sp_noibat.jpg);
+    background-image: url(../Assets/img/index/bg_sp_noibat.jpg);
     }
   </style>
 </head>
@@ -175,7 +175,7 @@ background-image: url(../Assets/img/index/bg_sp_noibat.jpg);
                   </p>
 
                   <div class="text-center" style="margin-top: 15px;">
-                    <button class="btn btn-style btn-blues" type="submit" id="loginSubmit" name="submit">Đăng
+                    <button class="btn  btn-blues" type="submit" id="loginSubmit" name="submit">Đăng
                       nhập</button>
                   </div>
 
