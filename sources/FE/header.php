@@ -13,9 +13,6 @@
     <style>
         #header {
             position: relative;
-            /* z-index: 1000;
-            top: 0; */
-            /* position: sticky; */
             transition: 0.5s;
             box-shadow: 0 4px 3px rgba(0, 0, 0, 0.3);
             background: linear-gradient(to right, #7FACD6, #BFB8DA);
@@ -33,49 +30,49 @@
             min-width: 160px;
         }
 
-        .header-btn {
-            transition: background-color 0.3s;
+        .indicator__button {
+            display: flex;
+            align-items: center;
+            background: transparent;
+            padding: .375rem .75rem;
+            cursor: pointer;
         }
 
-        .header-btn:hover {
-            background-color: rgba(0, 0, 0, 0.1);
+        .indicator__icon--cart {
+            width: 40px;
+            height: 30px;
         }
 
-        button#orderCall {
-            border: 1px solid #e39797;
-            background: #fff;
-            color: #dc3545;
+        .indicator__badge {
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;  /* Tăng kích thước chữ cho badge */
+            padding: 0;
+            border-radius: 50%;
+            top: -6px;
+            right: -10px;  /* Căn chỉnh lại vị trí badge */
+            background: red;  /* Màu nền cho badge */
+            color: white;  /* Màu chữ cho badge */
+            font-weight: bold;
         }
 
-        button#order {
-            background: #fafcff;
-            color: #0dcaf0;
-            border: 1px solid #86b7fe;
+        .indicator__area {
+            position: relative;
+            display: block;
         }
 
-        button#order:hover {
-
-            background: #c5e3dd;
-            color: #fff;
-            border: 1px solid #86b7fe;
-
+        .fa-shopping-cart {
+            color: #0dcaf0;  /* Màu icon giỏ hàng */
+            transition: color 0.3s;  /* Hiệu ứng chuyển màu */
+            font-size: 1.5rem;  /* Tăng kích thước icon */
         }
 
-        button#orderCall:hover {
-            background: #db848d;
-            color: #fff;
-            border: 1px solid #dd9aa0;
-        }
-
-        a#cart {
-            text-decoration: none;
-            color: #0dcaf0;
-
-        }
-
-        a#cart:hover {
-
-            color: #fff;
+        .fa-shopping-cart:hover {
+            color: #ff6347;  /* Màu khi hover */
         }
     </style>
 </head>
@@ -93,29 +90,28 @@
                 <form action="./listSearch.php" method="GET" class="d-flex flex-grow-1 mx-3">
                     <input id="searchInput" type="text" class="form-control me-2"
                         placeholder="Vui lòng nhập từ khóa để tìm kiếm!" name="search" required>
-                    <button style="background-color:#8095b3" type="button" id="searchClick" class="btn ">
+                    <button style="background-color:#8095b3" type="button" id="searchClick" class="btn">
                         <i style="color: #fff;" class="fa fa-search"></i>
                     </button>
                 </form>
 
                 <div class="d-flex align-items-center">
-                    <div class=" me-3">
-                        <button class="btn header-btn" id="order">
-                            <i class="fa fa-shopping-cart text-gray-700"></i>
-                            <span class="ms-2"><a id="cart" href="../Website/cart.php">Giỏ hàng</a></span>
-                        </button>
-
-                    </div>
-
-                    <div class="">
-                        <button class="btn header-btn" id="orderCall">
-                            <i class="fa fa-phone text-gray-700"></i>
-                            <span class="ms-2">Gọi đặt hàng:</span>01234567890
-                        </button>
-
+                    <div class="me-3">
+                        <a class="indicator__button SendEvent" data-category="action" data-action="click"
+                            data-label="action_cart_desktop" href="../website/cart.php">
+                            <span class="indicator__area">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 23.077" class="indicator__icon indicator__icon--cart">
+                                    <g transform="translate(-111.5 -32.5)">
+                                        <circle cx="1.582" cy="1.582" r="1.582" transform="translate(121.46 52.413)" fill="#fff"></circle>
+                                        <circle cx="1.582" cy="1.582" r="1.582" transform="translate(134.72 52.413)" fill="#fff"></circle>
+                                        <path d="M141.241,36.379a1.082,1.082,0,0,0-.822-.378h-21.4l-.51-2.629a1.081,1.081,0,0,0-1.062-.873h-4.865a1.077,1.077,0,1,0,0,2.155h3.973l1.272,6.558,1.525,9.5a1.081,1.081,0,0,0,1.068.907h17.838a1.081,1.081,0,0,0,1.068-.907l2.162-13.466A1.076,1.076,0,0,0,141.241,36.379Zm-3.906,13.088H121.341l-1.816-11.312h19.626Z" transform="translate(0)" fill="#fff"></path>
+                                    </g>
+                                </svg>
+                                <span class="indicator__badge">0</span>
+                            </span>
+                        </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </header>
