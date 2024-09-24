@@ -27,7 +27,7 @@
         .sidebar {
             position: sticky;
             top: 0;
-            height: calc(122vh - 10px);
+            height: calc(120vh -px);
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 20px;
@@ -70,7 +70,7 @@
         <div class="col-lg-3 col-md-4 sidebar">
             <h5 style="text-align: center;">Danh mục sản phẩm</h5>
             <ul class="list-group">
-         
+                <a href="../website/List.php"><li class="list-group-item"> Tất cả sản phẩm </li></a>
                 <a href="../website/productsClick.php?loaisanpham=but"><li class="list-group-item">Bút</li></a>
                 <a href="../website/productsClick.php?loaisanpham=hop"><li class="list-group-item">Hộp</li></a>
                 <a href="../website/productsClick.php?loaisanpham=biakep"><li class="list-group-item">Bìa kẹp</li></a>
@@ -99,7 +99,7 @@
                                 <?php
                                 include_once("../sources/connect.php");
 
-                                $valueCart = 6; // Số sản phẩm trên mỗi trang
+                                $valueCart = 9; // Số sản phẩm trên mỗi trang
                                 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1; // Trang hiện tại
                                 $offset = ($page - 1) * $valueCart; // Tính toán offset
 

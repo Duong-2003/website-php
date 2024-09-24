@@ -108,7 +108,7 @@
                         <!-- <?= number_format($sp['sp_gia'], 0, '.', ',') ?><sup>đ</sup> -->
                     </strong>
                     <hr>
-                    <strong id="item">Loại sản phẩm: <?= $sp['loaisp_ten'] ?></strong>
+                    <strong id="item">Tên loại sản phẩm: <?= $sp['loaisp_ten'] ?></strong>
                     <strong id="item">Số lượng còn lại: <?= $sp['sp_soluong'] != 0 ? $sp['sp_soluong'] : '<span class="text-danger">Hết hàng</span>' ?></strong>
                     <div class="input-group my-2">
                         <span class="input-group-text"><strong>Số lượng mua:</strong></span>

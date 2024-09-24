@@ -26,7 +26,7 @@
         .sidebar {
             position: sticky;
             top: 0;
-            height: calc(122vh - 10px);
+            height: calc(120vh -px);
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 20px;
@@ -75,7 +75,7 @@ include( '../sources/FE/nav.php');
             <div class="col-lg-3 col-md-4 sidebar">
                 <h5 style="text-align: center;">Danh mục sản phẩm</h5>
                 <ul class="list-group">
-
+                    <a href="../website/List.php"><li class="list-group-item"> Tất cả sản phẩm </li></a>
                     <a href="../website/productsClick.php?loaisanpham=but">
                         <li class="list-group-item">Bút</li>
                     </a>

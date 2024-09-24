@@ -4,11 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product List</title>
+  <title>Chi Tiết Sản Phẩm</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.1/css/bootstrap.min.css">
   <style>
     .content {
       padding: 50px 30px;
+      background-color: #f9f9f9;
     }
     .error-message {
       text-align: center;
@@ -26,11 +27,32 @@
     }
     .card {
       border: none;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
     }
     .card-header {
-      background-color: #f8f9fa;
+      background-color: #007bff;
+      color: white;
       font-weight: bold;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+    .table th, .table td {
+      vertical-align: middle;
+    }
+    .table th {
+        width: 1%; 
+    }
+
+    .table td {
+        width: 1%; 
+    }
+    .btn-primary {
+      background-color: #28a745;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #218838;
     }
   </style>
 </head>
@@ -44,7 +66,7 @@
     include_once($linkconnPages);
     $sqlLSP = "SELECT * FROM loaisp";
     $resultLSP = $connect->query($sqlLSP);
-
+   
     if ($resultLSP === false) {
         echo ('<div class="alert alert-danger">ERROR: Không thể truy cập dữ liệu loại sản phẩm.</div>');
         exit();
@@ -84,10 +106,10 @@
         <table class="table table-striped table-bordered table-hover">
           <thead>
             <tr>
-              <th>Mã sp</th>
-              <th>Tên sp</th>
-              <th>Loại sp</th>
-              <th>Giá sp</th>
+              <th>Mã sản phẩm</th>
+              <th>Tên sản phẩm</th>
+              <th>Loại sản phẩm</th>
+              <th>Giá sản phẩm</th>
               <th>Mô tả</th>
               <th>Mô tả chi tiết</th>
               <th>Hình ảnh</th>
@@ -111,19 +133,19 @@
     </div>
 
     <div class="card">
-      <div class="card-header">Sửa Sản Phẩm</div>
+      <div class="card-header">Sửa sản phẩm</div>
       <div class="card-body">
         <div id="error-message" class="text-danger error-message"></div>
         <form action="<?= $linkBE ?>Edit_product.php" method="post" enctype="multipart/form-data">
           <input type="hidden" name="sp_ma" value="<?= htmlspecialchars($sp['sp_ma']) ?>">
 
           <div class="mb-3">
-            <label class="form-label">Tên sp <span class="text-danger">*</span></label>
+            <label class="form-label">Tên sản phẩm <span class="text-danger">*</span></label>
             <input value="<?= htmlspecialchars($sp['sp_ten']) ?>" name="sp_ten" type="text" class="form-control" required>
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Loại sp <span class="text-danger">*</span></label>
+            <label class="form-label">Loại sản phẩm <span class="text-danger">*</span></label>
             <select name="productType" class="form-select" required>
               <?php foreach ($danhsachLSP as $Lsp) : ?>
                 <option value="<?= htmlspecialchars($Lsp['loaisanpham']) ?>" <?= ($sp['loaisanpham'] == $Lsp['loaisanpham']) ? 'selected' : ''; ?>><?= htmlspecialchars($Lsp['loaisanpham']) ?></option>
@@ -132,7 +154,7 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Tên Loại sp <span class="text-danger">*</span></label>
+            <label class="form-label">Tên loại sản phẩm <span class="text-danger">*</span></label>
             <select name="productTypeName" class="form-select" required>
               <?php foreach ($danhsachLSP as $Lsp) : ?>
                 <option value="<?= htmlspecialchars($Lsp['loaisp_ten']) ?>" <?= ($sp['loaisp_ten'] == $Lsp['loaisp_ten']) ? 'selected' : ''; ?>><?= htmlspecialchars($Lsp['loaisp_ten']) ?></option>
@@ -141,18 +163,18 @@
           </div>
          
           <div class="mb-3">
-            <label class="form-label">Giá sp <span class="text-danger">*</span></label>
+            <label class="form-label">Giá sản phẩm <span class="text-danger">*</span></label>
             <input value="<?= htmlspecialchars($sp['sp_gia']) ?>" name="sp_gia" type="text" class="form-control" required>
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Mô tả sp</label>
-            <textarea name="sp_mota" class="form-control" rows="3"><?= htmlspecialchars($sp['sp_mota']) ?></textarea>
+            <label class="form-label">Mô tả sản phẩm</label>
+            <textarea name="sp_mota" class="form-control" rows="6"><?= htmlspecialchars($sp['sp_mota']) ?></textarea>
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Mô tả sp chi tiết <span class="text-danger">*</span></label>
-            <textarea name="sp_motachitiet" class="form-control" rows="3" required><?= htmlspecialchars($sp['sp_motachitiet']) ?></textarea>
+            <label class="form-label">Mô tả sản phẩm chi tiết <span class="text-danger">*</span></label>
+            <textarea name="sp_motachitiet" class="form-control" rows="6" required><?= htmlspecialchars($sp['sp_motachitiet']) ?></textarea>
           </div>
 
           <div class="form-check form-switch mb-3">

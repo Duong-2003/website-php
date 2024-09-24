@@ -54,6 +54,7 @@ a{
     include($linkFE.'menu.php');
     include($linkFE.'sales.php');
     include($linkFE.'content.php');
+  
     include($linkFE.'footer_save.php');
     include($linkFE.'footer.php');
     

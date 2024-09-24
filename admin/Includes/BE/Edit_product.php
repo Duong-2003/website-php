@@ -31,15 +31,15 @@ if (isset($_POST['submit']) && $_POST['sp_ma'] != '') {
         $price = (float) str_replace(',', '', $price);
     }
     $query = "UPDATE sanpham 
-                SET sp_ten='$name', sp_gia='$price',sp_mota ='$describe',sp_motachitiet ='$describeDetail',sp_soluong='$quantity',loaisp_ten='$typename',loaisp_ten='$type'sp_img='$img'  
+                SET sp_ten='$name', sp_gia='$price',sp_mota ='$describe',sp_motachitiet ='$describeDetail',sp_soluong='$quantity',loaisanpham='$type',loaisp_ten='$typename'sp_img='$img'  
                 WHERE sp_ma=$ma";
     if ($img != '') {
         $query = "UPDATE sanpham 
-                SET sp_ten='$name', sp_gia='$price',sp_mota ='$describe',sp_motachitiet ='$describeDetail',sp_soluong='$quantity',loaisp_ten='$typename',loaisp_ten='$type'sp_img='$img'  
+                SET sp_ten='$name', sp_gia='$price',sp_mota ='$describe',sp_motachitiet ='$describeDetail',sp_soluong='$quantity',loaisanpham='$type',loaisp_ten='$typename'sp_img='$img'  
                 WHERE sp_ma=$ma";
     } else {
         $query = "UPDATE sanpham 
-                SET sp_ten='$name', sp_gia='$price',sp_mota ='$describe',sp_motachitiet ='$describeDetail',sp_soluong='$quantity',loaisp_ten='$typename',loaisp_ten='$type'  
+                SET sp_ten='$name', sp_gia='$price',sp_mota ='$describe',sp_motachitiet ='$describeDetail',sp_soluong='$quantity',loaisanpham='$type',loaisp_ten='$typename'  
                 WHERE sp_ma=$ma";
     }
     if ($connect->query($query) === TRUE) {
