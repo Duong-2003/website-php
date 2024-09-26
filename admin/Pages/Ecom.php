@@ -1,5 +1,5 @@
 <?php
-include_once('./MenuAdmin.php');
+include('./MenuAdmin.php')?>
 ?>
 <style>
     .widget-flat {
@@ -69,6 +69,7 @@ include_once('./MenuAdmin.php');
 </style>
 
 <script>
+   
     var myDiv = document.getElementById("Ecom");
     myDiv.classList.add("active");
 </script>

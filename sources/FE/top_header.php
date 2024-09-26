@@ -101,6 +101,10 @@ if (isset($_SESSION['username'])) {
                         <a class="nav-link home" id="navbar" href="../Website/website.php"><i class="fas fa-home"></i>
                             Trang chủ</a>
                     </li>
+                    <li class="navbar-nav ms-auto">
+                        <a class="nav-link contact" href="../Website/contact.php"><i class="fas fa-envelope"></i> Liên
+                            hệ</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" id="" href="../website/profile_user.php"><i
                                 class="fas fa-user-edit"></i>Hồ sơ của tôi</a>

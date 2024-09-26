@@ -1,6 +1,5 @@
 <?php
-    include("../linkAdmin.php");
-    include($linkconnIncludes);
+   include('../conn/connect.php');
     
     $privateKey = $_GET['key'];
     $dataKey = $_GET['datakey'];

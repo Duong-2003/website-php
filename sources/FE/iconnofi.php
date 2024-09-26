@@ -52,7 +52,7 @@
             right: 12px;
         }
 
-        .phoneiconmess {
+        .phoneicon {
             position: fixed;
             right: 25px;
             bottom: 90px;
@@ -69,14 +69,14 @@
         a.SendEvent {
     display: flex;
 }
-        .phoneiconmess .phone-icon {
+        .phoneicon .phone-icon {
             width: 40px;
             height: 40px;
             background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTg1NCAtNTEyLjk3KSI+PGNpcmNsZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxODU0IDUxMi45NykiIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iI2ZmNjcyZiIgZGF0YS1uYW1lPSJFbGxpcHNlIDEzMSIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE4NjQuNyA1MjIuMzIpIiBkYXRhLW5hbWU9Ikdyb3VwIDE4NzgiPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yLjU3MSAtMy44NTYpIiBkPSJtMTguMTk0IDE2LjYzOWMtMS40MiAxLjQyLTEuNDIgMi44NDEtMi44NDEgMi44NDFzLTIuODQxLTEuNDItNC4yNjEtMi44NDEtMi44NC0yLjgzOS0yLjg0LTQuMjYxIDEuNDItMS40MiAyLjg0MS0yLjg0MS0yLjg0MS01LjY4MS00LjI2MS01LjY4MS00LjI2MSA0LjI2MS00LjI2MSA0LjI2MWMwIDIuODQxIDIuOTE4IDguNiA1LjY4MSAxMS4zNjJzOC41MjIgNS42ODEgMTEuMzYyIDUuNjgxYzAgMCA0LjI2MS0yLjg0MSA0LjI2MS00LjI2MXMtNC4yNjEtNS42ODEtNS42ODEtNC4yNnoiIGZpbGw9IiNmZmYiIGRhdGEtbmFtZT0iSWNvbiBtZXRyby1waG9uZSIvPjwvZz48L2c+PC9zdmc+) 100% center no-repeat;
             display: block;
         }
 
-        .phoneiconmess .phone-number {
+        .phoneicon .phone-number {
 
             font-size: 1.125rem;
             font-weight: 500;
@@ -85,12 +85,12 @@
             width: 130px;
         }
 
-        .phoneiconmess:hover .phone-number {
+        .phoneicon:hover .phone-number {
             display: inline-block;
 
         }
 
-        .phoneiconmess:hover {
+        .phoneicon:hover {
             border-radius: 10px;
         }
     </style>
@@ -99,8 +99,8 @@
 <body>
 
 
-    <div class="phone__ZaloContainer iconzalo">
-        <a aria-label="CÔNG TY TNHH TM DV FAST" title="CÔNG TY TNHH TM DV FAST" href="https://zalo.me/0964399099"
+    <div class=" iconzalo">
+        <a aria-label="" title="" href="https://zalo.me/0975407328"
             class="SendEvent" data-category="action" data-action="click" data-label="chat_action" target="_blank"
             rel="noopener noreferrer"><svg viewBox="0 0 50 50">
                 <path
@@ -121,7 +121,7 @@
 
 
 
-    <div class="phone__PhoneContainer phoneiconmess">
+    <div class=" phoneicon">
         <a aria-label="0123456789" title="0123456789" href="tel: 012 3456 789" class="SendEvent" data-category="action"
             data-action="click" data-label="hot_phone_action">
             <span class="phone-icon"></span>
@@ -129,7 +129,7 @@
     </div>
 
 
-    <div class="phone__MessagerContainer iconmess"><a aria-label="" title="" href="https://www.facebook.com/vppfast"
+    <div class="iconmess"><a aria-label="" title="" href="https://www.facebook.com/vppfast"
             class="SendEvent" data-category="action" data-action="click" data-label="chat_action" target="_blank"
             rel="noopener noreferrer"><svg x="0" y="0" width="60px" height="60px">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

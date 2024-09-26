@@ -63,6 +63,10 @@
         .pagination .page-link:hover {
             background-color: #f1f1f1;
         }
+
+        .notification {
+            margin: 20px 0;
+        }
     </style>
 </head>
 
@@ -73,10 +77,16 @@
     include($linkFE . 'top_header.php');
     include($linkFE . 'header.php');
 
+    // đặt hàng
+    if (isset($_GET['notifi'])) {
+        $notifi = urldecode($_GET['notifi']);
+        echo '<div class="container notification alert alert-success" role="alert">' . $notifi . '</div>';
+    }
+
     // Kiểm tra đăng nhập
     if (!isset($_SESSION['username'])) {
-        $notifi = "Vui lòng đăng nhập để vào giỏ hàng";
-        echo "<script>window.location.href = './login.php?notifi=" . urlencode($notifi) . "';</script>";
+        $error = "Vui lòng đăng nhập để vào giỏ hàng";
+        echo "<script>window.location.href = './login.php?error=" . urlencode($error) . "';</script>";
         exit();
     }
 

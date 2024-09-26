@@ -14,90 +14,77 @@
             background-color: #f8f9fa;
         }
 
-      
         h1 {
             color: tomato;
         }
+
         .table th,
-    .table td {
-        vertical-align: middle;
-        text-align: center; /* Căn giữa nội dung */
-    }
-
-    .table th {
-        width: 1%; 
-    }
-
-    .table td {
-        width: 1%; 
-    }
-
+        .table td {
+            vertical-align: middle;
+            text-align: center; /* Căn giữa nội dung */
+        }
 
         p#notifi_log {
             font-weight: 900;
             font-size: 20px;
             text-align: center;
         }
+
+        img {
+            max-height: 100px; /* Giới hạn chiều cao cho hình ảnh */
+            width: auto; /* Giữ tỷ lệ hình ảnh */
+        }
     </style>
 </head>
 
 <body>
 
-    <?php include('./MenuAdmin.php'); ?>
     <?php
-    include_once($linkconnPages);
+    include('./MenuAdmin.php');    
+    include('../Includes/conn/connect.php');
 
-    // Lấy danh sách loại sản phẩm
     $sqlLSP = "SELECT * FROM loaisp";
     $resultLSP = $connect->query($sqlLSP);
     $danhsachLSP = [];
     while ($row = mysqli_fetch_array($resultLSP, MYSQLI_ASSOC)) {
         $danhsachLSP[] = array(
-            'loaisanpham' => htmlspecialchars($row['loaisanpham']),
-            'loaisp_ten' => htmlspecialchars($row['loaisp_ten']),
+            'loaisanpham' => $row['loaisanpham'],
+            'loaisp_ten' => $row['loaisp_ten'],
         );
     }
 
-    // Lấy danh sách sản phẩm
     $sqlSP = "SELECT * FROM sanpham";
     $resultSP = $connect->query($sqlSP);
     $danhsachSP = [];
     while ($row = mysqli_fetch_array($resultSP, MYSQLI_ASSOC)) {
         $danhsachSP[] = array(
             'sp_ma' => $row['sp_ma'],
-            'sp_ten' => htmlspecialchars($row['sp_ten']),
-            'loaisanpham' => htmlspecialchars($row['loaisanpham']),
-            'loaisp_ten' => htmlspecialchars($row['loaisp_ten']),
-            'sp_gia' => number_format($row['sp_gia'], 0, ',', ','),
-            'sp_mota' => htmlspecialchars($row['sp_mota']),
-            'sp_motachitiet' => htmlspecialchars($row['sp_motachitiet']),
-            'sp_img' => htmlspecialchars($row['sp_img']),
+            'sp_ten' => $row['sp_ten'],
+            'loaisanpham' => $row['loaisanpham'],
+            'loaisp_ten' => $row['loaisp_ten'],
+            'sp_gia' => $row['sp_gia'],
+            'sp_mota' => $row['sp_mota'],
+            'sp_motachitiet' => $row['sp_motachitiet'],
+            'sp_img' => $row['sp_img'],
             'sp_soluong' => $row['sp_soluong']
         );
     }
     ?>
-    
-    <div class="container-fluid">
-        <h1 class="text-center">Danh mục sản phẩm</h1>
-        <hr style="color:red">
-        <?php
-        $notifi = isset($_GET["notifi"]) ? htmlspecialchars($_GET["notifi"]) : '';
-        ?>
-        <p id="notifi_log" class="text-success"><?= $notifi ?></p>
-      
+
+  
+        <table id="danhsach" class="table table-striped table-secondary table-bordered table-hover">
+        <div class="container-fluid mt-4">
+        <h1 class="text-center mb-4">Danh Sách Sản Phẩm</h1>
         <div class="text-end mb-3">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddProduct">
-                Thêm sản phẩm
+            <button h type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddProduct">
+                Thêm người dùng
             </button>
         </div>
-
-        <table id="danhsach" class="table table-striped table-bordered table-hover">
-            <thead class="table-dark">
-                <tr>
+            <thead>
+                <tr style="text-align:center; font-size: larger;">
                     <th>Mã sản phẩm</th>
                     <th>Tên sản phẩm</th>
                     <th>Loại sản phẩm</th>
-                    <th>Tên loại sản phẩm</th>
                     <th>Giá sản phẩm</th>
                     <th>Mô tả</th>
                     <th>Mô tả chi tiết</th>
@@ -109,20 +96,21 @@
             <tbody>
                 <?php
                 foreach ($danhsachSP as $row) {
+                    // Cập nhật đường dẫn hình ảnh
+                    $imgPath = '../../Assets/img/SanPham/' . htmlspecialchars($row['sp_img']);
                     echo "<tr>
                         <td>{$row['sp_ma']}</td>
                         <td>{$row['sp_ten']}</td>
-                        <td>{$row['loaisanpham']}</td>
                         <td>{$row['loaisp_ten']}</td>
-                        <td>{$row['sp_gia']}</td>
+                        <td>" . number_format($row['sp_gia'], 0, ',', '.') . " VNĐ</td>
                         <td>{$row['sp_mota']}</td>
                         <td>{$row['sp_motachitiet']}</td>
-                        <td><img style='max-height: 100px;' src='{$linkSanPham}{$row['sp_img']}' alt=''></td>
+                        <td><img src='{$imgPath}' alt='Hình ảnh sản phẩm'></td>
                         <td>{$row['sp_soluong']}</td>
                         <td>
                             <div class='d-flex justify-content-center'>
-                                <a href='{$linkBE}DeleteSQL.php?key=sp_ma&table=sanpham&datakey={$row['sp_ma']}' class='btn btn-danger mx-1'>Xóa</a>
-                                <a href='Edit_product.php?datakey={$row['sp_ma']}' class='btn btn-warning mx-1'>Sửa</a>
+                                <a href='../Includes/BE/DeleteSQL.php?key=sp_ma&table=sanpham&datakey={$row['sp_ma']}' class='btn btn-danger mx-1'>Xóa</a>
+                                <a href='../Pages/Form_product.php?datakey={$row['sp_ma']}' class='btn btn-warning mx-1'>Sửa</a>
                             </div>
                         </td>
                     </tr>";
@@ -133,7 +121,7 @@
     </div>
 
     <!-- Modal for Adding Product -->
-    <?php include_once($linkFE . "ModalAddProduct.php"); ?>
+    <?php include('../Includes/FE/ModalAddProduct.php');?>
 
     <script>
         $(document).ready(function () {
@@ -153,6 +141,15 @@
             });
         });
     </script>
+    <script>
+  var myDiv = document.getElementById("product");
+  myDiv.classList.add("active");
+  var myDiv = document.getElementById("product-collapse");
+  myDiv.classList.add("show");
+</script>
 </body>
 
 </html>
+
+   
+   

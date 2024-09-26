@@ -9,10 +9,12 @@
 
 <body>
 
-    <?php include("./MenuAdmin.php"); ?>
+
 
     <?php
-    include_once($linkconnPages);
+
+  include('./MenuAdmin.php');    
+    include('../Includes/conn/connect.php');
     $dataKey = $_GET['datakey'];
     $sqldonhang = "SELECT * FROM donhang WHERE donhang_ma = '$dataKey'";
     $result = $connect->query($sqldonhang);

@@ -219,11 +219,7 @@
                                 <i class="fa-brands fa-google"></i>
                             </a>
                         </li>
-                        <li class="list-inline-item">
-                            <a href="#" target="_blank">
-                                <i class="fa-brands fa-pinterest-p" aria-hidden="true"></i>
-                            </a>
-                        </li>
+                        
                         <li class="list-inline-item">
                             <a href="#" target="_blank">
                                 <i class="fa-brands fa-tiktok"></i>
@@ -231,8 +227,17 @@
                         </li>
                         <li class="list-inline-item">
                             <a href="#" target="_blank">
-                                <i class="fa-brands fa-github"></i>
+                                <i class="fa-brands fa-youtube"></i>
                             </a>
+
+                        </li>
+
+                        <li class="list-inline-item">
+                            <a href="#" target="_blank">
+                            <img class="lazy loaded" src="//bizweb.dktcdn.net/100/434/558/themes/894884/assets/logo_acb.svg?1676278234490" data-src="//bizweb.dktcdn.net/100/434/558/themes/894884/assets/logo_acb.svg?1676278234490" alt="" data-was-processed="true">
+                            <img class="lazy loaded" src="//bizweb.dktcdn.net/100/434/558/themes/894884/assets/logo_msb.svg?1676278234490" data-src="//bizweb.dktcdn.net/100/434/558/themes/894884/assets/logo_msb.svg?1676278234490" alt="" data-was-processed="true">
+                            </a>
+
                         </li>
                     </ul>
                 </div>

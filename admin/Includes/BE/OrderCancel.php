@@ -1,6 +1,6 @@
 <?php
-include("../linkAdmin.php");
-include($linkconnIncludes);
+
+include('../conn/connect.php');
 session_start();
 ob_start();
 try {
@@ -29,10 +29,10 @@ try {
     // Hoàn tất giao dịch nếu mọi thứ thành công
     $connect->commit();
     $connect->close();
-    header("location:" . $linkPages . "ListOrder.php?notifi=Sửa thành công");
+    header("location:../Pages/ListOrder.php?notifi=Sửa thành công");
 } catch (Exception $e) {
     // Nếu có lỗi, rollback giao dịch
     $connect->rollback();
     $connect->close();
-    header("location:" . $linkPages . "ListOrder.php?error=".$e->getMessage()); 
+    header("location:../Pages/ListOrder.php?error=".$e->getMessage()); 
 }

@@ -59,11 +59,13 @@
 
 <body>
 
-  <?php include("./MenuAdmin.php"); ?>
+ 
 
   <div class="content">
     <?php
-    include_once($linkconnPages);
+    
+     include('./MenuAdmin.php');    
+     include('../Includes/conn/connect.php');
     $sqlLSP = "SELECT * FROM loaisp";
     $resultLSP = $connect->query($sqlLSP);
    
@@ -136,7 +138,7 @@
       <div class="card-header">Sửa sản phẩm</div>
       <div class="card-body">
         <div id="error-message" class="text-danger error-message"></div>
-        <form action="<?= $linkBE ?>Edit_product.php" method="post" enctype="multipart/form-data">
+        <form action="../Includes/BE/Edit_product.php" method="post" enctype="multipart/form-data">
           <input type="hidden" name="sp_ma" value="<?= htmlspecialchars($sp['sp_ma']) ?>">
 
           <div class="mb-3">

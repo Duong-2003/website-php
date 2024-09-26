@@ -8,7 +8,7 @@
       <div id="error-message" class="text-danger" style="text-align:center; font-size:25px;"></div>
       <div class="modal-body">
         <div class="menu-content">
-          <form action="<?= $linkBE . 'Add_Users.php' ?>" method="post" enctype="multipart/form-data">
+          <form action='../Includes/BE/Add_Users.php' ? method="post" enctype="multipart/form-data">
             <div class="input-group mb-3">
               <span class="input-group-text" id="name">Tên đăng nhập<span style="color: red;">*</span></span>
               <input name="name" type="text" class="form-control" required>

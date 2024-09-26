@@ -1,62 +1,61 @@
 <style>
 .bread-crumb {
     margin-bottom: 0 !important;
-    position: relative; /* Để căn chỉnh tuyệt đối cho tiêu đề */
+    position: relative;
 }
 .bread-crumb img {
-    width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng */
-    height: auto; /* Tự động điều chỉnh chiều cao */
+    width: 100%;
+    height: auto;
 }
 .bread-crumb .nd-main-title-breadcrumb {
     color: #fff;
     font-weight: 700;
-    font-size: 2rem; /* Kích thước chữ lớn hơn cho dễ đọc */
+    font-size: 2rem;
     text-transform: uppercase;
-    position: absolute; /* Đặt tiêu đề ở vị trí tuyệt đối */
-    top: 40%; /* Giữa theo chiều dọc */
-    left: 50%; /* Giữa theo chiều ngang */
-    transform: translate(-50%, -50%); /* Căn giữa */
-    z-index: 2; /* Đảm bảo tiêu đề nằm trên hình ảnh */
-    text-align: center; /* Căn giữa nội dung */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
 }
 .breadcrumb {
-    color: #fff; /* Màu chữ breadcrumb */
+    color: #fff;
     background-color: transparent;
-    font-size: 1rem; /* Kích thước chữ breadcrumb */
+    font-size: 1rem;
     font-style: italic;
-    position: absolute; /* Đặt breadcrumb ở vị trí tuyệt đối */
-    bottom: 10px; /* Cách đáy hình ảnh */
-    left: 50%; /* Giữa theo chiều ngang */
-    transform: translateX(-50%); /* Căn giữa */
-    z-index: 2; /* Đảm bảo breadcrumb nằm trên hình ảnh */
-    text-align: center; /* Căn giữa nội dung */
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
 }
 .breadcrumb li {
     display: inline-block;
-    margin: 0 10px; /* Khoảng cách giữa các mục breadcrumb */
+    margin: 0 10px;
 }
 .breadcrumb li a {
-    color: #fff; /* Màu chữ link */
-    text-decoration: none; /* Bỏ gạch chân */
+    color: #fff;
+    text-decoration: none;
 }
 
 /* Responsive */
 @media (max-width: 1000px) {
-    .nd-main-title-breadcrumb{
+    .nd-main-title-breadcrumb {
         display: none;
     }
-    
 }
 </style>
 
 <section class="bread-crumb">
     <div class="container-fluid py-4">
         <div>
-            <img src="../Assets/img/index/bg-breadcrumb.jpg" alt="">
+            <img src="../Assets/img/index/bg-breadcrumb.jpg" alt="Breadcrumb Background">
             <div class="nd-main-title-breadcrumb">
                 Sản phẩm nổi bật
             </div>
-            <ul class="breadcrumb">		
+            <ul class="breadcrumb">
                 <li class="home" itemprop="itemListElement">
                     <a itemprop="item" href="../website/website.php" title="Trang chủ">
                         <span itemprop="name">Trang chủ >></span>

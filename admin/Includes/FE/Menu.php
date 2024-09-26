@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <?php include("../Includes/linkAdmin.php"); ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -20,101 +19,63 @@
 </head>
 
 <body>
-
     <?php
-    // Uncomment if session start is needed
-    // session_start();
-    
-    // Check if the user is logged in
-    // if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    //     header('Location: Admin_Login.php');
-    //     exit;
-    // }
+
+include('../conn/connect.php');
     ?>
 
-    <!-- Navbar for mobile -->
-    <nav class="navbar navbar-dark bg-dark d-lg-none">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </nav>
+    <!-- Button to open modal -->
+    <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#navbarModal">
+        Mở Menu
+    </button>
 
-    <!-- Navbar for desktop -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="./Ecom.php">TRANG QUẢN TRỊ ADMIN</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href="./Ecom.php" class="nav-link"><i class="fa-solid fa-chart-line"></i> Thống kê doanh số</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./ListProductType.php" class="nav-link"><i class="fa-solid fa-tags"></i> Danh mục Loại Sản phẩm</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./ListProduct.php" class="nav-link"><i class="fa-solid fa-box"></i> Danh mục Sản phẩm</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./ListUsers.php" class="nav-link"><i class="fa-solid fa-users"></i> Danh mục Người dùng</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./ListOrder.php" class="nav-link"><i class="fa-solid fa-shopping-cart"></i> Danh mục Đơn hàng</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Offcanvas menu for mobile -->
-    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title">Menu</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a href="./Ecom.php" class="nav-link text-white"><i class="fa-solid fa-chart-line"></i> Thống kê doanh số</a>
-                </li>
-                <li class="nav-item">
-                    <a href="./ListProductType.php" class="nav-link text-white"><i class="fa-solid fa-tags"></i> Danh mục Loại Sản phẩm</a>
-                </li>
-                <li class="nav-item">
-                    <a href="./ListProduct.php" class="nav-link text-white"><i class="fa-solid fa-box"></i> Danh mục Sản phẩm</a>
-                </li>
-                <li class="nav-item">
-                    <a href="./ListUsers.php" class="nav-link text-white"><i class="fa-solid fa-users"></i> Danh mục Người dùng</a>
-                </li>
-                <li class="nav-item">
-                    <a href="./ListOrder.php" class="nav-link text-white"><i class="fa-solid fa-shopping-cart"></i> Danh mục Đơn hàng</a>
-                </li>
-            </ul>
-            <hr>
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://cdn-media.sforum.vn/storage/app/media/THANHAN/2/2a/avatar-dep-119.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong><?php echo $_SESSION['username']; ?></strong>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small">
-                    <li><a class="dropdown-item" target="_blank" href="../../Website/Website.php">Xem trang</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="logout.php">Đăng xuất</a></li>
-                </ul>
+    <!-- Modal for navbar -->
+    <div class="modal fade" id="navbarModal" tabindex="-1" aria-labelledby="navbarModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="navbarModalLabel">Menu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="./Ecom.php" class="nav-link text-white"><i class="fa-solid fa-chart-line"></i> Thống kê doanh số</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../Pages/ListProductType.php" class="nav-link text-white"><i class="fa-solid fa-tags"></i> Danh mục Loại Sản phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../Pages/ListProduct.php" class="nav-link text-white"><i class="fa-solid fa-box"></i> Danh mục Sản phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../Pages/ListUsers.php" class="nav-link text-white"><i class="fa-solid fa-users"></i> Danh mục Người dùng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../Pages/ListOrder.php" class="nav-link text-white"><i class="fa-solid fa-shopping-cart"></i> Danh mục Đơn hàng</a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://cdn-media.sforum.vn/storage/app/media/THANHAN/2/2a/avatar-dep-119.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+                            <strong><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'Khách'; ?></strong>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small">
+                            <?php if (isset($_SESSION['username'])): ?>
+                                <li><a class="dropdown-item" target="_blank" href="../FE/Menu.php">Xem trang</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="../BE/LogoutProcess.php">Đăng xuất</a></li>
+                            <?php else: ?>
+                                <li><a class="dropdown-item" href="../Pages/Admin_Login.php">Đăng nhập</a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <script>
-        // Chuyển hướng đến Ecom.php nếu không có tham số trong URL
-        if (window.location.pathname === "/path/to/your/admin/dashboard.php") { // Thay đổi đường dẫn tới file này
-            window.location.href = "./Ecom.php";
-        }
-    </script>
-
 </body>
-
 </html>

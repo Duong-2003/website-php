@@ -1,12 +1,11 @@
 <?php
-include("../linkAdmin.php");
-include('../connect.php');
+include('../conn/connect.php');
 session_start();
 ob_start();
 
 if (isset($_POST['submit']) && !empty($_POST['loaisp']) && !empty($_POST['loaisanpham'])) {
-    $loaisp = $_POST['loaisp'];
-    $loaisanpham = $_POST['loaisanpham'];
+    $loaisp = trim($_POST['loaisp']);
+    $loaisanpham = trim($_POST['loaisanpham']);
 
     // Sử dụng Prepared Statement để kiểm tra loại sản phẩm đã tồn tại
     $stmt = $connect->prepare("SELECT * FROM loaisp WHERE loaisp_ten = ? AND loaisanpham = ?");
@@ -26,16 +25,20 @@ if (isset($_POST['submit']) && !empty($_POST['loaisp']) && !empty($_POST['loaisa
     $stmt->bind_param("ss", $loaisp, $loaisanpham);
     
     if ($stmt->execute()) {
-        header("Location: " . $linkPages . "ListProductType.php?notifi=Thêm loại sản phẩm thành công!");
+        $_SESSION['notifi'] = "Thêm loại sản phẩm thành công!";
+        $stmt->close();
+        $connect->close();
+        header("Location: ../../Pages/ListProductType.php");
         exit();
     } else {
         echo "Lỗi không thêm được loại sản phẩm: " . $stmt->error;
     }
 
     $stmt->close();
-    $connect->close();
 } else {
     echo "Chưa nhập toàn bộ thông tin.";
     exit(); 
 }
+
+$connect->close();
 ?>

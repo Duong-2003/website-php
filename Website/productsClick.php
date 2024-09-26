@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        .content a {
+         .content a {
             text-decoration: none;
         }
 
@@ -33,6 +33,7 @@
             background-color: #f8f9fa;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            /* Ẩn thanh cuộn */
         }
 
         @media screen and (max-width: 768px) {
@@ -101,10 +102,10 @@ include( '../sources/FE/nav.php');
                 <hr>
                 <h5 style="text-align: center;">Sắp xếp theo giá</h5>
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="?sort=price-asc&category=<?= $_GET['category'] ?? '' ?>">Giá
-                            thấp đến cao</a></li>
-                    <li class="list-group-item"><a href="?sort=price-desc&category=<?= $_GET['category'] ?? '' ?>">Giá
-                            cao xuống thấp</a></li>
+                    <li class="list-group-item">
+                        <a href="?sort=price-asc&category=<?= $_GET['category'] ?? '' ?>">Giá thấp đến cao</a></li>
+                    <li class="list-group-item">
+                        <a href="?sort=price-desc&category=<?= $_GET['category'] ?? '' ?>">Giá cao xuống thấp</a></li>
                 </ul>
                 <hr>
                 <img src="../Assets/img/index/img_aside_banner.webp" alt="">
@@ -136,9 +137,10 @@ include( '../sources/FE/nav.php');
                                             echo '<a href="./product.php?sp_ma=' . $data['sp_ma'] . '">';
                                             echo '<div class="card">';
                                             echo '<img src="' . $duongdanimg . $data['sp_img'] . '" class="card-img-top" alt="' . $data['sp_ten'] . '">';
+                                            echo '<div class="card-body">';
                                             echo '<p class="card-title"><strong>' . $data['sp_ten'] . '</strong></p>';
                                             echo '<p class="card-text"><strong style="color:#f30; font-size:25px">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></strong></p>';
-                                            echo '<div class="action-cart d-flex align-items-center justify-content-center">';
+                                            echo '<div class="action-cart group-buttons d-flex align-items-center justify-content-center">';
                                             echo '<button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">';
                                             echo '<a id="buy" href="./product.php?sp_ma=' . $data['sp_ma'] . '">Thêm vào giỏ</a>';
                                             echo '</button>';

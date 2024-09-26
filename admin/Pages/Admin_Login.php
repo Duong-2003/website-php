@@ -11,29 +11,41 @@
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <title>Admin Login</title>
+  <title>Login</title>
 
   <style>
-    .error > p {
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .error>p {
       font-size: 20px;
       text-align: center;
       font-weight: 600;
     }
 
-    .account-box-shadow .account-content .auth-block__menu-list {
+    .account-box-shadow {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #fff;
+    }
+
+    .auth-block__menu-list {
       list-style: none;
       display: flex;
       height: 50px;
       border-bottom: 1px solid #eee;
     }
 
-    .account-box-shadow .account-content .auth-block__menu-list li {
-      flex: 1 1;
+    .auth-block__menu-list li {
+      flex: 1;
       text-align: center;
       position: relative;
     }
 
-    .account-box-shadow .account-content .auth-block__menu-list li.active:before {
+    .auth-block__menu-list li.active:before {
       content: "";
       position: absolute;
       height: 1px;
@@ -43,12 +55,12 @@
       background-color: #9c8350;
     }
 
-    .account-box-shadow .account-content .auth-block__menu-list li.active a {
+    .auth-block__menu-list li.active a {
       font-weight: 600;
       color: #303846;
     }
 
-    .account-box-shadow .account-content .auth-block__menu-list li a {
+    .auth-block__menu-list li a {
       display: flex;
       height: 100%;
       width: 100%;
@@ -59,8 +71,7 @@
       color: #999;
     }
 
-    .page-login .btn-blues {
-      padding: 0;
+    .btn-blues {
       height: 40px;
       font-weight: 700;
       font-size: 13px;
@@ -69,42 +80,15 @@
       background-color: #999;
     }
 
-    .login--notes {
-      text-align: center;
-      color: #999;
-      font-size: 12px;
-      margin-top: 10px;
-      line-height: 1.1;
-    }
-
-    .line-break span {
-      display: inline-block;
-      font-size: 13px;
-      color: #999;
-      padding: 1px 10px;
-      border-radius: 15px;
-      border: 1px solid #eee;
-      background-color: #fff;
-      position: relative;
-      z-index: 1;
-    }
-
-    .page-login .form-group label {
+    .form-group label {
       font-weight: 600;
       font-size: 14px;
       text-transform: uppercase;
       margin-bottom: 5px;
     }
 
-    a.btn-link-style {
-      margin-top: 0;
-      color: #9c8350;
-      font-size: 13px;
-      font-weight: normal;
-    }
-
-    .page-login input[type="text"],
-    .page-login input[type="password"] {
+    input[type="text"],
+    input[type="password"] {
       background: #fafafa;
       height: 40px;
       padding: 0 15px;
@@ -112,11 +96,16 @@
       outline: none;
       box-shadow: none;
     }
+    
+    a#link-style {
+      color: #9c8350;
+      font-size: 13px;
+      font-weight: normal;
+    }
   </style>
 </head>
 
 <body>
-
   <div class="container py-5" id="ctn">
     <div class="row justify-content-md-center">
       <div class="col-lg-7 col-md-12">
@@ -137,21 +126,25 @@
                 </li>
               </ul>
               <div id="nd-login">
-              <form action="../Website/admin/Includes/FE/LoginProcess.php" method="post">
-  <fieldset class="form-group margin-bottom-10">
-    <label for="account">Tài khoản<span style="color: red;">*</span></label>
-    <input id="account" placeholder="Nhập tài khoản" type="text" class="form-control" name="username" required autocomplete="username">
-  </fieldset>
+                <form action="../Includes/BE/LoginProcess.php" method="post" id="customer_login" accept-charset="UTF-8">
+                  <fieldset class="form-group margin-bottom-10">
+                    <label for="account">Tài khoản<span style="color: red;">*</span></label>
+                    <input id="account" placeholder="Nhập tài khoản" type="text" class="form-control" name="account" required>
+                  </fieldset>
 
-  <fieldset class="form-group margin-bottom-0">
-    <label for="password">Mật khẩu<span style="color: red;">*</span></label>
-    <input type="password" placeholder="Nhập mật khẩu" id="password" class="form-control" name="password" required autocomplete="current-password">
-  </fieldset>
+                  <fieldset class="form-group margin-bottom-0">
+                    <label for="password">Mật khẩu<span style="color: red;">*</span></label>
+                    <input type="password" placeholder="Nhập mật khẩu" id="password" class="form-control" name="password" required>
+                  </fieldset>
 
-  <div class="text-center" style="margin-top: 15px;">
-    <button class="btn btn-style btn-blues" type="submit" id="loginSubmit" name="submit">Đăng nhập</button>
-  </div>
-</form>
+                  <div class="text-right recover">
+                    <a id="link-style" href="resetpass.php" title="Quên mật khẩu?">Quên mật khẩu?</a>
+                  </div>
+
+                  <div class="text-center" style="margin-top: 15px;">
+                    <button class="btn btn-blues" type="submit" id="loginSubmit" name="submit">Đăng nhập</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -159,7 +152,6 @@
       </div>
     </div>
   </div>
-
 </body>
 
 </html>

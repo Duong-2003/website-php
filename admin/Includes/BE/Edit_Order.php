@@ -1,6 +1,5 @@
 <?php
-include("../linkAdmin.php");
-include($linkconnIncludes);
+include('../conn/connect.php');
 session_start();
 ob_start();
 

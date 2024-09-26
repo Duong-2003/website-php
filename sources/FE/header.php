@@ -40,25 +40,10 @@
 
         .indicator__icon--cart {
             width: 40px;
-            height: 30px;
+            height: 37px;
         }
 
-        .indicator__badge {
-            position: absolute;
-            height: 18px;
-            width: 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;  /* Tăng kích thước chữ cho badge */
-            padding: 0;
-            border-radius: 50%;
-            top: -6px;
-            right: -10px;  /* Căn chỉnh lại vị trí badge */
-            background: red;  /* Màu nền cho badge */
-            color: white;  /* Màu chữ cho badge */
-            font-weight: bold;
-        }
+       
 
         .indicator__area {
             position: relative;
@@ -71,9 +56,7 @@
             font-size: 1.5rem;  /* Tăng kích thước icon */
         }
 
-        .fa-shopping-cart:hover {
-            color: #ff6347;  /* Màu khi hover */
-        }
+       
     </style>
 </head>
 
@@ -87,8 +70,8 @@
                     </a>
                 </div>
 
-                <form action="./listSearch.php" method="GET" class="d-flex flex-grow-1 mx-3">
-                    <input id="searchInput" type="text" class="form-control me-2"
+                <form action="./listSearch.php" method="GET" class="d-flex flex-grow-1 mx-5">
+                    <input id="searchInput" type="text" class="form-control me-1"
                         placeholder="Vui lòng nhập từ khóa để tìm kiếm!" name="search" required>
                     <button style="background-color:#8095b3" type="button" id="searchClick" class="btn">
                         <i style="color: #fff;" class="fa fa-search"></i>
@@ -107,7 +90,7 @@
                                         <path d="M141.241,36.379a1.082,1.082,0,0,0-.822-.378h-21.4l-.51-2.629a1.081,1.081,0,0,0-1.062-.873h-4.865a1.077,1.077,0,1,0,0,2.155h3.973l1.272,6.558,1.525,9.5a1.081,1.081,0,0,0,1.068.907h17.838a1.081,1.081,0,0,0,1.068-.907l2.162-13.466A1.076,1.076,0,0,0,141.241,36.379Zm-3.906,13.088H121.341l-1.816-11.312h19.626Z" transform="translate(0)" fill="#fff"></path>
                                     </g>
                                 </svg>
-                                <span class="indicator__badge">0</span>
+                             
                             </span>
                         </a>
                     </div>

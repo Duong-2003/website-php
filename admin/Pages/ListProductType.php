@@ -29,9 +29,11 @@
 
 <body>
 
-    <?php include("./MenuAdmin.php"); ?>
     <?php
-    include_once($linkconnPages);
+    include('./MenuAdmin.php');    
+    include('../Includes/conn/connect.php');
+
+    // Lấy danh sách loại sản phẩm
     $sql = "SELECT * FROM loaisp";
     $result = $connect->query($sql);
 
@@ -39,7 +41,7 @@
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $danhsachLSP[] = array(
             'loaisp_ten' => $row['loaisp_ten'],
-            'loaisanpham' => $row['loaisanpham'], // Thêm trường loại sản phẩm
+            'loaisanpham' => $row['loaisanpham'],
         );
     }
     ?>
@@ -48,7 +50,7 @@
         <h1 class="text-center">Danh sách loại sản phẩm</h1>
         <hr style="color:red">
         <?php
-        $notifi = isset($_GET["notifi"]) ? $_GET["notifi"] : '';
+        $notifi = isset($_GET["notifi"]) ? htmlspecialchars($_GET["notifi"]) : '';
         ?>
         <p id="notifi_log" class="text-success"><?= $notifi ?></p>
 
@@ -63,11 +65,11 @@
             <tbody>
                 <?php foreach ($danhsachLSP as $lsp) : ?>
                     <tr>
-                        <td><?= $lsp['loaisp_ten'] ?></td>
-                        <td><?= $lsp['loaisanpham'] ?></td> <!-- Hiển thị loại sản phẩm -->
+                        <td><?= htmlspecialchars($lsp['loaisp_ten']) ?></td>
+                        <td><?= htmlspecialchars($lsp['loaisanpham']) ?></td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <a href="<?= $linkBE . "DeleteSQL.php?key=loaisp_ten&table=loaisp&datakey=" . $lsp['loaisp_ten'] ?>" class="btn btn-danger mx-1">Xóa</a>
+                                <a href='../Includes/BE/DeleteSQL.php?key=loaisp_ten&table=loaisp&datakey=<?= urlencode($lsp['loaisp_ten']) ?>' class="btn btn-danger mx-1">Xóa</a>
                                 <!-- <a href="#" class="btn btn-warning mx-1">Sửa</a> -->
                             </div>
                         </td>
@@ -78,7 +80,7 @@
 
         <div class="mt-4">
             <h5 class="text-dark">Thêm loại sản phẩm</h5>
-            <form action="<?= $linkBE . 'Add_productType.php' ?>" method="post">
+            <form action='../Includes/BE/Add_productType.php' method="post">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Tên loại sản phẩm<span style="color: red;">*</span></span>
                     <input name="loaisp" type="text" class="form-control" required>

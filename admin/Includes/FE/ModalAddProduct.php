@@ -7,7 +7,7 @@
             </div>
             <div id="error-message" class="text-danger text-center" style="font-size: 18px;"></div>
             <div class="modal-body">
-                <form action="<?= $linkBE . 'Add_product.php' ?>" method="post" enctype="multipart/form-data">
+                <form action='../Includes/BE/Add_product.php' method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="sp_ten" class="form-label">Tên sản phẩm <span class="text-danger">*</span></label>
                         <input name="sp_ten" type="text" class="form-control" id="sp_ten" required>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="sp_gia" class="form-label">Giá sản phẩm <span class="text-danger">*</span></label>
-                        <input name="sp_gia" type="text" class="form-control" id="sp_gia">
+                        <input name="sp_gia" type="text" class="form-control" id="sp_gia" required>
                     </div>
                     <div class="mb-3">
                         <label for="sp_mota" class="form-label">Mô tả sản phẩm</label>
@@ -70,6 +70,9 @@
         const emptyFields = Object.entries(fields).filter(([key, value]) => !value);
         if (emptyFields.length > 0) {
             errorMessage.textContent = "Vui lòng nhập đầy đủ thông tin.";
+            event.preventDefault();
+        } else if (isNaN(fields.productPrice) || parseFloat(fields.productPrice) <= 0) {
+            errorMessage.textContent = "Giá sản phẩm phải là số dương.";
             event.preventDefault();
         }
     });

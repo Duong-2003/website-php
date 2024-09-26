@@ -1,9 +1,9 @@
 <?php
-include("../linkAdmin.php");
-include($linkconnIncludes);
+include('../conn/connect.php');
 include('./CheckImg.php');
 session_start();
 ob_start();
+
 
 if (isset($_POST['submit']) && $_FILES['sp_img'] != null && $_POST['sp_motachitiet'] != '' && $_POST['sp_ten'] != '' && $_POST['sp_gia'] != '' && $_POST['sp_soluong'] != '') {
     $name = $_POST['sp_ten'];
@@ -28,8 +28,8 @@ if (isset($_POST['submit']) && $_FILES['sp_img'] != null && $_POST['sp_motachiti
         $query = "INSERT INTO sanpham (sp_ten, sp_gia, sp_mota, sp_motachitiet, sp_soluong, loaisp_ten, loaisanpham, sp_img) 
                   VALUES ('$name', '$price', '$describe', '$describeDetail', '$quantity', '$typename', '$type', '$img')";
     } else {
-        $query = "INSERT INTO sanpham (sp_ten, sp_gia, sp_mota, sp_motachitiet, sp_soluong, loaisp_ten, loaisanpham, sp_img) 
-                  VALUES ('$name', '$price', NULL, '$describeDetail', '$quantity', '$typename', '$type', '$img')";
+        $query = "INSERT INTO sanpham (sp_ten, sp_gia, sp_mota, sp_motachitiet, sp_soluong, loaisp_ten, loaisanpham) 
+                  VALUES ('$name', '$price', NULL, '$describeDetail', '$quantity', '$typename', '$type')";
     }
 
     // Kiểm tra xem ảnh đã tồn tại chưa
@@ -37,7 +37,7 @@ if (isset($_POST['submit']) && $_FILES['sp_img'] != null && $_POST['sp_motachiti
         if (move_uploaded_file($_FILES['sp_img']['tmp_name'], $target_img)) {
             // Chuyển hướng nếu không di chuyển được ảnh
             $error = "?error=Lỗi không di chuyển ảnh đến Assets.";
-            header("location:" . $linkPages . "ListProduct.php" . $error);
+            header("location:../../Pages/ListProduct.php" . $error);
             exit();
         }
     }
@@ -45,17 +45,17 @@ if (isset($_POST['submit']) && $_FILES['sp_img'] != null && $_POST['sp_motachiti
     // Thực hiện truy vấn và kiểm tra kết quả
     if ($connect->query($query) === TRUE) {
         $connect->close();
-        header("location:" . $linkPages . "ListProduct.php?notifi=Thêm thành công");
+        header("location:../../Pages/ListProduct.php?notifi=Thêm thành công");
         exit();
     } else {
         $connect->close();
         $error = "?error=Lỗi không thêm được sản phẩm: " . $connect->error;
-        header("location:" . $linkPages . "ListProduct.php" . $error);
+        header("location:../../Pages/ListProduct.php" . $error);
         exit();
     }
 } else {
     // Xử lý trường hợp không đủ thông tin
     $error = "?error=Vui lòng điền đầy đủ thông tin.";
-    header("location:" . $linkPages . "ListProduct.php" . $error);
+    header("location:../../Pages/ListProduct.php" . $error);
     exit();
 }

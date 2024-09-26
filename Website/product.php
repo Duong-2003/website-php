@@ -1,6 +1,4 @@
 <?php
-
-
 ob_start(); // Bắt đầu bộ đệm đầu ra
 session_start();
 include_once('../sources/linkFIle.php'); // Bao gồm kết nối đến cơ sở dữ liệu
@@ -10,8 +8,6 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php"); // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
     exit();
 }
-
-// Mã hiện tại của bạn...
 
 $username = $_SESSION['username']; // Get the username from session
 
@@ -68,14 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <title>Product Detail</title>
+    <title>Chi tiết sản phẩm</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
@@ -91,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             display: inline-block;
             height: 40px;
             line-height: 40px;
-            color: #000000;
+            color: #000;
             background: #cdd5dd;
             padding: 0 20px;
             font-weight: bold;
@@ -116,6 +106,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             background-color: #9c8350;
             color: white;
         }
+
+     
+
+        
     </style>
 </head>
 
@@ -128,10 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     <form method="post" action="">
         <div class="container py-4">
             <div class="row">
-                <div class="col-lg-7 col-md-7 py-3">
-                    <img src="<?= $duongdanimg . $sp['sp_img'] ?>" alt="" class="img-fluid rounded">
+                <div class="col-lg-6 col-md-6  rounded shadow-sm p-4" style="background: linear-gradient(135deg, #f8f9fa, #e2e6ea);">
+                    <img src="<?= $duongdanimg . $sp['sp_img'] ?>" width = "100%"  height = "100% " class="img-fluid rounded product-image">
+             
                 </div>
-                <div class="col-lg-5 col-md-5 bg-light rounded shadow-sm p-3">
+                <div class="col-lg-6 col-md-6 bg-light rounded shadow-sm p-4">
                     <h2 id="item-head"><?= htmlspecialchars($sp['sp_ten']) ?></h2>
                     <h4 class="text-secondary">Mã sản phẩm: <?= htmlspecialchars($sp['sp_ma']) ?></h4>
                     <strong class="text-danger" style="font-size: 25px;">
@@ -198,6 +193,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         </div>
     </form>
 
-    <?php include($linkFE . 'footer.php'); ?>
+    <?php
+    include($linkFE . 'footer_save.php'); 
+     include($linkFE . 'footer.php'); 
+     ?>
 </body>
 </html>

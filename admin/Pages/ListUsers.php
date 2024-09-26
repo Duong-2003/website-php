@@ -26,19 +26,39 @@
 
 <body>
 
-    <?php include("./MenuAdmin.php"); ?>
+    <?php 
+    include('./MenuAdmin.php');    
+    include("../Includes/FE/ModalAddUsers.php"); 
+    include('../Includes/conn/connect.php');
+
+    // Lấy danh sách người dùng
+    $sql = "SELECT * FROM users";
+    $result = $connect->query($sql);
+
+    $ListUsers = [];
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $ListUsers[] = array(
+            'name' => htmlspecialchars($row['name']),
+            'pass' => htmlspecialchars($row['pass']), // Nên ẩn mật khẩu
+            'address' => htmlspecialchars($row['address']),
+            'role' => $row['role'],
+            'email' => htmlspecialchars($row['email']),
+        );
+    }
+    ?>
 
     <script>
-        var myDiv = document.getElementById("user");
-        myDiv.classList.add("active");
+        $(document).ready(function () {
+            var myDiv = document.getElementById("user");
+            myDiv.classList.add("active");
+        });
     </script>
 
     <div class="container-fluid">
         <h1 class="text-center">Danh sách người dùng</h1>
         <hr style="color:red">
         <?php
-   
-        $notifi = isset($_GET["notifi"]) ? $_GET["notifi"] : '';
+        $notifi = isset($_GET["notifi"]) ? htmlspecialchars($_GET["notifi"]) : '';
         ?>
         <p id="notifi_log" class="text-success"><?= $notifi ?></p>
   
@@ -47,25 +67,6 @@
                 Thêm người dùng
             </button>
         </div>
-
-        <?php include_once($linkFE . "ModalAddUsers.php"); ?>
-
-        <?php
-        include_once($linkconnPages);
-        $sql = "SELECT * FROM users";
-        $result = $connect->query($sql);
-
-        $ListUsers = [];
-        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $ListUsers[] = array(
-                'name' => $row['name'],
-                'pass' => $row['pass'],
-                'address' => $row['address'],
-                'role' => $row['role'],
-                'email' => $row['email'],
-            );
-        }
-        ?>
 
         <table id="danhsach" class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
@@ -81,15 +82,15 @@
             <tbody>
                 <?php foreach ($ListUsers as $user) : ?>
                     <tr>
-                        <td><?= htmlspecialchars($user['name']) ?></td>
-                        <td><?= htmlspecialchars($user['email']) ?></td>
-                        <td><?= htmlspecialchars($user['pass']) ?></td>
-                        <td><?= htmlspecialchars($user['address']) ?></td>
-                        <td><?= ($user['role'] ? 'admin' : 'user') ?></td>
+                        <td><?= $user['name'] ?></td>
+                        <td><?= $user['email'] ?></td>
+                        <td>******</td> <!-- Ẩn mật khẩu -->
+                        <td><?= $user['address'] ?></td>
+                        <td><?= ($user['role'] === 'admin' ? 'Admin' : 'User') ?></td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <a href="<?= $linkBE . "DeleteSQL.php?key=name&table=users&datakey=" . urlencode($user['name']) ?>" class="btn btn-danger mx-1">Xóa</a>
-                                <a href="Edit_Users.php?datakey=<?= urlencode($user['name']) ?>" class="btn btn-warning mx-1">Sửa</a>
+                                <a href="../Includes/BE/DeleteSQL.php?key=name&table=users&datakey=<?= urlencode($user['name']) ?>" class="btn btn-danger mx-1">Xóa</a>
+                                <a href="Form_Users.php?datakey=<?= urlencode($user['name']) ?>" class="btn btn-warning mx-1">Sửa</a>
                             </div>
                         </td>
                     </tr>
@@ -99,7 +100,7 @@
     </div>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#danhsach').DataTable({
                 "language": {
                     "lengthMenu": "Hiện _MENU_ người dùng trên mỗi trang",

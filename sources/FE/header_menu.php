@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -118,49 +118,11 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="nav-link2" href="#" id="tintuc" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-envelope" style="font-size: 20px; margin: 0 2px;"></i>
-                            TIN TỨC
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="tintuc">
-                            <li><a class="dropdown-item" href="#">Tin tức mới nhất</a></li>
-                            <li><a class="dropdown-item" href="#">Bài viết nổi bật</a></li>
-                        </ul>
-                    </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="nav-link2" href="#" id="lienhe" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-envelope" style="font-size: 20px; margin: 0 2px;"></i>
-                            LIÊN HỆ
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="lienhe">
-                            <li><a class="dropdown-item" href="#">Thông tin liên hệ</a></li>
-                            <li><a class="dropdown-item" href="#">Hỗ trợ khách hàng</a></li>
-                        </ul>
-                    </li>
+                   
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="nav-link2"  href="#" id="showroom" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-store" style="font-size: 20px; margin: 0 2px;"></i>
-                            SHOWROOM360
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="showroom">
-                            <li><a class="dropdown-item" href="#">Thông tin liên hệ</a></li>
-                            <li><a class="dropdown-item" href="#">Hỗ trợ khách hàng</a></li>
-                        </ul>
-                    </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="nav-link2" href="#" id="khuyenmai2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-gift" style="font-size: 20px; margin: 0 2px;"></i>
-                            KHUYẾN MÃI
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="khuyenmai2">
-                            <li><a class="dropdown-item" href="#">Thông tin liên hệ</a></li>
-                            <li><a class="dropdown-item" href="#">Hỗ trợ khách hàng</a></li>
-                        </ul>
-                    </li>
+                  
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="nav-link2" href="#" id="blog" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -181,4 +143,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-</html> -->
+</html>

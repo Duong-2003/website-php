@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,12 +41,39 @@
             background: #fff;
         }
 
+        .flash-sale-swiper {
+            overflow: hidden;
+            /* Ngăn hình ảnh tràn ra ngoài khu vực swiper */
+        }
+
+        .swiper-wrapper {
+            display: flex;
+            /* Đảm bảo tất cả các slide được hiển thị trong một hàng */
+        }
+
+        .swiper-slide {
+            flex: 0 0 auto;
+            /* Đảm bảo mỗi slide có kích thước cố định */
+            width: calc(25% - 20px);
+            /* Điều chỉnh chiều rộng của mỗi slide */
+            margin-right: 20px;
+            /* Khoảng cách giữa các slide */
+        }
+
         .product-block-item {
+            width: 100%;
+            /* Đảm bảo sản phẩm chiếm toàn bộ chiều rộng của slide */
+            max-width: 100%;
+            /* Giới hạn chiều rộng tối đa */
+            margin: 0 auto;
+            /* Căn giữa sản phẩm */
             border: 1px solid #ddd;
             border-radius: 10px;
             padding: 20px;
             text-align: center;
             transition: transform 0.3s;
+            overflow: hidden;
+            /* Ngăn chặn nội dung tràn ra ngoài */
         }
 
         .product-block-item:hover {
@@ -75,6 +103,37 @@
         .cart-button:hover {
             background: #c02028;
         }
+
+        .product-block-item img {
+            max-width: 100%;
+            /* Đảm bảo hình ảnh không vượt quá khung */
+            height: auto;
+            /* Tự động điều chỉnh chiều cao */
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #DC2028;
+            /* Màu sắc cho nút trước/sau */
+        }
+
+        .swiper-button-next {
+            right: 10px;
+            /* Đặt vị trí bên phải */
+        }
+
+        .swiper-button-prev {
+            left: 10px;
+            /* Đặt vị trí bên trái */
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            width: 40px;
+            /* Kích thước nút */
+            height: 40px;
+            /* Kích thước nút */
+        }
     </style>
 </head>
 
@@ -96,21 +155,21 @@
                             <form action="/cart/add" method="post" class="variants">
                                 <div class="product-block-item">
                                     <a href="/vo-viet-ke-ngang-nhieu-hinh-sieu-ngo-nghinh">
-                                        <img class="product-thumbnail lazy loaded" 
-                                             src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp10.jpg?v=1629774327897"
-                                             alt="Vở viết kẻ ngang nhiều hình siêu ngộ nghĩnh">
+                                        <img class="product-thumbnail lazy loaded"
+                                            src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp10.jpg?v=1629774327897"
+                                            alt="Vở viết kẻ ngang nhiều hình siêu ngộ nghĩnh">
                                     </a>
                                     <div class="product-info">
-                                        <a href="/vo-viet-ke-ngang-nhieu-hinh-sieu-ngo-nghinh" 
-                                           class="item-product-name">Vở viết kẻ ngang nhiều hình siêu ngộ nghĩnh</a>
+                                        <a href="/vo-viet-ke-ngang-nhieu-hinh-sieu-ngo-nghinh"
+                                            class="item-product-name">Vở viết kẻ ngang nhiều hình siêu ngộ nghĩnh</a>
                                         <div class="product__price">
                                             <span class="price">12.000₫</span>
                                             <span class="old-price">41.000₫</span>
                                         </div>
                                     </div>
                                     <div class="action-cart">
-                                        <button class="cart-button" type="button" 
-                                                onclick="window.location.href='/vo-viet-ke-ngang-nhieu-hinh-sieu-ngo-nghinh'">
+                                        <button class="cart-button" type="button"
+                                            onclick="window.location.href='/vo-viet-ke-ngang-nhieu-hinh-sieu-ngo-nghinh'">
                                             Tùy chọn
                                         </button>
                                     </div>
@@ -122,21 +181,22 @@
                             <form action="/cart/add" method="post" class="variants">
                                 <div class="product-block-item">
                                     <a href="/hop-dung-van-phong-pham-bang-nhua-trong-suot-tien-dung">
-                                        <img class="product-thumbnail lazy loaded" 
-                                             src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp8-3.jpg?v=1629774002220"
-                                             alt="Hộp đựng văn phòng phẩm bằng nhựa trong suốt tiện dụng">
+                                        <img class="product-thumbnail lazy loaded"
+                                            src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp8-3.jpg?v=1629774002220"
+                                            alt="Hộp đựng văn phòng phẩm bằng nhựa trong suốt tiện dụng">
                                     </a>
                                     <div class="product-info">
-                                        <a href="/hop-dung-van-phong-pham-bang-nhua-trong-suot-tien-dung" 
-                                           class="item-product-name">Hộp đựng văn phòng phẩm bằng nhựa trong suốt tiện dụng</a>
+                                        <a href="/hop-dung-van-phong-pham-bang-nhua-trong-suot-tien-dung"
+                                            class="item-product-name">Hộp đựng văn phòng phẩm bằng nhựa trong suốt tiện
+                                            dụng</a>
                                         <div class="product__price">
                                             <span class="price">15.000₫</span>
                                             <span class="old-price">25.000₫</span>
                                         </div>
                                     </div>
                                     <div class="action-cart">
-                                        <button class="cart-button" type="button" 
-                                                onclick="window.location.href='/hop-dung-van-phong-pham-bang-nhua-trong-suot-tien-dung'">
+                                        <button class="cart-button" type="button"
+                                            onclick="window.location.href='/hop-dung-van-phong-pham-bang-nhua-trong-suot-tien-dung'">
                                             Tùy chọn
                                         </button>
                                     </div>
@@ -148,21 +208,21 @@
                             <form action="/cart/add" method="post" class="variants">
                                 <div class="product-block-item">
                                     <a href="/sach-huong-dan-lap-trinh">
-                                        <img class="product-thumbnail lazy loaded" 
-                                             src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp9.jpg?v=1629774327897"
-                                             alt="Sách hướng dẫn lập trình">
+                                        <img class="product-thumbnail lazy loaded"
+                                            src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp9.jpg?v=1629774327897"
+                                            alt="Sách hướng dẫn lập trình">
                                     </a>
                                     <div class="product-info">
-                                        <a href="/sach-huong-dan-lap-trinh" 
-                                           class="item-product-name">Sách hướng dẫn lập trình</a>
+                                        <a href="/sach-huong-dan-lap-trinh" class="item-product-name">Sách hướng dẫn lập
+                                            trình</a>
                                         <div class="product__price">
                                             <span class="price">25.000₫</span>
                                             <span class="old-price">50.000₫</span>
                                         </div>
                                     </div>
                                     <div class="action-cart">
-                                        <button class="cart-button" type="button" 
-                                                onclick="window.location.href='/sach-huong-dan-lap-trinh'">
+                                        <button class="cart-button" type="button"
+                                            onclick="window.location.href='/sach-huong-dan-lap-trinh'">
                                             Tùy chọn
                                         </button>
                                     </div>
@@ -174,21 +234,20 @@
                             <form action="/cart/add" method="post" class="variants">
                                 <div class="product-block-item">
                                     <a href="/bong-bong-bat-ngo">
-                                        <img class="product-thumbnail lazy loaded" 
-                                             src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp11.jpg?v=1629774327897"
-                                             alt="Bóng bóng bất ngờ">
+                                        <img class="product-thumbnail lazy loaded"
+                                            src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp11.jpg?v=1629774327897"
+                                            alt="Bóng bóng bất ngờ">
                                     </a>
                                     <div class="product-info">
-                                        <a href="/bong-bong-bat-ngo" 
-                                           class="item-product-name">Bóng bóng bất ngờ</a>
+                                        <a href="/bong-bong-bat-ngo" class="item-product-name">Bóng bóng bất ngờ</a>
                                         <div class="product__price">
                                             <span class="price">30.000₫</span>
                                             <span class="old-price">60.000₫</span>
                                         </div>
                                     </div>
                                     <div class="action-cart">
-                                        <button class="cart-button" type="button" 
-                                                onclick="window.location.href='/bong-bong-bat-ngo'">
+                                        <button class="cart-button" type="button"
+                                            onclick="window.location.href='/bong-bong-bat-ngo'">
                                             Tùy chọn
                                         </button>
                                     </div>
@@ -198,8 +257,12 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between mt-3">
-                    <button class="btn btn-primary" id="prev-slide">Trước</button>
-                    <button class="btn btn-primary" id="next-slide">Tiếp theo</button>
+                    <button class="btn btn-primary" id="prev-slide">
+                        <i class="fas fa-chevron-left"></i> <!-- Left arrow icon -->
+                    </button>
+                    <button class="btn btn-primary" id="next-slide">
+                        <i class="fas fa-chevron-right"></i> <!-- Right arrow icon -->
+                    </button>
                 </div>
             </div>
         </div>
@@ -236,4 +299,5 @@
         });
     </script>
 </body>
+
 </html>

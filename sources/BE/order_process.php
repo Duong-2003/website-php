@@ -15,7 +15,7 @@ if (isset($_POST['submit']) && !empty($_POST['donhang_soluongsp']) && !empty($_P
 
     $sp_ma = $_POST['sp_ma'];
     $nameuser = $_SESSION['username'];
-    $donhang_soluongsp = $_POST['donhang_soluongsp'];
+    $donhang_soluongsp = (int)$_POST['donhang_soluongsp']; // Chuyển đổi số lượng thành số nguyên
 
     // Sử dụng Prepared Statements để tránh SQL Injection
     $sql = "SELECT * FROM sanpham WHERE sp_ma = ?";
@@ -26,6 +26,14 @@ if (isset($_POST['submit']) && !empty($_POST['donhang_soluongsp']) && !empty($_P
 
     if ($result->num_rows > 0) {
         $sp = $result->fetch_assoc();
+
+        // Kiểm tra số lượng sản phẩm có đủ không
+        if ($sp['sp_soluong'] < $donhang_soluongsp) {
+            $error = "Số lượng sản phẩm không đủ. Còn lại: " . $sp['sp_soluong'];
+            header("Location: " . $linkWebsite . "product.php?error=" . urlencode($error) . "&sp_ma=" . $sp_ma);
+            exit();
+        }
+
         $sanpham_gia = $sp['sp_gia'];
         $donhang_gia = $donhang_soluongsp * $sanpham_gia;
 
@@ -63,7 +71,9 @@ if (isset($_POST['submit']) && !empty($_POST['donhang_soluongsp']) && !empty($_P
     $stmt->close();
 } else {
     // Xử lý trường hợp không có dữ liệu đầu vào
-    echo "Input error: Vui lòng kiểm tra thông tin nhập vào.";
+    $error = "Input error: Vui lòng kiểm tra thông tin nhập vào.";
+    header("Location: " . $linkWebsite . "product.php?error=" . urlencode($error));
+    exit();
 }
 
 $connect->close();

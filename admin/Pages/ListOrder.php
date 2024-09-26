@@ -27,10 +27,10 @@
         }
     </style>
 </head>
-
+<?php  include('./MenuAdmin.php');    ?>
 <body>
 
-    <?php include("./MenuAdmin.php"); ?>
+   
 
     <script>
         var myDiv = document.getElementById("order");
@@ -64,7 +64,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    include_once($linkconnPages);
+            include('../Includes/conn/connect.php');
                     $sql = "SELECT * FROM donhang";
                     $result = $connect->query($sql);
 
@@ -98,7 +98,7 @@
                                     <a data-bs-toggle="modal" data-bs-target="#infoOrder<?= $donhang['donhang_ma'] ?>" class="btn btn-info btn-sm mx-1">Thông tin</a>
                                     <a href="./Edit_Order.php?datakey=<?= $donhang['donhang_ma'] ?>" class="btn btn-warning btn-sm mx-1">Sửa</a>
                                     <?php if ($donhang['donhang_trangthai'] != "Đã hủy"): ?>
-                                        <a href="<?= $linkBE ?>OrderCancel.php?datakey=<?= $donhang['donhang_ma'] ?>" class="btn btn-danger btn-sm mx-1">Huỷ đơn</a>
+                                        <a href="../Includes/BE/OrderCancel.php?datakey=<?= $donhang['donhang_ma'] ?>" class="btn btn-danger btn-sm mx-1">Huỷ đơn</a>
                                     <?php endif; ?>
                                 </div>
                             </td>
@@ -117,7 +117,7 @@
 
     <?php
     foreach ($danhsachdonhang as $donhang) {
-        include($linkFE . "ModalInfoOrder.php");
+        include("../Includes/FE/ModalInfoOrder.php");
     }
     ?>
 </body>
