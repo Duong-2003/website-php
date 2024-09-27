@@ -19,17 +19,11 @@
 
 <body>
 
-<?php
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('Location: ./Admin_Login.php'); // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
-    exit;
-}
+    <?php
 
 
-include('../Includes/FE/Menu.php');
-?>
-
-
+    include('../Includes/FE/Menu.php');
+    ?>
 
 </body>
 

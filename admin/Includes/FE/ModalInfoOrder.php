@@ -39,11 +39,11 @@ if (isset($donhang)) {
 }
 ?>
 
-<div class="modal fade" id="infoOrder<?= $donhang['donhang_ma'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="infoOrder<?= $donhang['donhang_ma'] ?>">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Thông tin đơn hàng</h1>
+                <h1 class="modal-title fs-5" >Thông tin đơn hàng</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="error-message" class="text-danger text-center" style="font-size: 20px;"></div>

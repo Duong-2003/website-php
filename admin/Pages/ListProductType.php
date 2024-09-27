@@ -13,16 +13,40 @@
         body {
             background-color: #f8f9fa;
         }
+
         h1 {
             color: tomato;
+            margin-bottom: 20px;
         }
+
         a {
             text-decoration: none;
         }
+
         p#notifi_log {
             font-weight: 900;
             font-size: 20px;
             text-align: center;
+        }
+
+        .input-group-text {
+            min-width: 200px; /* Giữ chiều rộng tối thiểu cho nhãn */
+        }
+
+        .form-control {
+            box-shadow: none; /* Bỏ bóng cho input */
+        }
+
+        .table {
+            margin-top: 20px;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+        }
+
+        .btn-danger, .btn-success {
+            min-width: 80px; /* Chiều rộng tối thiểu cho nút */
         }
     </style>
 </head>
@@ -47,7 +71,7 @@
     ?>
 
     <div class="content container mt-5">
-        <h1 class="text-center">Danh sách loại sản phẩm</h1>
+        <h1 class="text-center">Danh Sách Loại Sản Phẩm</h1>
         <hr style="color:red">
         <?php
         $notifi = isset($_GET["notifi"]) ? htmlspecialchars($_GET["notifi"]) : '';
@@ -82,11 +106,11 @@
             <h5 class="text-dark">Thêm loại sản phẩm</h5>
             <form action='../Includes/BE/Add_productType.php' method="post">
                 <div class="input-group mb-3">
-                    <span class="input-group-text">Tên loại sản phẩm<span style="color: red;">*</span></span>
+                    <span class="input-group-text">Tên loại sản phẩm<span class="text-danger">*</span></span>
                     <input name="loaisp" type="text" class="form-control" required>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text">Loại sản phẩm<span style="color: red;">*</span></span>
+                    <span class="input-group-text">Loại sản phẩm<span class="text-danger">*</span></span>
                     <input name="loaisanpham" type="text" class="form-control" required>
                 </div>
                 <button type="submit" name="submit" class="btn btn-success">Thêm</button>

@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
                     // Kiểm tra vai trò người dùng
                     if ($user['role'] === 0) { // Giả sử bạn lưu vai trò trong cột 'role'
                         $_SESSION['username'] = $username; // Thiết lập phiên cho admin
-                        header('location:../FE/Menu.php');
+                        header('location:../../Pages/MenuAdmin.php');
                         exit();
                     } else {
                         $error = 'Bạn không có quyền truy cập vào trang này.';

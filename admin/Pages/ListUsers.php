@@ -54,7 +54,7 @@
         });
     </script>
 
-    <div class="container-fluid">
+    <div class="container">
         <h1 class="text-center">Danh sách người dùng</h1>
         <hr style="color:red">
         <?php

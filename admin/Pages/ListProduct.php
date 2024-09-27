@@ -13,26 +13,32 @@
         body {
             background-color: #f8f9fa;
         }
-
         h1 {
             color: tomato;
         }
-
         .table th,
         .table td {
             vertical-align: middle;
-            text-align: center; /* Căn giữa nội dung */
+            text-align: center;
         }
-
         p#notifi_log {
             font-weight: 900;
             font-size: 20px;
             text-align: center;
         }
-
         img {
-            max-height: 100px; /* Giới hạn chiều cao cho hình ảnh */
-            width: auto; /* Giữ tỷ lệ hình ảnh */
+            max-height: 100px;
+            width: auto;
+        }
+        .table {
+            margin-top: 20px;
+        }
+        .btn-success {
+            margin-bottom: 10px;
+        }
+        .modal-header {
+            background-color: #343a40;
+            color: white;
         }
     </style>
 </head>
@@ -43,6 +49,7 @@
     include('./MenuAdmin.php');    
     include('../Includes/conn/connect.php');
 
+    // Lấy danh sách loại sản phẩm
     $sqlLSP = "SELECT * FROM loaisp";
     $resultLSP = $connect->query($sqlLSP);
     $danhsachLSP = [];
@@ -53,6 +60,7 @@
         );
     }
 
+    // Lấy danh sách sản phẩm
     $sqlSP = "SELECT * FROM sanpham";
     $resultSP = $connect->query($sqlSP);
     $danhsachSP = [];
@@ -71,17 +79,16 @@
     }
     ?>
 
-  
-        <table id="danhsach" class="table table-striped table-secondary table-bordered table-hover">
-        <div class="container-fluid mt-4">
+    <div class="container">
         <h1 class="text-center mb-4">Danh Sách Sản Phẩm</h1>
         <div class="text-end mb-3">
-            <button h type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddProduct">
-                Thêm người dùng
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddProduct">
+                Thêm 
             </button>
         </div>
+        <table id="danhsach" class="table table-striped table-bordered table-hover">
             <thead>
-                <tr style="text-align:center; font-size: larger;">
+                <tr style="font-size: larger;">
                     <th>Mã sản phẩm</th>
                     <th>Tên sản phẩm</th>
                     <th>Loại sản phẩm</th>
@@ -96,7 +103,6 @@
             <tbody>
                 <?php
                 foreach ($danhsachSP as $row) {
-                    // Cập nhật đường dẫn hình ảnh
                     $imgPath = '../../Assets/img/SanPham/' . htmlspecialchars($row['sp_img']);
                     echo "<tr>
                         <td>{$row['sp_ma']}</td>
@@ -137,19 +143,17 @@
                         "next": "Tiếp",
                         "previous": "Trước"
                     }
-                }
+                },
+                "paging": true, // Bật phân trang
+                "searching": true // Bật tìm kiếm
             });
         });
+
+        var myDiv = document.getElementById("product");
+        myDiv.classList.add("active");
+        var myDiv = document.getElementById("product-collapse");
+        myDiv.classList.add("show");
     </script>
-    <script>
-  var myDiv = document.getElementById("product");
-  myDiv.classList.add("active");
-  var myDiv = document.getElementById("product-collapse");
-  myDiv.classList.add("show");
-</script>
 </body>
 
 </html>
-
-   
-   

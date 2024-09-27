@@ -96,7 +96,7 @@
       outline: none;
       box-shadow: none;
     }
-    
+
     a#link-style {
       color: #9c8350;
       font-size: 13px;
@@ -129,12 +129,14 @@
                 <form action="../Includes/BE/LoginProcess.php" method="post" id="customer_login" accept-charset="UTF-8">
                   <fieldset class="form-group margin-bottom-10">
                     <label for="account">Tài khoản<span style="color: red;">*</span></label>
-                    <input id="account" placeholder="Nhập tài khoản" type="text" class="form-control" name="account" required>
+                    <input id="account" placeholder="Nhập tài khoản" type="text" class="form-control" name="account"
+                      required>
                   </fieldset>
 
                   <fieldset class="form-group margin-bottom-0">
                     <label for="password">Mật khẩu<span style="color: red;">*</span></label>
-                    <input type="password" placeholder="Nhập mật khẩu" id="password" class="form-control" name="password" required>
+                    <input type="password" placeholder="Nhập mật khẩu" id="password" class="form-control"
+                      name="password" required>
                   </fieldset>
 
                   <div class="text-right recover">
