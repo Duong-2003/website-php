@@ -10,7 +10,8 @@ if (isset($_SESSION['username'])) {
     $loggedInUsername = $_SESSION['username'];
     $sql = "SELECT * FROM users WHERE name = '$loggedInUsername'";
     $result = $connect->query($sql);
-    if ($result->num_rows > 0) {
+    
+    if ($result && $result->num_rows > 0) {
         $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
     }
 }
@@ -23,16 +24,14 @@ if (isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Document</title>
 
     <style>
-        #navbar1 {
+       
+       #navbar1 {
             color: #8ab0d5;
             box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.3);
         }
@@ -74,8 +73,8 @@ if (isset($_SESSION['username'])) {
             </button>
 
             <div class="collapse navbar-collapse">
-                <div class="top-slogan me-auto">Chào mừng bạn đến với <strong>Tech of World</strong>. Cùng vui mua sắm.
-                </div>
+                <div class="top-slogan me-auto">Chào mừng bạn đến với <strong>Tech of World</strong>. Cùng vui mua sắm.</div>
+                
                 <ul class="navbar-nav" id="ic-notuser">
                     <li class="nav-item">
                         <a class="nav-link home" href="../Website/website.php"><i class="fas fa-home"></i> Trang chủ</a>
@@ -87,40 +86,32 @@ if (isset($_SESSION['username'])) {
                         <a class="nav-link register" href="./register.php"><i class="fas fa-user-plus"></i> Đăng ký</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link forgot-password" href="../Website/resetpass.php"><i class="fas fa-key"></i>
-                            Quên
-                            mật khẩu</a>
+                        <a class="nav-link forgot-password" href="../Website/resetpass.php"><i class="fas fa-key"></i> Quên mật khẩu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link contact" href="../Website/contact.php"><i class="fas fa-envelope"></i> Liên
-                            hệ</a>
+                        <a class="nav-link contact" href="../Website/contact.php"><i class="fas fa-envelope"></i> Liên hệ</a>
                     </li>
                 </ul>
+                
                 <ul class="navbar-nav ms-auto" id="ic-user" style="display: none;">
                     <li class="nav-item">
-                        <a class="nav-link home" id="navbar" href="../Website/website.php"><i class="fas fa-home"></i>
-                            Trang chủ</a>
+                        <a class="nav-link home" id="navbar" href="../Website/website.php"><i class="fas fa-home"></i> Trang chủ</a>
                     </li>
                     <li class="navbar-nav ms-auto">
-                        <a class="nav-link contact" href="../Website/contact.php"><i class="fas fa-envelope"></i> Liên
-                            hệ</a>
+                        <a class="nav-link contact" href="../Website/contact.php"><i class="fas fa-envelope"></i> Liên hệ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="" href="../website/profile_user.php"><i
-                                class="fas fa-user-edit"></i>Hồ sơ của tôi</a>
+                        <a class="nav-link" href="../website/profile_user.php"><i class="fas fa-user-edit"></i> Hồ sơ của tôi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="" href="../sources/BE/logout_process.php"><i
-                                class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+                        <a class="nav-link" href="../sources/BE/logout_process.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link user" id="navbar1">
-
-                            <span id="username-display"><?= htmlspecialchars($user['name']) ?></span>
+                            <span id="username-display"><?= isset($user['name']) ? htmlspecialchars($user['name']) : 'Khách' ?></span>
                         </a>
                     </li>
-
                 </ul>
             </div>
         </div>

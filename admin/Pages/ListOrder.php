@@ -22,15 +22,17 @@
             color: tomato;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             vertical-align: middle;
         }
     </style>
 </head>
-<?php  include('./MenuAdmin.php');    ?>
+<?php include('./MenuAdmin.php'); ?>
+
 <body>
 
-   
+
 
     <script>
         var myDiv = document.getElementById("order");
@@ -64,7 +66,7 @@
                 </thead>
                 <tbody>
                     <?php
-            include('../Includes/conn/connect.php');
+                    include('../Includes/conn/connect.php');
                     $sql = "SELECT * FROM donhang";
                     $result = $connect->query($sql);
 
@@ -88,17 +90,21 @@
                             <td><?= $donhang['sp_ma'] ?></td>
                             <td><?= $donhang['name'] ?></td>
                             <td><?= $donhang['timeorder'] ?></td>
-                            <td class="text-center <?= ($donhang['donhang_trangthai'] == "Đã hủy") ? 'text-danger' : ''; ?>">
+                            <td
+                                class="text-center <?= ($donhang['donhang_trangthai'] == "Đã hủy") ? 'text-danger' : ''; ?>">
                                 <?= $donhang['donhang_trangthai'] ?>
                             </td>
                             <td><?= $donhanggia ?> đ</td>
                             <td><?= $donhang['donhang_soluongsp'] ?></td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a data-bs-toggle="modal" data-bs-target="#infoOrder<?= $donhang['donhang_ma'] ?>" class="btn btn-info btn-sm mx-1">Thông tin</a>
-                                    <a href="./Edit_Order.php?datakey=<?= $donhang['donhang_ma'] ?>" class="btn btn-warning btn-sm mx-1">Sửa</a>
+                                    <a data-bs-toggle="modal" data-bs-target="#infoOrder<?= $donhang['donhang_ma'] ?>"
+                                        class="btn btn-info btn-sm mx-1">Thông tin</a>
+                                    <a href="./Edit_Order.php?datakey=<?= $donhang['donhang_ma'] ?>"
+                                        class="btn btn-warning btn-sm mx-1">Sửa</a>
                                     <?php if ($donhang['donhang_trangthai'] != "Đã hủy"): ?>
-                                        <a href="../Includes/BE/OrderCancel.php?datakey=<?= $donhang['donhang_ma'] ?>" class="btn btn-danger btn-sm mx-1">Huỷ đơn</a>
+                                        <a href="../Includes/BE/OrderCancel.php?datakey=<?= $donhang['donhang_ma'] ?>"
+                                            class="btn btn-danger btn-sm mx-1">Huỷ đơn</a>
                                     <?php endif; ?>
                                 </div>
                             </td>

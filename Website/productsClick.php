@@ -120,7 +120,7 @@ include( '../sources/FE/nav.php');
                                 <div class="row">
                                     <?php
 
-                                    include_once('../admin/Includes/connect.php');
+                                    include_once('../sources/connect.php');
 
                                     // Lấy loại sản phẩm từ URL
                                     $loaisanpham = isset($_GET['loaisanpham']) ? $_GET['loaisanpham'] : '';

@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
                 // Kiểm tra mật khẩu
                 if (password_verify($password, $stored_hashed_password)) {
                     // Kiểm tra vai trò người dùng
-                    if ($user['role'] === 0) { // Giả sử bạn lưu vai trò trong cột 'role'
+                    if ($user['role'] === 1) { 
                         $_SESSION['username'] = $username; // Thiết lập phiên cho admin
                         header('location:../../Pages/MenuAdmin.php');
                         exit();

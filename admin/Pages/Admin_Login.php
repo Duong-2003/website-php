@@ -139,10 +139,7 @@
                       name="password" required>
                   </fieldset>
 
-                  <div class="text-right recover">
-                    <a id="link-style" href="resetpass.php" title="Quên mật khẩu?">Quên mật khẩu?</a>
-                  </div>
-
+                
                   <div class="text-center" style="margin-top: 15px;">
                     <button class="btn btn-blues" type="submit" id="loginSubmit" name="submit">Đăng nhập</button>
                   </div>

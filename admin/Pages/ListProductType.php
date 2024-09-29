@@ -118,24 +118,7 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            $('#danhsach').DataTable({
-                "language": {
-                    "lengthMenu": "Hiện _MENU_ loại sản phẩm trên mỗi trang",
-                    "zeroRecords": "Không tìm thấy loại sản phẩm nào",
-                    "info": "Hiển thị trang _PAGE_ của _PAGES_",
-                    "infoEmpty": "Không có loại sản phẩm",
-                    "infoFiltered": "(lọc từ _MAX_ tổng số loại sản phẩm)",
-                    "search": "Tìm kiếm:",
-                    "paginate": {
-                        "next": "Tiếp",
-                        "previous": "Trước"
-                    }
-                }
-            });
-        });
-    </script>
+    
 </body>
 
 </html>

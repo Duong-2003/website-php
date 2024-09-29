@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Product List</title>
+    <title>Danh Sách Sản Phẩm</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -13,31 +13,49 @@
         body {
             background-color: #f8f9fa;
         }
+
         h1 {
-            color: tomato;
+            color: #dc3545;
+            /* Màu đỏ tươi */
         }
+
+        .table {
+            margin-top: 20px;
+            background-color: #ffffff;
+            /* Nền trắng cho bảng */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
         .table th,
         .table td {
             vertical-align: middle;
             text-align: center;
         }
-        p#notifi_log {
-            font-weight: 900;
-            font-size: 20px;
-            text-align: center;
-        }
+
         img {
             max-height: 100px;
             width: auto;
         }
-        .table {
-            margin-top: 20px;
-        }
+
         .btn-success {
             margin-bottom: 10px;
         }
+
         .modal-header {
             background-color: #343a40;
+            color: white;
+        }
+
+        .btn-danger,
+        .btn-warning {
+            margin: 0 5px;
+        }
+
+        .table th {
+            background-color: #007bff;
+            /* Màu xanh cho tiêu đề */
             color: white;
         }
     </style>
@@ -46,19 +64,8 @@
 <body>
 
     <?php
-    include('./MenuAdmin.php');    
+    include('./MenuAdmin.php');
     include('../Includes/conn/connect.php');
-
-    // Lấy danh sách loại sản phẩm
-    $sqlLSP = "SELECT * FROM loaisp";
-    $resultLSP = $connect->query($sqlLSP);
-    $danhsachLSP = [];
-    while ($row = mysqli_fetch_array($resultLSP, MYSQLI_ASSOC)) {
-        $danhsachLSP[] = array(
-            'loaisanpham' => $row['loaisanpham'],
-            'loaisp_ten' => $row['loaisp_ten'],
-        );
-    }
 
     // Lấy danh sách sản phẩm
     $sqlSP = "SELECT * FROM sanpham";
@@ -83,12 +90,12 @@
         <h1 class="text-center mb-4">Danh Sách Sản Phẩm</h1>
         <div class="text-end mb-3">
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddProduct">
-                Thêm 
+                Thêm Sản Phẩm
             </button>
         </div>
         <table id="danhsach" class="table table-striped table-bordered table-hover">
             <thead>
-                <tr style="font-size: larger;">
+                <tr>
                     <th>Mã sản phẩm</th>
                     <th>Tên sản phẩm</th>
                     <th>Loại sản phẩm</th>
@@ -115,8 +122,8 @@
                         <td>{$row['sp_soluong']}</td>
                         <td>
                             <div class='d-flex justify-content-center'>
-                                <a href='../Includes/BE/DeleteSQL.php?key=sp_ma&table=sanpham&datakey={$row['sp_ma']}' class='btn btn-danger mx-1'>Xóa</a>
-                                <a href='../Pages/Form_product.php?datakey={$row['sp_ma']}' class='btn btn-warning mx-1'>Sửa</a>
+                                <a href='../Includes/BE/DeleteSQL.php?key=sp_ma&table=sanpham&datakey={$row['sp_ma']}' class='btn btn-danger'>Xóa</a>
+                                <a href='../Pages/Form_product.php?datakey={$row['sp_ma']}' class='btn btn-warning'>Sửa</a>
                             </div>
                         </td>
                     </tr>";
@@ -126,33 +133,17 @@
         </table>
     </div>
 
-    <!-- Modal for Adding Product -->
-    <?php include('../Includes/FE/ModalAddProduct.php');?>
+
+    <?php include('../Includes/FE/ModalAddProduct.php'); ?>
 
     <script>
-        $(document).ready(function () {
-            $('#danhsach').DataTable({
-                "language": {
-                    "lengthMenu": "Hiện _MENU_ sản phẩm trên mỗi trang",
-                    "zeroRecords": "Không tìm thấy sản phẩm nào",
-                    "info": "Hiển thị trang _PAGE_ của _PAGES_",
-                    "infoEmpty": "Không có sản phẩm",
-                    "infoFiltered": "(lọc từ _MAX_ tổng số sản phẩm)",
-                    "search": "Tìm kiếm:",
-                    "paginate": {
-                        "next": "Tiếp",
-                        "previous": "Trước"
-                    }
-                },
-                "paging": true, // Bật phân trang
-                "searching": true // Bật tìm kiếm
-            });
-        });
+
 
         var myDiv = document.getElementById("product");
         myDiv.classList.add("active");
-        var myDiv = document.getElementById("product-collapse");
-        myDiv.classList.add("show");
+        var myDivCollapse = document.getElementById("product-collapse");
+        myDivCollapse.classList.add("show");
+
     </script>
 </body>
 
