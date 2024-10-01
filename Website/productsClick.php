@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-         .content a {
+        .content a {
             text-decoration: none;
         }
 
@@ -26,14 +26,13 @@
         .sidebar {
             position: sticky;
             top: 0;
-            height: calc(120vh -px);
+            height: calc(100vh - 20px);
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 20px;
             background-color: #f8f9fa;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            /* Ẩn thanh cuộn */
         }
 
         @media screen and (max-width: 768px) {
@@ -44,7 +43,7 @@
             }
         }
 
-        button.cart-button.btn-buy.add_to_cart {
+        button.cart-button.btn-buy {
             width: 150px;
             background: #DC2028;
             height: 35px;
@@ -58,15 +57,16 @@
         }
 
         #buy {
-            color: #fff
+            color: #fff;
         }
     </style>
 </head>
+
 <?php
 include('../sources/FE/top_header.php');
 include('../sources/FE/header.php');
 include('../sources/FE/menu.php');
-include( '../sources/FE/nav.php');
+include('../sources/FE/nav.php');
 ?>
 
 <body>
@@ -76,7 +76,7 @@ include( '../sources/FE/nav.php');
             <div class="col-lg-3 col-md-4 sidebar">
                 <h5 style="text-align: center;">Danh mục sản phẩm</h5>
                 <ul class="list-group">
-                    <a href="../website/List.php"><li class="list-group-item"> Tất cả sản phẩm </li></a>
+                    <a href="../website/List.php"><li class="list-group-item">Tất cả sản phẩm</li></a>
                     <a href="../website/productsClick.php?loaisanpham=but">
                         <li class="list-group-item">Bút</li>
                     </a>
@@ -103,12 +103,14 @@ include( '../sources/FE/nav.php');
                 <h5 style="text-align: center;">Sắp xếp theo giá</h5>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a href="?sort=price-asc&category=<?= $_GET['category'] ?? '' ?>">Giá thấp đến cao</a></li>
+                        <a href="?sort=price-asc&loaisanpham=<?= $_GET['loaisanpham'] ?? '' ?>">Giá thấp đến cao</a>
+                    </li>
                     <li class="list-group-item">
-                        <a href="?sort=price-desc&category=<?= $_GET['category'] ?? '' ?>">Giá cao xuống thấp</a></li>
+                        <a href="?sort=price-desc&loaisanpham=<?= $_GET['loaisanpham'] ?? '' ?>">Giá cao xuống thấp</a>
+                    </li>
                 </ul>
                 <hr>
-                <img src="../Assets/img/index/img_aside_banner.webp" alt="">
+                <img src="../Assets/img/index/img_aside_banner.webp" alt="" class="img-fluid">
             </div>
 
             <div class="col-lg-9 col-md-8">
@@ -119,14 +121,25 @@ include( '../sources/FE/nav.php');
                             <div class="text-center py-2">
                                 <div class="row">
                                     <?php
-
                                     include_once('../sources/connect.php');
 
                                     // Lấy loại sản phẩm từ URL
                                     $loaisanpham = isset($_GET['loaisanpham']) ? $_GET['loaisanpham'] : '';
 
+                                    // Sắp xếp
+                                    $sort = isset($_GET['sort']) ? $_GET['sort'] : 'normal';
+                                    $orderBy = '';
+                                    if ($sort == 'price-asc') {
+                                        $orderBy = 'ORDER BY sp_gia ASC';
+                                    } elseif ($sort == 'price-desc') {
+                                        $orderBy = 'ORDER BY sp_gia DESC';
+                                    }
+
                                     // Truy vấn sản phẩm theo loại
-                                    $sql = "SELECT * FROM sanpham WHERE loaisanpham = '$loaisanpham'";
+                                    $sql = "SELECT sp.*, s.discount_percent 
+                                            FROM sanpham sp 
+                                            LEFT JOIN sales s ON sp.sp_ma = s.sp_ma AND s.is_expired = 0 
+                                            WHERE sp.loaisanpham = '$loaisanpham' $orderBy";
                                     $result = $connect->query($sql);
 
                                     $duongdanimg = '../Assets/img/sanpham/'; // Đảm bảo đường dẫn này là chính xác
@@ -139,7 +152,16 @@ include( '../sources/FE/nav.php');
                                             echo '<img src="' . $duongdanimg . $data['sp_img'] . '" class="card-img-top" alt="' . $data['sp_ten'] . '">';
                                             echo '<div class="card-body">';
                                             echo '<p class="card-title"><strong>' . $data['sp_ten'] . '</strong></p>';
-                                            echo '<p class="card-text"><strong style="color:#f30; font-size:25px">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></strong></p>';
+
+                                            // Tính toán giá sau khi giảm
+                                            if (!empty($data['discount_percent'])) {
+                                                $discountedPrice = $data['sp_gia'] * (1 - $data['discount_percent'] / 100);
+                                                echo '<p class="card-text"><strong style="color:#f30; font-size:25px">' . number_format($discountedPrice, 0, '.', '.') . ' <sup>đ</sup></strong>';
+                                                echo ' <span style="text-decoration: line-through; color: #888;">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></span></p>';
+                                            } else {
+                                                echo '<p class="card-text"><strong style="color:#f30; font-size:25px">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></strong></p>';
+                                            }
+
                                             echo '<div class="action-cart group-buttons d-flex align-items-center justify-content-center">';
                                             echo '<button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">';
                                             echo '<a id="buy" href="./product.php?sp_ma=' . $data['sp_ma'] . '">Thêm vào giỏ</a>';
@@ -171,7 +193,6 @@ include( '../sources/FE/nav.php');
     <?php
     include('../sources/FE/footer_save.php');
     include('../sources/FE/footer.php');
-
     ?>
 </body>
 

@@ -3,10 +3,12 @@
     margin-bottom: 0 !important;
     position: relative;
 }
+
 .bread-crumb img {
     width: 100%;
     height: auto;
 }
+
 .bread-crumb .nd-main-title-breadcrumb {
     color: #fff;
     font-weight: 700;
@@ -19,6 +21,7 @@
     z-index: 2;
     text-align: center;
 }
+
 .breadcrumb {
     color: #fff;
     background-color: transparent;
@@ -31,10 +34,12 @@
     z-index: 2;
     text-align: center;
 }
+
 .breadcrumb li {
     display: inline-block;
     margin: 0 10px;
 }
+
 .breadcrumb li a {
     color: #fff;
     text-decoration: none;
@@ -50,25 +55,23 @@
 
 <section class="bread-crumb">
     <div class="container-fluid py-4">
-        <div>
-            <img src="../Assets/img/index/bg-breadcrumb.jpg" alt="Breadcrumb Background">
-            <div class="nd-main-title-breadcrumb">
-                Sản phẩm nổi bật
-            </div>
-            <ul class="breadcrumb">
-                <li class="home" itemprop="itemListElement">
-                    <a itemprop="item" href="../website/website.php" title="Trang chủ">
-                        <span itemprop="name">Trang chủ >></span>
-                    </a>
-                </li>
-                <li itemprop="itemListElement">
-                    <strong>
-                        <a itemprop="item" href="#" title="Sản phẩm nổi bật">
-                            <span itemprop="name">Sản phẩm nổi bật</span>
-                        </a>
-                    </strong>
-                </li>
-            </ul>
+        <img src="../Assets/img/index/bg-breadcrumb.jpg" alt="Breadcrumb Background">
+        <div class="nd-main-title-breadcrumb">
+            Sản phẩm nổi bật
         </div>
+        <ul class="breadcrumb">
+            <li class="home" itemprop="itemListElement">
+                <a itemprop="item" href="../website/website.php" title="Trang chủ">
+                    <span itemprop="name">Trang chủ</span>
+                </a>
+            </li>
+            <li itemprop="itemListElement">
+                <strong>
+                    <a itemprop="item" href="#" title="Sản phẩm nổi bật">
+                        <span itemprop="name">Sản phẩm nổi bật</span>
+                    </a>
+                </strong>
+            </li>
+        </ul>
     </div>
 </section>

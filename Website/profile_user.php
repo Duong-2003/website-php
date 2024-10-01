@@ -8,9 +8,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Hồ Sơ Người Dùng</title>
     <style>
-      
         body {
-            font-family: Arial, sans-serif; 
+            font-family: Arial, sans-serif;
+        }
+
+        .profile-header {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .profile-header img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+        }
+
+        .profile-info {
+            margin-top: 20px;
+        }
+
+        .form-control[readonly] {
+            background-color: #e9ecef;
         }
     </style>
 </head>
@@ -20,43 +40,33 @@ $linkFE = '../sources/FE/';
 include($linkFE . 'top_header.php');
 include($linkFE . 'header.php');
 
+include_once('../sources/connect.php');
 
-$userData = [
-    'username' => 'Tên người dùng',
-    'email' => 'email@example.com',
-    'phone' => '0123456789',
-    'avatar' => 'https://cdn-media.sforum.vn/storage/app/media/THANHAN/2/2a/avatar-dep-119.jpg'
-];
 ?>
 
 <body>
-
     <div class="container mt-5">
-        <h2>Hồ Sơ Của Tôi</h2>
-        <div class="card">
+        <div class="profile-header">
+            <img src="<?php echo $userData['avatar']; ?>" alt="Avatar">
+            <h2><?php echo $userData['username']; ?></h2>
+        </div>
+        <div class="card profile-info">
             <div class="card-body">
-                <form action="update_profile.php" method="POST" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="avatar" class="form-label">Ảnh đại diện</label>
-                        <div>
-                            <img src="<?php echo $userData['avatar']; ?>" alt="Avatar" class="avatar">
-                        </div>
-                        <input type="file" class="form-control" id="avatar" name="avatar">
-                    </div>
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Tên người dùng</label>
-                        <input type="text" class="form-control" id="username" name="username" value="<?php echo $userData['username']; ?>" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<?php echo $userData['email']; ?>">
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Số điện thoại</label>
-                        <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $userData['phone']; ?>">
-                    </div>
-                    <!-- <button type="submit" class="btn btn-primary">Cập nhật</button> -->
-                </form>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Tên người dùng</label>
+                    <input type="text" class="form-control" id="username" value="<?php echo $users['username']; ?>" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" value="<?php echo $username['email']; ?>" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Số điện thoại</label>
+                    <input type="text" class="form-control" id="phone" value="<?php echo $username['phone']; ?>" readonly>
+                </div>
+                <div class="text-center">
+                    <a href="./edit_profile_form.php" class="btn btn-primary">Chỉnh sửa hồ sơ</a>
+                </div>
             </div>
         </div>
     </div>

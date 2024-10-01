@@ -10,80 +10,64 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <title>Trang Sản Phẩm Khuyến Mãi</title>
     <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
         .section_flash_sale {
-            margin-bottom: 90px;
+            margin-bottom: 60px;
         }
 
-        .section_flash_sale .block-title {
+        .block-title {
             text-align: center;
+            /* margin-bottom: 20px; */
         }
 
-        .section_flash_sale .block-title h2 {
-            margin-bottom: 15px;
-            font-size: 2rem;
-            color: #DC2028;
-        }
+        
 
-        .timer {
-            background: #DC2028;
-            border-radius: 5px;
-            width: 191px;
-            margin: auto;
-            padding: 10px 5px 7px;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        .section_flash_sale .block-product {
+        .block-product {
             border: 2px solid #DC2028;
             border-radius: 15px;
-            padding: 50px 45px;
+            padding: 20px;
             background: #fff;
         }
 
         .flash-sale-swiper {
             overflow: hidden;
-            /* Ngăn hình ảnh tràn ra ngoài khu vực swiper */
         }
 
         .swiper-wrapper {
             display: flex;
-            /* Đảm bảo tất cả các slide được hiển thị trong một hàng */
         }
 
         .swiper-slide {
             flex: 0 0 auto;
-            /* Đảm bảo mỗi slide có kích thước cố định */
-            width: calc(25% - 20px);
-            /* Điều chỉnh chiều rộng của mỗi slide */
-            margin-right: 20px;
-            /* Khoảng cách giữa các slide */
+            width: 18%; /* Giảm chiều rộng để chứa 5-6 sản phẩm */
+            margin-right: 1%;
+            transition: transform 0.3s;
+        }
+
+        .swiper-slide:last-child {
+            margin-right: 0;
         }
 
         .product-block-item {
-            width: 100%;
-            /* Đảm bảo sản phẩm chiếm toàn bộ chiều rộng của slide */
-            max-width: 100%;
-            /* Giới hạn chiều rộng tối đa */
-            margin: 0 auto;
-            /* Căn giữa sản phẩm */
             border: 1px solid #ddd;
             border-radius: 10px;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
-            transition: transform 0.3s;
             overflow: hidden;
-            /* Ngăn chặn nội dung tràn ra ngoài */
+            transition: transform 0.2s;
         }
 
         .product-block-item:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .product-info .item-product-name {
             color: #000;
-            font-size: 1.2rem;
-            margin: 10px 0;
+            font-size: 1.1rem;
+            margin: 5px 0;
         }
 
         .product__price .old-price {
@@ -95,9 +79,10 @@
             background: #DC2028;
             color: #fff;
             border: none;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 14px;
         }
 
         .cart-button:hover {
@@ -106,33 +91,39 @@
 
         .product-block-item img {
             max-width: 100%;
-            /* Đảm bảo hình ảnh không vượt quá khung */
             height: auto;
-            /* Tự động điều chỉnh chiều cao */
+            margin-bottom: 10px;
         }
 
         .swiper-button-next,
         .swiper-button-prev {
             color: #DC2028;
-            /* Màu sắc cho nút trước/sau */
         }
 
-        .swiper-button-next {
-            right: 10px;
-            /* Đặt vị trí bên phải */
+        .pagination .page-link {
+            color: #007bff;
         }
 
-        .swiper-button-prev {
-            left: 10px;
-            /* Đặt vị trí bên trái */
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
         }
 
-        .swiper-button-next,
-        .swiper-button-prev {
-            width: 40px;
-            /* Kích thước nút */
-            height: 40px;
-            /* Kích thước nút */
+        .pagination .page-item.disabled .page-link {
+            color: #6c757d;
+        }
+
+        @media (max-width: 768px) {
+            .swiper-slide {
+                width: 45%; /* Chiều rộng cho màn hình nhỏ */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .swiper-slide {
+                width: 90%; /* Chiều rộng cho màn hình rất nhỏ */
+                margin-right: 0; /* Không có khoảng cách bên phải */
+            }
         }
     </style>
 </head>
@@ -142,127 +133,68 @@
         <div class="container">
             <div class="block-title">
                 <img src="../Assets/img/index/img_title.webp" alt="">
-                <div class="timer" data-countdown="countdown" data-date="12-10-2022-09-15-45">
-                    <div class="lof-labelexpired d-none"> Hết hạn</div>
-                </div>
             </div>
 
             <div class="block-product">
                 <div class="flash-sale-swiper swiper-container">
                     <div class="swiper-wrapper">
-                        <!-- Sản phẩm 1 -->
-                        <div class="swiper-slide">
-                            <form action="/cart/add" method="post" class="variants">
-                                <div class="product-block-item">
-                                    <a href="/vo-viet-ke-ngang-nhieu-hinh-sieu-ngo-nghinh">
-                                        <img class="product-thumbnail lazy loaded"
-                                            src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp10.jpg?v=1629774327897"
-                                            alt="Vở viết kẻ ngang nhiều hình siêu ngộ nghĩnh">
-                                    </a>
-                                    <div class="product-info">
-                                        <a href="/vo-viet-ke-ngang-nhieu-hinh-sieu-ngo-nghinh"
-                                            class="item-product-name">Vở viết kẻ ngang nhiều hình siêu ngộ nghĩnh</a>
-                                        <div class="product__price">
-                                            <span class="price">12.000₫</span>
-                                            <span class="old-price">41.000₫</span>
-                                        </div>
-                                    </div>
-                                    <div class="action-cart">
-                                        <button class="cart-button" type="button"
-                                            onclick="window.location.href='/vo-viet-ke-ngang-nhieu-hinh-sieu-ngo-nghinh'">
-                                            Tùy chọn
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- Sản phẩm 2 -->
-                        <div class="swiper-slide">
-                            <form action="/cart/add" method="post" class="variants">
-                                <div class="product-block-item">
-                                    <a href="/hop-dung-van-phong-pham-bang-nhua-trong-suot-tien-dung">
-                                        <img class="product-thumbnail lazy loaded"
-                                            src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp8-3.jpg?v=1629774002220"
-                                            alt="Hộp đựng văn phòng phẩm bằng nhựa trong suốt tiện dụng">
-                                    </a>
-                                    <div class="product-info">
-                                        <a href="/hop-dung-van-phong-pham-bang-nhua-trong-suot-tien-dung"
-                                            class="item-product-name">Hộp đựng văn phòng phẩm bằng nhựa trong suốt tiện
-                                            dụng</a>
-                                        <div class="product__price">
-                                            <span class="price">15.000₫</span>
-                                            <span class="old-price">25.000₫</span>
-                                        </div>
-                                    </div>
-                                    <div class="action-cart">
-                                        <button class="cart-button" type="button"
-                                            onclick="window.location.href='/hop-dung-van-phong-pham-bang-nhua-trong-suot-tien-dung'">
-                                            Tùy chọn
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- Sản phẩm 3 -->
-                        <div class="swiper-slide">
-                            <form action="/cart/add" method="post" class="variants">
-                                <div class="product-block-item">
-                                    <a href="/sach-huong-dan-lap-trinh">
-                                        <img class="product-thumbnail lazy loaded"
-                                            src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp9.jpg?v=1629774327897"
-                                            alt="Sách hướng dẫn lập trình">
-                                    </a>
-                                    <div class="product-info">
-                                        <a href="/sach-huong-dan-lap-trinh" class="item-product-name">Sách hướng dẫn lập
-                                            trình</a>
-                                        <div class="product__price">
-                                            <span class="price">25.000₫</span>
-                                            <span class="old-price">50.000₫</span>
-                                        </div>
-                                    </div>
-                                    <div class="action-cart">
-                                        <button class="cart-button" type="button"
-                                            onclick="window.location.href='/sach-huong-dan-lap-trinh'">
-                                            Tùy chọn
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- Sản phẩm 4 -->
-                        <div class="swiper-slide">
-                            <form action="/cart/add" method="post" class="variants">
-                                <div class="product-block-item">
-                                    <a href="/bong-bong-bat-ngo">
-                                        <img class="product-thumbnail lazy loaded"
-                                            src="//bizweb.dktcdn.net/thumb/large/100/434/558/products/sp11.jpg?v=1629774327897"
-                                            alt="Bóng bóng bất ngờ">
-                                    </a>
-                                    <div class="product-info">
-                                        <a href="/bong-bong-bat-ngo" class="item-product-name">Bóng bóng bất ngờ</a>
-                                        <div class="product__price">
-                                            <span class="price">30.000₫</span>
-                                            <span class="old-price">60.000₫</span>
-                                        </div>
-                                    </div>
-                                    <div class="action-cart">
-                                        <button class="cart-button" type="button"
-                                            onclick="window.location.href='/bong-bong-bat-ngo'">
-                                            Tùy chọn
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                        <?php
+                        include_once("../sources/connect.php");
+
+                        $valueCart = 9; // Số sản phẩm trên mỗi trang
+                        $page = isset($_GET['page']) ? (int) $_GET['page'] : 1; // Trang hiện tại
+                        $offset = ($page - 1) * $valueCart; // Tính toán offset
+
+                        // Lọc sản phẩm không hết hạn
+                        $totalSql = "SELECT COUNT(*) as total FROM sanpham sp JOIN sales s ON sp.sp_ma = s.sp_ma WHERE s.is_expired = 0"; 
+                        $totalResult = $connect->query($totalSql);
+                        $totalRow = $totalResult->fetch_assoc();
+                        $totalProducts = $totalRow['total'];
+                        $totalPages = ceil($totalProducts / $valueCart); // Tính tổng số trang
+
+                        // Truy vấn sản phẩm với offset
+                        $sql = "SELECT sp.*, s.discount_percent FROM sanpham sp JOIN sales s ON sp.sp_ma = s.sp_ma WHERE s.is_expired = 0 LIMIT $offset, $valueCart"; 
+                        $result = $connect->query($sql);
+                        $duongdanimg = '../Assets/img/sanpham/';
+
+                        if ($result->num_rows > 0) {
+                            while ($data = $result->fetch_assoc()) {
+                                echo '<div class="swiper-slide product-block-item">';
+                                echo '<a href="./product.php?sp_ma=' . $data['sp_ma'] . '">';
+                                echo '<img src="' . $duongdanimg . $data['sp_img'] . '" alt="' . $data['sp_ten'] . '">';
+                                echo '<div class="product-info">';
+                                echo '<p class="item-product-name"><strong>' . $data['sp_ten'] . '</strong></p>';
+
+                                // Tính toán giá sau khi giảm
+                                if (!empty($data['discount_percent'])) {
+                                    $discountedPrice = $data['sp_gia'] * (1 - $data['discount_percent'] / 100);
+                                    echo '<p class="product__price"><strong style="color:#f30; font-size:20px">' . number_format($discountedPrice, 0, '.', '.') . ' <sup>đ</sup></strong>';
+                                    echo ' <span class="old-price">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></span></p>';
+                                } else {
+                                    echo '<p class="product__price"><strong style="color:#f30; font-size:20px">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></strong></p>';
+                                }
+                                echo '</div>'; // product-info
+                                echo '<button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">Thêm vào giỏ</button>';
+                                echo '</a>';
+                                echo '</div>'; // swiper-slide
+                            }
+                        } else {
+                            echo '<p class="text-center">Không có sản phẩm nào</p>';
+                        }
+
+                        // Phân trang
+                        if ($totalPages > 1) {
+                            echo '<nav aria-label="Page navigation">';
+                            echo '<ul class="pagination justify-content-center">';
+                            for ($i = 1; $i <= $totalPages; $i++) {
+                                $active = $i === $page ? 'active' : '';
+                                echo '<li class="page-item ' . $active . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+                            }
+                            echo '</ul>';
+                            echo '</nav>';
+                        }
+                        ?>
                     </div>
-                </div>
-                <div class="d-flex justify-content-between mt-3">
-                    <button class="btn btn-primary" id="prev-slide">
-                        <i class="fas fa-chevron-left"></i> <!-- Left arrow icon -->
-                    </button>
-                    <button class="btn btn-primary" id="next-slide">
-                        <i class="fas fa-chevron-right"></i> <!-- Right arrow icon -->
-                    </button>
                 </div>
             </div>
         </div>
@@ -272,8 +204,12 @@
     <script>
         const swiper = new Swiper('.swiper-container', {
             loop: true,
-            slidesPerView: 3,
-            spaceBetween: 30,
+            slidesPerView: 5, // Hiện 5 sản phẩm trên mỗi hàng
+            spaceBetween: 10,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
             breakpoints: {
                 640: {
                     slidesPerView: 1,
@@ -284,18 +220,10 @@
                     spaceBetween: 30,
                 },
                 1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 30,
+                    slidesPerView: 4,
+                    spaceBetween: 10,
                 },
             },
-        });
-
-        document.getElementById('prev-slide').addEventListener('click', () => {
-            swiper.slidePrev();
-        });
-
-        document.getElementById('next-slide').addEventListener('click', () => {
-            swiper.slideNext();
         });
     </script>
 </body>

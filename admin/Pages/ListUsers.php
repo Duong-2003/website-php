@@ -13,6 +13,8 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         'name' => htmlspecialchars($row['name']),
         'email' => htmlspecialchars($row['email']),
         'address' => htmlspecialchars($row['address']),
+        'phone' => htmlspecialchars($row['phone']),
+        'avatar' => htmlspecialchars($row['avatar']),
         'role' => (int)$row['role'], 
     );
 }
@@ -46,6 +48,8 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                 <th>Email</th>
                 <th>Mật khẩu</th>
                 <th>Địa chỉ</th>
+                <th>Số điện thoại</th>
+                <th>Ảnh</th>
                 <th>Quyền</th>
                 <th>Thao tác</th>
             </tr>
@@ -57,6 +61,8 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                     <td><?= $user['email'] ?></td>
                     <td>******</td> <!-- Password is hidden -->
                     <td><?= $user['address'] ?></td>
+                    <td><?= $user['phone'] ?></td>
+                    <td><?= $user['avatar'] ?></td>
                     <td><?= ($user['role'] === 1 ? 'ADMIN' : 'USER') ?></td>
                     <td>
                         <div class="d-flex justify-content-center">

@@ -7,7 +7,7 @@
     <title>Sản phẩm mới nhất</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+            body {
             font-family: 'Roboto', sans-serif;
             background-color: #f8f9fa; /* Light background for contrast */
             margin: 0;
@@ -22,15 +22,15 @@
             margin: 3rem auto;
             padding: 2rem;
             max-width: 1200px; /* Center the content */
-            background-color: #fff; /* White background for product list */
+            background-color: #ffffff; /* White background for product list */
             border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .card {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px; /* Rounded corners */
             margin-bottom: 20px;
+            border-radius: 8px; /* Rounded corners */
             transition: transform 0.3s, box-shadow 0.3s;
             overflow: hidden; /* Ensure content doesn't overflow */
         }
@@ -87,7 +87,17 @@
             text-align: center;
             text-transform: uppercase;
             color: #494949;
+            position: relative;
             margin-bottom: 20px;
+        }
+
+        h2:after {
+            content: "";
+            background: url(//bizweb.dktcdn.net/100/434/558/themes/894884/assets/icon_after_title.png?1651395726340) no-repeat;
+            width: 257px;
+            height: 57px;
+            display: block;
+            margin: auto;
         }
 
         ul.tabs {
@@ -117,13 +127,36 @@
             color: #fff;
         }
 
+        .text-center {
+            text-align: center;
+        }
+
+        .btn-warning {
+    padding: 10px 10px;
+    background-color: #ffc107; /* Original background color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.btn-warning:hover {
+    background-color: #ffc107; /* Keep the same color on hover */
+    color: white; /* Keep text color white */
+    cursor: pointer; /* Change cursor to pointer */
+}
+    
+
+
         @media (max-width: 768px) {
-            .card {
-                margin: 10px 0; /* Reduce margin on smaller screens */
+            .product-list {
+                padding: 1rem; /* Reduce padding on smaller screens */
             }
 
-            .product-list {
-                padding: 1rem; /* Reduce padding */
+            .card {
+                margin: 10px 0; /* Reduce margin on smaller screens */
             }
         }
     </style>
@@ -131,9 +164,11 @@
 
 <body>
     <?php
+    include('../sources/FE/iconnofi.php');
     include('../sources/FE/top_header.php');
     include('../sources/FE/header.php');
-    include('../sources/FE/menu.php');
+    include('../sources/FE/slide.php');
+    include('../sources/FE/sales.php');
 
     include_once("../sources/connect.php"); // Kết nối cơ sở dữ liệu
 
@@ -195,7 +230,14 @@
                         echo '<img src="' . $duongdanimg . $data['sp_img'] . '" class="card-img-top" alt="' . $data['sp_ten'] . '">';
                         echo '<div class="card-body">';
                         echo '<p class="card-title">' . $data['sp_ten'] . '</p>';
-                        echo '<p class="card-text">' . number_format($data['sp_gia'], 0, '.', ',') . ' <sup>đ</sup></p>';
+                       
+                        if (!empty($data['discount_percent'])) {
+                            $discountedPrice = $data['sp_gia'] * (1 - $data['discount_percent'] / 100);
+                            echo '<p class="card-text"><strong style="color:#f30; font-size:25px">' . number_format($discountedPrice, 0, '.', '.') . ' <sup>đ</sup></strong>';
+                            echo ' <span style="text-decoration: line-through; color: #888;">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></span></p>';
+                        } else {
+                            echo '<p class="card-text"><strong style="color:#f30; font-size:25px">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></strong></p>';
+                        }
                         echo '<div class="action-cart">';
                         echo '<button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">Thêm vào giỏ</button>';
                         echo '</div></div></div></a></div>';
@@ -203,8 +245,6 @@
                 } else {
                     echo '<p class="text-center">Không có sản phẩm nào</p>';
                 }
-
-                $connect->close(); // Đóng kết nối
                 ?>
             </div>
         </div>
@@ -215,6 +255,8 @@
     </div>
 
     <?php
+    // Đóng kết nối sau khi hoàn tất tất cả các thao tác
+    $connect->close();
     include('../sources/FE/footer_save.php');
     include('../sources/FE/footer.php');
     ?>

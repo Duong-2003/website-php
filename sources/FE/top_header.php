@@ -1,7 +1,7 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+// if (session_status() === PHP_SESSION_NONE) {
+//     session_start();
+// }
 include_once("../sources/connect.php"); // Kết nối cơ sở dữ liệu
 
 $user = null; // Khởi tạo biến người dùng
