@@ -138,7 +138,7 @@ include('../sources/FE/nav.php');
                                     // Truy vấn sản phẩm theo loại
                                     $sql = "SELECT sp.*, s.discount_percent 
                                             FROM sanpham sp 
-                                            LEFT JOIN sales s ON sp.sp_ma = s.sp_ma AND s.is_expired = 0 
+                                            LEFT JOIN sales s ON sp.sp_ma = s.sp_ma AND s.is_expired = 1
                                             WHERE sp.loaisanpham = '$loaisanpham' $orderBy";
                                     $result = $connect->query($sql);
 

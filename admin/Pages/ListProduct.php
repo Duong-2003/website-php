@@ -101,28 +101,32 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($danhsachSP as $row) {
-                    $imgPath = '../../Assets/img/SanPham/' . htmlspecialchars($row['sp_img']);
-                    echo "<tr>
-                        <td>{$row['sp_ma']}</td>
-                        <td>{$row['sp_ten']}</td>
-                        <td>{$row['loaisp_ten']}</td>
-                        <td>" . number_format($row['sp_gia'], 0, ',', '.') . " VNĐ</td>
-                        <td>{$row['sp_mota']}</td>
-                        <td>{$row['sp_motachitiet']}</td>
-                        <td><img src='{$imgPath}' alt='Hình ảnh sản phẩm'></td>
-                        <td>{$row['sp_soluong']}</td>
-                        <td>
-                            <div class='d-flex justify-content-center'>
-                                <a href='../Includes/BE/DeleteSQL.php?key=sp_ma&table=sanpham&datakey={$row['sp_ma']}' class='btn btn-danger mx-1'>Xóa</a>
-                                <a href='../Pages/Form_product.php?datakey={$row['sp_ma']}' class='btn btn-warning mx-1'>Sửa</a>
-                            </div>
-                        </td>
-                    </tr>";
-                }
-                ?>
-            </tbody>
+    <?php
+    foreach ($danhsachSP as $row) {
+        $imgPath = '../../Assets/img/SanPham/' . htmlspecialchars($row['sp_img']);
+        
+        // Chuyển đổi giá về dạng số (bỏ dấu phẩy nếu có)
+        $price = floatval(str_replace(',', '', $row['sp_gia']));
+        
+        echo "<tr>
+            <td>{$row['sp_ma']}</td>
+            <td>{$row['sp_ten']}</td>
+            <td>{$row['loaisp_ten']}</td>
+            <td>" . number_format($price, 0, ',', '.') . " VNĐ</td>
+            <td>{$row['sp_mota']}</td>
+            <td>{$row['sp_motachitiet']}</td>
+            <td><img src='{$imgPath}' alt='Hình ảnh sản phẩm'></td>
+            <td>{$row['sp_soluong']}</td>
+            <td>
+                <div class='d-flex justify-content-center'>
+                    <a href='../Includes/BE/DeleteSQL.php?key=sp_ma&table=sanpham&datakey={$row['sp_ma']}' class='btn btn-danger mx-1'>Xóa</a>
+                    <a href='../Pages/Form_product.php?datakey={$row['sp_ma']}' class='btn btn-warning mx-1'>Sửa</a>
+                </div>
+            </td>
+        </tr>";
+    }
+    ?>
+</tbody>
         </table>
     </div>
 

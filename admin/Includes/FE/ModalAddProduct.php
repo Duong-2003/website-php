@@ -71,10 +71,9 @@
         if (emptyFields.length > 0) {
             errorMessage.textContent = "Vui lòng nhập đầy đủ thông tin.";
             event.preventDefault();
-        } else if (isNaN(fields.productPrice) || parseFloat(fields.productPrice) <= 0) {
-            errorMessage.textContent = "Giá sản phẩm phải là số dương.";
-            event.preventDefault();
-        }
+        } 
+         
+        
     });
 
     document.querySelector("form").addEventListener("input", function() {

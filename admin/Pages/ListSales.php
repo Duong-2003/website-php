@@ -74,31 +74,34 @@
                     <th>Ngày bắt đầu</th>
                     <th>Ngày kết thúc</th>
                     <th>Mô tả</th>
-                    <th>Hết hạn</th>
+                    <th>Hiển thị hết hạn</th>
                     <th>Thao tác</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($danhsachSales as $row) {
-                    echo "<tr>
-                        <td>{$row['sale_id']}</td>
-                        <td>{$row['sp_ma']}</td>
-                        <td>{$row['sp_ten']}</td>
-                        <td>{$row['discount_percent']}%</td>
-                        <td>{$row['start_date']}</td>
-                        <td>{$row['end_date']}</td>
-                        <td>{$row['sale_description']}</td>
-                        <td>" . ($row['is_expired'] ? 'Có' : 'Không') . "</td>
-                        <td>
-                            <div class='d-flex justify-content-center'>
-                                <a href='../Includes/BE/DeleteSQL.php?key=sale_id&table=sales&datakey={$row['sale_id']}' class='btn btn-danger mx-1'>Xóa</a>
-                                <a href='../Pages/Form_sale.php?datakey={$row['sale_id']}' class='btn btn-warning mx-1'>Sửa</a>
-                            </div>
-                        </td>
-                    </tr>";
-                }
-                ?>
+            <?php
+    foreach ($danhsachSales as $row) {
+        // Chỉ hiển thị sản phẩm nếu không hết hạn
+        if ($row['is_expired'] == 1) {
+            echo "<tr>
+                <td>{$row['sale_id']}</td>
+                <td>{$row['sp_ma']}</td>
+                <td>{$row['sp_ten']}</td>
+                <td>{$row['discount_percent']}%</td>
+                <td>{$row['start_date']}</td>
+                <td>{$row['end_date']}</td>
+                <td>{$row['sale_description']}</td>
+                <td>" . ($row['is_expired'] ? '1' : '0') . "</td>
+                <td>
+                    <div class='d-flex justify-content-center'>
+                        <a href='../Includes/BE/DeleteSQL.php?key=sale_id&table=sales&datakey={$row['sale_id']}' class='btn btn-danger mx-1'>Xóa</a>
+                        <a href='../Pages/Form_Sales.php?datakey={$row['sale_id']}' class='btn btn-warning mx-1'>Sửa</a>
+                    </div>
+                </td>
+            </tr>";
+        }
+    }
+    ?>
             </tbody>
         </table>
     </div>

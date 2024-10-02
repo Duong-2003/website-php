@@ -18,10 +18,7 @@ if (isset($_POST['submit']) && $_FILES['sp_img'] != null && $_POST['sp_motachiti
     $target_img = '../../../Assets/img/SanPham/' . $img;
     $error = '';
 
-    // Chuyển đổi giá tiền từ định dạng có dấu phẩy sang số thực
-    if (is_string($price)) {
-        $price = (float) str_replace(',', '', $price);
-    }
+   
 
     // Tạo câu truy vấn SQL
     if ($describe != '') {

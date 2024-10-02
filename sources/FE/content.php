@@ -201,21 +201,30 @@
         </div>
 
         <?php
-        include_once("../sources/connect.php");
-        $valueCart = 8;
-        $sql = "SELECT * FROM sanpham LIMIT $valueCart";
-        $result = $connect->query($sql);
-        $duongdanimg = $linkImgSp;
+include_once("../sources/connect.php");
+$valueCart = 8;
 
-        $dataArray = [];
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $dataArray[] = $row;
-            }
-        }
-        // Đóng kết nối
-        $connect->close();
-        ?>
+// Câu truy vấn để lấy sản phẩm không có giảm giá
+$sql = "
+    SELECT * 
+    FROM sanpham 
+    WHERE sp_ma NOT IN (SELECT sp_ma FROM sales WHERE is_expired = 1) 
+    LIMIT $valueCart
+";
+
+$result = $connect->query($sql);
+$duongdanimg = $linkImgSp;
+
+$dataArray = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $dataArray[] = $row;
+    }
+}
+
+// Đóng kết nối
+$connect->close();
+?>
 
         <div class="container text-center">
             <div class="row">

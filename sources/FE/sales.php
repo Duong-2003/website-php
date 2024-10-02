@@ -20,10 +20,7 @@
 
         .block-title {
             text-align: center;
-            /* margin-bottom: 20px; */
         }
-
-        
 
         .block-product {
             border: 2px solid #DC2028;
@@ -36,13 +33,9 @@
             overflow: hidden;
         }
 
-        .swiper-wrapper {
-            display: flex;
-        }
-
         .swiper-slide {
             flex: 0 0 auto;
-            width: 18%; /* Giảm chiều rộng để chứa 5-6 sản phẩm */
+            width: 18%; /* Giảm chiều rộng để chứa 5 sản phẩm */
             margin-right: 1%;
             transition: transform 0.3s;
         }
@@ -141,7 +134,7 @@
                         <?php
                         include_once("../sources/connect.php");
 
-                        $valueCart = 9; // Số sản phẩm trên mỗi trang
+                        $valueCart = 6; // Số sản phẩm trên mỗi trang
                         $page = isset($_GET['page']) ? (int) $_GET['page'] : 1; // Trang hiện tại
                         $offset = ($page - 1) * $valueCart; // Tính toán offset
 
@@ -153,7 +146,7 @@
                         $totalPages = ceil($totalProducts / $valueCart); // Tính tổng số trang
 
                         // Truy vấn sản phẩm với offset
-                        $sql = "SELECT sp.*, s.discount_percent FROM sanpham sp JOIN sales s ON sp.sp_ma = s.sp_ma WHERE s.is_expired = 0 LIMIT $offset, $valueCart"; 
+                        $sql = "SELECT sp.*, s.discount_percent FROM sanpham sp JOIN sales s ON sp.sp_ma = s.sp_ma WHERE s.is_expired = 1 LIMIT $offset, $valueCart"; 
                         $result = $connect->query($sql);
                         $duongdanimg = '../Assets/img/sanpham/';
 
