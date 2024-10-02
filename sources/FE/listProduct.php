@@ -11,6 +11,8 @@
     <style>
         body {
             background-color: #f8f9fa;
+            font-family: Arial, sans-serif; /* Thay đổi phông chữ mặc định */
+            color: #333; /* Màu chữ mặc định */
         }
 
         .content a {
@@ -30,7 +32,7 @@
         .sidebar {
             position: sticky;
             top: 0;
-            height: calc(100vh - 20px);
+            height: calc(134vh - 20px);
             padding: 20px;
             border-radius: 20px;
             background-color: #ffffff;
@@ -41,17 +43,15 @@
             text-align: center;
             margin-bottom: 20px;
             font-weight: bold;
+            font-size: 1.25rem; /* Kích thước phông chữ */
         }
 
         .sidebar a {
             color: #333;
+            font-size: 1rem; /* Kích thước phông chữ cho danh mục */
         }
 
-        .sidebar a:hover {
-            color: #007bff;
-        }
-
-        button.cart-button.btn-buy {
+      button.cart-button.btn-buy  {
             width: 100%;
             background: #DC2028;
             height: 35px;
@@ -59,17 +59,12 @@
             color: #fff;
             font-size: 14px;
             border: none;
-            transition: background 0.3s;
+           
             margin-top: 10px;
         }
 
-        button.cart-button.btn-buy:hover {
+      button.cart-button.btn-buy :hover {
             background: #c81d24;
-        }
-
-        #buy {
-            color: #fff;
-            text-decoration: none;
         }
 
         .pagination .page-link {
@@ -84,6 +79,21 @@
         .pagination .page-item.disabled .page-link {
             color: #6c757d;
         }
+
+        .list-group-item {
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.1rem; /* Kích thước phông chữ cho tên sản phẩm */
+        }
+
+        .card-text {
+            font-size: 1rem; /* Kích thước phông chữ cho giá sản phẩm */
+        }
+        a#buy {
+    color: #fff;
+}
     </style>
 </head>
 
@@ -117,6 +127,7 @@
                     <a href="../website/productsClick.php?loaisanpham=vo">
                         <li class="list-group-item">Vở</li>
                     </a>
+                    <a href="?discount=true" class="list-group-item">Sản phẩm giảm giá</a>
                 </ul>
                 <hr>
                 <h5>Sắp xếp theo giá</h5>
@@ -138,15 +149,17 @@
                                     <?php
                                     include_once("../sources/connect.php");
 
-                                    $valueCart = 9; // Số sản phẩm trên mỗi trang
-                                    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1; // Trang hiện tại
-                                    $offset = ($page - 1) * $valueCart; // Tính toán offset
+                                    $valueCart = 9; 
+                                    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1; 
+                                    $offset = ($page - 1) * $valueCart; 
                                     
-                                    // Lấy loại sản phẩm từ URL
                                     $category = isset($_GET['category']) ? $_GET['category'] : '';
-                                    $whereClause = $category ? "WHERE category = '$category'" : '';
+                                    $whereClause = $category ? "WHERE category = '$category'" : "";
 
-                                    // Sắp xếp
+                                    if (isset($_GET['discount']) && $_GET['discount'] == 'true') {
+                                        $whereClause .= ($whereClause ? " AND " : "WHERE ") . "s.discount_percent > 0";
+                                    }
+
                                     $sort = isset($_GET['sort']) ? $_GET['sort'] : 'normal';
                                     $orderBy = '';
                                     if ($sort == 'price-asc') {
@@ -155,70 +168,68 @@
                                         $orderBy = 'ORDER BY sp_gia DESC';
                                     }
 
-                                    // Truy vấn để lấy tổng số sản phẩm
-                                    $totalSql = "SELECT COUNT(*) as total FROM sanpham $whereClause";
+                                    $totalSql = "SELECT COUNT(*) as total FROM sanpham sp LEFT JOIN sales s ON sp.sp_ma = s.sp_ma $whereClause";
                                     $totalResult = $connect->query($totalSql);
                                     $totalRow = $totalResult->fetch_assoc();
                                     $totalProducts = $totalRow['total'];
-                                    $totalPages = ceil($totalProducts / $valueCart); // Tính tổng số trang
+                                    $totalPages = ceil($totalProducts / $valueCart); 
                                     
-                                    // Truy vấn sản phẩm với offset
-                                    $sql = "SELECT * FROM sanpham $whereClause $orderBy LIMIT $offset, $valueCart";
+                                    $sql = "SELECT sp.*, s.discount_percent 
+                                            FROM sanpham sp 
+                                            LEFT JOIN sales s ON sp.sp_ma = s.sp_ma $whereClause $orderBy LIMIT $offset, $valueCart";
                                     $result = $connect->query($sql);
-                                    $duongdanimg = $linkImgSp;
+                                    $duongdanimg = '../Assets/img/sanpham/';
 
-                                     // Truy vấn sản phẩm theo loại
-                                     $sql = "SELECT sp.*, s.discount_percent 
-                                     FROM sanpham sp 
-                                     LEFT JOIN sales s ON sp.sp_ma = s.sp_ma AND s.is_expired = 0 
-                                     ";
-                             $result = $connect->query($sql);
-
-                             $duongdanimg = '../Assets/img/sanpham/'; // Đảm bảo đường dẫn này là chính xác
                                     if ($result->num_rows > 0) {
                                         while ($data = $result->fetch_assoc()) {
-                                            echo '<div class="col-lg-4 col-md-6 col-sm-9 py-2">';
-                                            echo '<a href="./product.php?sp_ma=' . $data['sp_ma'] . '">';
-                                            echo '<div class="card">';
-                                            echo '<img src="' . $duongdanimg . $data['sp_img'] . '" class="card-img-top" alt="' . $data['sp_ten'] . '">';
-                                            echo '<div class="card-body">';
-                                            echo '<p class="card-title"><strong>' . $data['sp_ten'] . '</strong></p>';
-                                           
-                                            // Tính toán giá sau khi giảm
-                                            if (!empty($data['discount_percent'])) {
-                                                $discountedPrice = $data['sp_gia'] * (1 - $data['discount_percent'] / 100);
-                                                echo '<p class="card-text"><strong style="color:#f30; font-size:25px">' . number_format($discountedPrice, 0, '.', '.') . ' <sup>đ</sup></strong>';
-                                                echo ' <span style="text-decoration: line-through; color: #888;">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></span></p>';
-                                            } else {
-                                                echo '<p class="card-text"><strong style="color:#f30; font-size:25px">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></strong></p>';
-                                            }
-                                            echo '<div class="action-cart group-buttons d-flex align-items-center justify-content-center">';
-                                            echo '<button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">';
-                                            echo '<a id="buy" href="./product.php?sp_ma=' . $data['sp_ma'] . '">Thêm vào giỏ</a>';
-                                            echo '</button>';
-                                            echo '</div>'; // action-cart
-                                            echo '</div>'; // card-body
-                                            echo '</div>'; // card
-                                            echo '</a>';
-                                            echo '</div>'; // col
+                                            ?>
+                                            <div class="col-lg-4 col-md-6 col-sm-9 py-2">
+                                                <a href="./product.php?sp_ma=<?= $data['sp_ma'] ?>">
+                                                    <div class="card">
+                                                        <img src="<?= $duongdanimg . $data['sp_img'] ?>" class="card-img-top" alt="<?= $data['sp_ten'] ?>">
+                                                        <div class="card-body">
+                                                            <p class="card-title"><strong><?= $data['sp_ten'] ?></strong></p>
+                                                            <?php
+                                                            if (!empty($data['discount_percent'])) {
+                                                                $discountedPrice = $data['sp_gia'] * (1 - $data['discount_percent'] / 100);
+                                                                ?>
+                                                                <p class="card-text">
+                                                                    <strong style="color:#f30; font-size:25px"><?= number_format($discountedPrice, 0, '.', '.') ?> <sup>đ</sup></strong>
+                                                                    <span style="text-decoration: line-through; color: #888;"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></span>
+                                                                </p>
+                                                                <?php
+                                                            } else {
+                                                                ?>
+                                                                <p class="card-text">
+                                                                    <strong style="color:#f30; font-size:25px"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></strong>
+                                                                </p>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                            <div class="action-cart group-buttons d-flex align-items-center justify-content-center">
+                                                                <button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">
+                                                                    <a id="buy" href="./product.php?sp_ma=<?= $data['sp_ma'] ?>">Thêm vào giỏ</a>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <?php
                                         }
                                     } else {
                                         echo '<p class="text-center">Không có sản phẩm nào</p>';
                                     }
-
-                                    // Đóng kết nối
-                                    $connect->close();
                                     ?>
                                 </div>
                             </div>
 
-                            <!-- Phần phân trang -->
                             <div class="text-center mt-4">
                                 <nav aria-label="Page navigation">
                                     <ul class="pagination justify-content-center">
                                         <?php if ($page > 1): ?>
                                             <li class="page-item">
-                                                <a class="page-link" href="?category=<?= $category ?>&page=<?= $page - 1 ?>&sort=<?= $sort ?>" aria-label="Previous">
+                                                <a class="page-link" href="?category=<?= $category ?>&page=<?= $page - 1 ?>&sort=<?= $sort ?>&discount=<?= isset($_GET['discount']) ? $_GET['discount'] : 'false' ?>" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                 </a>
                                             </li>
@@ -226,13 +237,13 @@
 
                                         <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                                             <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                                                <a class="page-link" href="?category=<?= $category ?>&page=<?= $i ?>&sort=<?= $sort ?>"><?= $i ?></a>
+                                                <a class="page-link" href="?category=<?= $category ?>&page=<?= $i ?>&sort=<?= $sort ?>&discount=<?= isset($_GET['discount']) ? $_GET['discount'] : 'false' ?>"><?= $i ?></a>
                                             </li>
                                         <?php endfor; ?>
 
                                         <?php if ($page < $totalPages): ?>
                                             <li class="page-item">
-                                                <a class="page-link" href="?category=<?= $category ?>&page=<?= $page + 1 ?>&sort=<?= $sort ?>" aria-label="Next">
+                                                <a class="page-link" href="?category=<?= $category ?>&page=<?= $page + 1 ?>&sort=<?= $sort ?>&discount=<?= isset($_GET['discount']) ? $_GET['discount'] : 'false' ?>" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                 </a>
                                             </li>

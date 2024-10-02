@@ -51,8 +51,8 @@
     // include($linkFE.'slide.php');
     include($linkFE . 'menu.php');
     include($linkFE . 'nav.php');
-
     include($linkFE . 'listProduct.php');
+    include($linkFE . 'product_generation.php');
     include($linkFE . 'footer_save.php');
     include($linkFE . 'footer.php');
 

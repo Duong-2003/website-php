@@ -35,7 +35,7 @@
 
         .swiper-slide {
             flex: 0 0 auto;
-            width: 18%; /* Giảm chiều rộng để chứa 5 sản phẩm */
+            width: 18%; /* Đảm bảo rằng kích thước này cho phép hiển thị 5 sản phẩm */
             margin-right: 1%;
             transition: transform 0.3s;
         }
@@ -118,6 +118,33 @@
                 margin-right: 0; /* Không có khoảng cách bên phải */
             }
         }
+
+        .flash-sale-swiper {
+            position: relative; /* Để nút có thể được định vị tương đối */
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #DC2028; /* Màu cho nút */
+            font-size: 20px; /* Kích thước chữ */
+            position: absolute; /* Đặt vị trí tuyệt đối */
+            top: 50%; /* Đặt nút ở giữa chiều cao */
+            transform: translateY(-50%); /* Đẩy nút lên giữa */
+            z-index: 10; /* Đảm bảo nút nằm trên sản phẩm */
+            width: 40px; /* Kích thước nút */
+            height: 40px; /* Kích thước nút */
+            display: flex; /* Sử dụng flex để căn giữa nội dung */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            justify-content: center; /* Căn giữa theo chiều ngang */
+        }
+
+        .swiper-button-prev {
+            left: 20px; /* Đặt nút bên trái */
+        }
+
+        .swiper-button-next {
+            right: 20px; /* Đặt nút bên phải */
+        }
     </style>
 </head>
 
@@ -134,42 +161,46 @@
                         <?php
                         include_once("../sources/connect.php");
 
-                        $valueCart = 6; // Số sản phẩm trên mỗi trang
+                        $valueCart = 5; // Số sản phẩm trên mỗi trang
                         $page = isset($_GET['page']) ? (int) $_GET['page'] : 1; // Trang hiện tại
                         $offset = ($page - 1) * $valueCart; // Tính toán offset
 
                         // Lọc sản phẩm không hết hạn
-                        $totalSql = "SELECT COUNT(*) as total FROM sanpham sp JOIN sales s ON sp.sp_ma = s.sp_ma WHERE s.is_expired = 0"; 
+                        $totalSql = "SELECT COUNT(*) as total FROM sanpham sp JOIN sales s ON sp.sp_ma = s.sp_ma WHERE s.is_expired = 0";
                         $totalResult = $connect->query($totalSql);
                         $totalRow = $totalResult->fetch_assoc();
                         $totalProducts = $totalRow['total'];
                         $totalPages = ceil($totalProducts / $valueCart); // Tính tổng số trang
 
                         // Truy vấn sản phẩm với offset
-                        $sql = "SELECT sp.*, s.discount_percent FROM sanpham sp JOIN sales s ON sp.sp_ma = s.sp_ma WHERE s.is_expired = 1 LIMIT $offset, $valueCart"; 
+                        $sql = "SELECT sp.*, s.discount_percent FROM sanpham sp JOIN sales s ON sp.sp_ma = s.sp_ma WHERE s.is_expired = 1 LIMIT $offset, $valueCart";
                         $result = $connect->query($sql);
                         $duongdanimg = '../Assets/img/sanpham/';
 
                         if ($result->num_rows > 0) {
                             while ($data = $result->fetch_assoc()) {
-                                echo '<div class="swiper-slide product-block-item">';
-                                echo '<a href="./product.php?sp_ma=' . $data['sp_ma'] . '">';
-                                echo '<img src="' . $duongdanimg . $data['sp_img'] . '" alt="' . $data['sp_ten'] . '">';
-                                echo '<div class="product-info">';
-                                echo '<p class="item-product-name"><strong>' . $data['sp_ten'] . '</strong></p>';
-
-                                // Tính toán giá sau khi giảm
-                                if (!empty($data['discount_percent'])) {
-                                    $discountedPrice = $data['sp_gia'] * (1 - $data['discount_percent'] / 100);
-                                    echo '<p class="product__price"><strong style="color:#f30; font-size:20px">' . number_format($discountedPrice, 0, '.', '.') . ' <sup>đ</sup></strong>';
-                                    echo ' <span class="old-price">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></span></p>';
-                                } else {
-                                    echo '<p class="product__price"><strong style="color:#f30; font-size:20px">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></strong></p>';
-                                }
-                                echo '</div>'; // product-info
-                                echo '<button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">Thêm vào giỏ</button>';
-                                echo '</a>';
-                                echo '</div>'; // swiper-slide
+                                ?>
+                                <div class="swiper-slide product-block-item">
+                                    <a href="./product.php?sp_ma=<?= $data['sp_ma'] ?>">
+                                        <img src="<?= $duongdanimg . $data['sp_img'] ?>" alt="<?= $data['sp_ten'] ?>">
+                                        <div class="product-info">
+                                            <p class="item-product-name"><strong><?= $data['sp_ten'] ?></strong></p>
+                                            <?php if (!empty($data['discount_percent'])): 
+                                                $discountedPrice = $data['sp_gia'] * (1 - $data['discount_percent'] / 100); ?>
+                                                <p class="product__price">
+                                                    <strong style="color:#f30; font-size:20px"><?= number_format($discountedPrice, 0, '.', '.') ?> <sup>đ</sup></strong>
+                                                    <span class="old-price"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></span>
+                                                </p>
+                                            <?php else: ?>
+                                                <p class="product__price">
+                                                    <strong style="color:#f30; font-size:20px"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></strong>
+                                                </p>
+                                            <?php endif; ?>
+                                        </div>
+                                        <button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">Thêm vào giỏ</button>
+                                    </a>
+                                </div>
+                                <?php
                             }
                         } else {
                             echo '<p class="text-center">Không có sản phẩm nào</p>';
@@ -177,17 +208,22 @@
 
                         // Phân trang
                         if ($totalPages > 1) {
-                            echo '<nav aria-label="Page navigation">';
-                            echo '<ul class="pagination justify-content-center">';
-                            for ($i = 1; $i <= $totalPages; $i++) {
-                                $active = $i === $page ? 'active' : '';
-                                echo '<li class="page-item ' . $active . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
-                            }
-                            echo '</ul>';
-                            echo '</nav>';
+                            ?>
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center">
+                                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                        <li class="page-item <?= $i === $page ? 'active' : '' ?>">
+                                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                                        </li>
+                                    <?php endfor; ?>
+                                </ul>
+                            </nav>
+                            <?php
                         }
                         ?>
                     </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
                 </div>
             </div>
         </div>
@@ -197,11 +233,15 @@
     <script>
         const swiper = new Swiper('.swiper-container', {
             loop: true,
-            slidesPerView: 5, // Hiện 5 sản phẩm trên mỗi hàng
+            slidesPerView: 4, // Hiện 5 sản phẩm trên mỗi hàng
             spaceBetween: 10,
             autoplay: {
                 delay: 3000,
                 disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
             },
             breakpoints: {
                 640: {
@@ -217,6 +257,15 @@
                     spaceBetween: 10,
                 },
             },
+        });
+
+        // Thêm hiệu ứng chuyển slide
+        document.querySelector('.swiper-button-next').addEventListener('click', function () {
+            swiper.slideNext();
+        });
+
+        document.querySelector('.swiper-button-prev').addEventListener('click', function () {
+            swiper.slidePrev();
         });
     </script>
 </body>

@@ -7,7 +7,7 @@
     <title>Sản phẩm mới nhất</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-            body {
+        body {
             font-family: 'Roboto', sans-serif;
             background-color: #f8f9fa; /* Light background for contrast */
             margin: 0;
@@ -132,23 +132,21 @@
         }
 
         .btn-warning {
-    padding: 10px 10px;
-    background-color: #ffc107; /* Original background color */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    transition: background 0.3s;
-}
+            padding: 10px 10px;
+            background-color: #ffc107; /* Original background color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
 
-.btn-warning:hover {
-    background-color: #ffc107; /* Keep the same color on hover */
-    color: white; /* Keep text color white */
-    cursor: pointer; /* Change cursor to pointer */
-}
-    
-
+        .btn-warning:hover {
+            background-color: #ffc107; /* Keep the same color on hover */
+            color: white; /* Keep text color white */
+            cursor: pointer; /* Change cursor to pointer */
+        }
 
         @media (max-width: 768px) {
             .product-list {
@@ -221,31 +219,36 @@
 
         <div class="container text-center">
             <div class="row">
-                <?php
-                if ($result && $result->num_rows > 0) {
-                    while ($data = $result->fetch_assoc()) {
-                        echo '<div class="col-lg-3 col-md-4 col-sm-6 py-2">';
-                        echo '<a href="./product.php?sp_ma=' . $data['sp_ma'] . '">';
-                        echo '<div class="card">';
-                        echo '<img src="' . $duongdanimg . $data['sp_img'] . '" class="card-img-top" alt="' . $data['sp_ten'] . '">';
-                        echo '<div class="card-body">';
-                        echo '<p class="card-title">' . $data['sp_ten'] . '</p>';
-                       
-                        if (!empty($data['discount_percent'])) {
-                            $discountedPrice = $data['sp_gia'] * (1 - $data['discount_percent'] / 100);
-                            echo '<p class="card-text"><strong style="color:#f30; font-size:25px">' . number_format($discountedPrice, 0, '.', '.') . ' <sup>đ</sup></strong>';
-                            echo ' <span style="text-decoration: line-through; color: #888;">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></span></p>';
-                        } else {
-                            echo '<p class="card-text"><strong style="color:#f30; font-size:25px">' . number_format($data['sp_gia'], 0, '.', '.') . ' <sup>đ</sup></strong></p>';
-                        }
-                        echo '<div class="action-cart">';
-                        echo '<button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">Thêm vào giỏ</button>';
-                        echo '</div></div></div></a></div>';
-                    }
-                } else {
-                    echo '<p class="text-center">Không có sản phẩm nào</p>';
-                }
-                ?>
+                <?php if ($result && $result->num_rows > 0): ?>
+                    <?php while ($data = $result->fetch_assoc()): ?>
+                        <div class="col-lg-3 col-md-4 col-sm-6 py-2">
+                            <a href="./product.php?sp_ma=<?= $data['sp_ma'] ?>">
+                                <div class="card">
+                                    <img src="<?= $duongdanimg . $data['sp_img'] ?>" class="card-img-top" alt="<?= $data['sp_ten'] ?>">
+                                    <div class="card-body">
+                                        <p class="card-title"><?= $data['sp_ten'] ?></p>
+                                        <?php if (!empty($data['discount_percent'])): 
+                                            $discountedPrice = $data['sp_gia'] * (1 - $data['discount_percent'] / 100); ?>
+                                            <p class="card-text">
+                                                <strong style="color:#f30; font-size:25px"><?= number_format($discountedPrice, 0, '.', '.') ?> <sup>đ</sup></strong>
+                                                <span style="text-decoration: line-through; color: #888;"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></span>
+                                            </p>
+                                        <?php else: ?>
+                                            <p class="card-text">
+                                                <strong style="color:#f30; font-size:25px"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></strong>
+                                            </p>
+                                        <?php endif; ?>
+                                        <div class="action-cart">
+                                            <button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">Thêm vào giỏ</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <p class="text-center">Không có sản phẩm nào</p>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -256,7 +259,7 @@
 
     <?php
     // Đóng kết nối sau khi hoàn tất tất cả các thao tác
-    $connect->close();
+    // $connect->close();
     include('../sources/FE/footer_save.php');
     include('../sources/FE/footer.php');
     ?>
