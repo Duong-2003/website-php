@@ -66,9 +66,11 @@
             align-items: center;
             transition: 1s ease-out;
         }
+
         a.SendEvent {
-    display: flex;
-}
+            display: flex;
+        }
+
         .phoneicon .phone-icon {
             width: 40px;
             height: 40px;
@@ -93,16 +95,188 @@
         .phoneicon:hover {
             border-radius: 10px;
         }
+
+
+
+        /* // */
+    .icon-cart {
+    position: fixed;
+    bottom: 745px; /* Điều chỉnh vị trí như bạn muốn */
+    right: 40px; /* Điều chỉnh vị trí như bạn muốn */
+    z-index: 9999;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 50%; /* Để biểu tượng thành hình tròn */
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.icon-cart:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.icon-cart .woofc-count-number {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.cart-modal {
+    display: none; /* Ẩn modal mặc định */
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    height: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 10000;
+    width: 25%;
+
+    transition: right 0.3s ease; /* Hiệu ứng chuyển động */
+}
+
+.cart-modal.show {
+    display: block; /* Hiển thị modal */
+    right: 0; /* Đẩy modal vào trong màn hình */
+}
+.modal-content {
+    padding: 20px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+.list-group {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.list-group-item {
+    padding: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+@media (max-width: 768px) {
+    .cart-modal {
+        width: 100%; /* Modal chiếm toàn bộ chiều rộng trên màn hình nhỏ */
+        max-width: none; /* Bỏ giới hạn chiều rộng tối đa */
+    }
+
+    .icon-cart {
+        width: 50px; /* Kích thước nhỏ hơn cho biểu tượng giỏ hàng */
+        height: 50px; /* Kích thước nhỏ hơn cho biểu tượng giỏ hàng */
+    }
+
+    .icon-cart .woofc-count-number {
+        font-size: 10px; /* Kích thước chữ nhỏ hơn cho số lượng */
+    }
+}
+
+@media (max-width: 480px) {
+    .close {
+        font-size: 24px; /* Kích thước chữ nhỏ hơn cho biểu tượng đóng */
+    }
+
+    button {
+        padding: 8px 10px; /* Kích thước nút nhỏ hơn */
+    }
+}
+
     </style>
 </head>
+<?php 
 
+
+
+?>
+<script>
+  function toggleModal() {
+    const modal = document.getElementById('cart-modal');
+    if (modal.classList.contains('show')) {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none'; // Ẩn sau khi hiệu ứng hoàn tất
+        }, 300); // Thời gian khớp với thời gian transition trong CSS
+    } else {
+        modal.style.display = 'block'; // Hiển thị modal
+        setTimeout(() => {
+            modal.classList.add('show'); // Thêm lớp show để kích hoạt hiệu ứng
+        }, 10); // Thời gian delay nhỏ để đảm bảo hiệu ứng hoạt động
+    }
+}
+
+function checkout() {
+    // Logic thanh toán ở đây
+    alert("Đi đến trang thanh toán!");
+}
+</script>
 <body>
 
 
+<!-- Biểu tượng giỏ hàng -->
+<div class="icon-cart" onclick="toggleModal()">
+    <a href="#" aria-label="Giỏ hàng" title="Giỏ hàng" class="SendEvent" data-category="action" data-action="click"
+       data-label="cart_action">
+        <i class="fa fa-shopping-cart fa-lg" style="color: black;"></i>
+    </a>
+    <span id="woofc-count-number" class="woofc-count-number">0</span>
+</div>
+
+<!-- Modal Nội Dung -->
+<div id="cart-modal" class="cart-modal">
+    <div class="modal-content">
+        <span class="close" onclick="toggleModal()">&times;</span>
+        <h3>Sản phẩm đã thêm </h3>
+        <ul id="product-list" class="list-group">
+            <li class="list-group-item">Sản phẩm </li>
+             
+        </ul>
+        <button onclick="checkout()" >Giỏ hàng</button>
+        <button onclick="checkout()" >Thanh toán</button>
+    </div>
+</div>
+
+
+
     <div class=" iconzalo">
-        <a aria-label="" title="" href="https://zalo.me/0975407328"
-            class="SendEvent" data-category="action" data-action="click" data-label="chat_action" target="_blank"
-            rel="noopener noreferrer"><svg viewBox="0 0 50 50">
+        <a aria-label="" title="" href="https://zalo.me/0975407328" class="SendEvent" data-category="action"
+            data-action="click" data-label="chat_action" target="_blank" rel="noopener noreferrer"><svg
+                viewBox="0 0 50 50">
                 <path
                     d="M22.782.166h4.417c6.066 0 9.611.891 12.758 2.578 3.147 1.687 5.63 4.152 7.298 7.299 1.688 3.147 2.579 6.692 2.579 12.758v4.398c0 6.066-.891 9.611-2.579 12.758s-4.151 5.63-7.298 7.299c-3.147 1.687-6.692 2.578-12.758 2.578h-4.398c-6.066 0-9.611-.891-12.758-2.578-3.147-1.688-5.63-4.152-7.299-7.3C1.057 36.81.166 33.266.166 27.2V22.8c0-6.066.891-9.611 2.578-12.758 1.688-3.147 4.152-5.63 7.299-7.299C13.17 1.057 16.735.166 22.782.166z"
                     clip-rule="evenodd" fill="#0068FF" fill-rule="evenodd"></path>
@@ -125,12 +299,12 @@
         <a aria-label="0123456789" title="0123456789" href="tel: 012 3456 789" class="SendEvent" data-category="action"
             data-action="click" data-label="hot_phone_action">
             <span class="phone-icon"></span>
-            <span  style="color:#fff" class="phone-number">012 3456 789</span>
+            <span style="color:#fff" class="phone-number">012 3456 789</span>
     </div>
 
 
-    <div class="iconmess"><a aria-label="" title="" href="https://www.facebook.com/vppfast"
-            class="SendEvent" data-category="action" data-action="click" data-label="chat_action" target="_blank"
+    <div class="iconmess"><a aria-label="" title="" href="https://www.facebook.com/vppfast" class="SendEvent"
+            data-category="action" data-action="click" data-label="chat_action" target="_blank"
             rel="noopener noreferrer"><svg x="0" y="0" width="60px" height="60px">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g>

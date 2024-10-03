@@ -1,102 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<style>
- #vpp{
-    text-align: center;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chia Cột</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Chọn font chữ cho toàn bộ trang */
+            background-color: #f8f9fa; /* Màu nền cho trang */
+        }
 
-    /* animation: moveRightLeft 2s infinite; */
-    /* animation: shake 0.5s infinite; */
-    border-right:1px solid rgb(53 80 121 / 25%);
+        .elementor-container {
+            max-width: 1200px; /* Đặt chiều rộng tối đa cho container */
+            margin: 0 auto; /* Căn giữa container */
+            padding: 20px; /* Khoảng cách bên trong */
+        }
 
+        .elementor-row {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
 
- }
- #vpp:nth-child(6n) {
-    /* thay đổi 6 phần tử ko gạch cái cuối */
-  border-right: none;
-}
- #vpp img {
-  transition: transform 0.3s;
-}
-#vpp a{
-    color:#593e3e;
-}
-#vpp :hover a{
-    text-decoration: none;
-}
-#vpp strong:hover {
-  color: #b74646;
-}
- #vpp:hover img{
-    transform: rotate(45deg);
- }
+        .elementor-column {
+            flex: 0 0 12.5%; /* 8 cột = 100% / 8 */
+            box-sizing: border-box;
+            padding: 10px; /* Khoảng cách giữa các cột */
+            display: flex;
+            flex-direction: column; /* Căn giữa theo chiều dọc */
+            align-items: center; /* Căn giữa các phần tử trong cột */
+            border: 1px solid #E1E1E1; /* Viền cho cột */
+            border-radius: 8px; /* Bo góc cho cột */
+            background-color: #fff; /* Màu nền cho cột */
+            transition: box-shadow 0.3s; /* Hiệu ứng khi hover */
+        }
 
- .icon-title {
-    content: "";
-    width: 257px;
-    height: 57px;
-    display: block;
-    margin: auto;
-}
+        .elementor-column:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng khi hover */
+        }
 
+        .elementor-image-box-img img {
+            width: 100%; /* Đặt chiều rộng ảnh 100% */
+            height: auto; /* Chiều cao tự động */
+            max-width: 80px; /* Chiều rộng tối đa cho ảnh */
+        }
 
-</style>
+        .elementor-image-box-content {
+            text-align: center;
+            margin-top: 10px; /* Khoảng cách giữa ảnh và tiêu đề */
+        }
 
+        .elementor-image-box-title {
+            margin: 0; /* Xóa khoảng cách mặc định của h3 */
+            font-size: 1.25rem; /* Kích thước font cho tiêu đề */
+            color: #333; /* Màu chữ cho tiêu đề */
+        }
+
+        .elementor-image-box-title a {
+            text-decoration: none;
+            color: inherit; /* Kế thừa màu chữ */
+            transition: color 0.3s; /* Hiệu ứng chuyển màu khi hover */
+        }
+
+        .elementor-image-box-title a:hover {
+            color: #007bff; /* Màu chữ khi hover */
+        }
+    </style>
 </head>
 
-
 <body>
-    <!-- <hr style="color: #af5b63;"> -->
-        <div class="container">
-            <div class="row "  style="align-items: center;margin-top:20px">
-
-                <div class="col-1"></div>
-
-                <div class="col-2" id="vpp">
-                   <a href="../Source/menu_add/menu_student.php"> 
-                    <img src="../Assets/img/index/cate_1.webp" alt="">
-                   <div class="py-3"><strong>Vpp Học Sinh</strong></a></div>
+    <section class="elementor-section elementor-top-section elementor-element elementor-section-boxed">
+        <div class="elementor-container">
+            <div class="elementor-row">
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/folders.png" alt="Bìa hồ sơ">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bìa hồ sơ</a></h3>
+                        </div>
+                    </div>
                 </div>
 
-
-
-
-                <div class="col-2" id="vpp">
-                    <a href="../Source/menu_add/menu_office.php">
-                      <img src="../Assets/img/index/cate_2.webp" alt="">
-                    <div class="py-3"><strong> Vpp Văn Phòng</strong></a></div>
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/stationery.png" alt="Bút kí">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bút kí</a></h3>
+                        </div>
+                    </div>
                 </div>
 
-
-                <div class="col-2" id="vpp" style="margin-top:6px">
-                    <a href="../Source/menu_add/menu_accsessory.php">
-                      <img src="../Assets/img/index/cate_3.webp" alt="">
-                    <div class="py-3"><strong> Phụ Kiện</strong></a></div>
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/but.png" alt="Hóa đơn">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hóa đơn</a></h3>
+                        </div>
+                    </div>
                 </div>
 
-
-
-                <div class="col-2" id="vpp">
-                  <a href="../Source/menu_add/menu_bag.php"> 
-                   <img src="../Assets/img/index/cate_4.webp" alt="">
-                    <div class="py-3"><strong>Balo-Túi </strong></a></div>
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/calculations.png" alt="Hóa đơn">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hóa đơn</a></h3>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-2" id="vpp">
-                  <a href="../Source/menu_add/menu_equipment.php">  
-                    <img src="../Assets/img/index/cate_5.webp" alt="">
-                    <div class="py-3"><strong>  Dụng cụ văn phòng</strong></a></div>
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/branding.png" alt="Hóa đơn">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hóa đơn</a></h3>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-1"></div>
-                
-               
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/color-pencil.png" alt="Hóa đơn">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hóa đơn</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/cutter.png" alt="Hóa đơn">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hóa đơn</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/file.png" alt="Hóa đơn">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hóa đơn</a></h3>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+    </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
-
-
-        
-
-       
-
-
+</html>

@@ -28,17 +28,13 @@
 </head>
 
 <?php
+
 $linkFE = '../sources/FE/'; 
 include($linkFE . 'top_header.php');
 include($linkFE . 'header.php');
 
 // Giả lập dữ liệu người dùng
-$userData = [
-    'username' => 'Tên người dùng',
-    'email' => 'email@example.com',
-    'phone' => '0123456789',
-    'avatar' => 'https://cdn-media.sforum.vn/storage/app/media/THANHAN/2/2a/avatar-dep-119.jpg'
-];
+
 ?>
 
 <body>

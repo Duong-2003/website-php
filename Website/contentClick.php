@@ -176,7 +176,12 @@
     // Lấy loại sản phẩm từ tham số URL
     $productType = isset($_GET['loaisanpham']) ? $_GET['loaisanpham'] : '';
     $valueCart = 6; // Số sản phẩm tối đa hiển thị
-    $sql = "SELECT * FROM sanpham WHERE loaisanpham = '$productType' LIMIT $valueCart";
+    $sql = "SELECT * 
+    FROM sanpham 
+    LEFT JOIN sales ON sanpham.sp_ma = sales.sp_ma 
+    WHERE loaisanpham = '$productType' 
+    AND (sales.is_expired IS NULL OR sales.is_expired = 0) 
+    LIMIT $valueCart";
     $result = $connect->query($sql);
     ?>
     
@@ -210,6 +215,9 @@
                             </li>
                             <li class="tab-link" data-tab="tab-7">
                                 <a href="../website/contentClick.php?loaisanpham=vo"><span title="Vở">Vở</span></a>
+                            </li>
+                            <li class="tab-link" data-tab="tab-8">
+                                <a href="../website/contentClick.php?loaisanpham=tui"><span title="Túi">Túi</span></a>
                             </li>
                         </ul>
                     </div>

@@ -62,8 +62,11 @@
 
 <body>
 
-  <?php include($linkFE . 'top_header.php'); ?>
-  <?php include($linkFE . 'header.php'); ?>
+  <?php 
+      session_start();
+  include($linkFE . 'top_header.php'); 
+  include($linkFE . 'header.php'); 
+  ?>
 
   <div class="container contact page-contacts" style="padding-top: 50px;">
     <div class="row contact-padding">

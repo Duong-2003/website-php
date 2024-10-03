@@ -192,6 +192,9 @@
                             <li class="tab-link" data-tab="tab-7">
                                 <a href="../website/contentClick.php?loaisanpham=vo"><span title="Vở">Vở</span></a>
                             </li>
+                            <li class="tab-link" data-tab="tab-7">
+                                <a href="../website/contentClick.php?loaisanpham=tui"><span title="Túi">Túi</span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>

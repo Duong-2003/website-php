@@ -127,6 +127,9 @@
                     <a href="../website/productsClick.php?loaisanpham=vo">
                         <li class="list-group-item">Vở</li>
                     </a>
+                    <a href="../website/productsClick.php?loaisanpham=tui">
+                        <li class="list-group-item">Túi</li>
+                    </a>
                     <a href="?discount=true" class="list-group-item">Sản phẩm giảm giá</a>
                 </ul>
                 <hr>

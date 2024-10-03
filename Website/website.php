@@ -50,10 +50,10 @@ a{
     include($linkFE.'iconnofi.php');
     include($linkFE.'top_header.php');
     include($linkFE.'header.php');
-    include($linkFE.'header_menu.php');
+    // include($linkFE.'header_menu.php');
     include($linkFE.'slide.php');
     
-    // include($linkFE.'menu.php');
+    include($linkFE.'menu.php');
     include($linkFE.'sales.php');
     include($linkFE.'content.php');
   

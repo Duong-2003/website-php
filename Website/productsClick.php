@@ -90,6 +90,8 @@ include('../sources/FE/nav.php');
                     <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=nhandan">Nhãn dán</a></li>
                     <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=sotay">Sổ tay</a></li>
                     <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=vo">Vở</a></li>
+                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
+                  
                     <li class="list-group-item"><a href="?discount=true">Sản phẩm giảm giá</a></li>
                 </ul>
                 <hr>

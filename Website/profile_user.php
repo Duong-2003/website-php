@@ -36,6 +36,7 @@
 </head>
 
 <?php
+session_start();
 $linkFE = '../sources/FE/'; 
 include($linkFE . 'top_header.php');
 include($linkFE . 'header.php');
