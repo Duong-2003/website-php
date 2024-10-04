@@ -32,13 +32,13 @@
             flex-direction: column; /* Căn giữa theo chiều dọc */
             align-items: center; /* Căn giữa các phần tử trong cột */
             border: 1px solid #E1E1E1; /* Viền cho cột */
-            border-radius: 8px; /* Bo góc cho cột */
+           
             background-color: #fff; /* Màu nền cho cột */
-            transition: box-shadow 0.3s; /* Hiệu ứng khi hover */
+           
         }
 
         .elementor-column:hover {
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng khi hover */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Hiệu ứng đổ bóng khi hover */
         }
 
         .elementor-image-box-img img {
@@ -54,7 +54,7 @@
 
         .elementor-image-box-title {
             margin: 0; /* Xóa khoảng cách mặc định của h3 */
-            font-size: 1.25rem; /* Kích thước font cho tiêu đề */
+            font-size: 0.90rem; /* Kích thước font cho tiêu đề */
             color: #333; /* Màu chữ cho tiêu đề */
         }
 
@@ -103,12 +103,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
-                                <img src="../Assets/img/index/but.png" alt="Hóa đơn">
+                            <a href="../website/productsClick.php?loaisanpham=sotay">
+                                <img src="../Assets/img/index/notebook.png" alt="Sổ">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hóa đơn</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=sotay">Sổ</a></h3>
                         </div>
                     </div>
                 </div>
@@ -117,11 +117,11 @@
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
                             <a href="../website/productsClick.php?loaisanpham=but">
-                                <img src="../Assets/img/index/calculations.png" alt="Hóa đơn">
+                                <img src="../Assets/img/index/tape.png" alt="Băng keo">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hóa đơn</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Băng keo</a></h3>
                         </div>
                     </div>
                 </div>
@@ -130,11 +130,11 @@
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
                             <a href="../website/productsClick.php?loaisanpham=but">
-                                <img src="../Assets/img/index/branding.png" alt="Hóa đơn">
+                                <img src="../Assets/img/index/employee.png" alt="Bảng tên, dây đeo">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hóa đơn</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bảng tên, dây đeo</a></h3>
                         </div>
                     </div>
                 </div>
@@ -143,11 +143,11 @@
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
                             <a href="../website/productsClick.php?loaisanpham=but">
-                                <img src="../Assets/img/index/color-pencil.png" alt="Hóa đơn">
+                                <img src="../Assets/img/index/color-pencil.png" alt="Bút chì gỗ">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hóa đơn</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bút chì gỗ</a></h3>
                         </div>
                     </div>
                 </div>
@@ -156,11 +156,11 @@
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
                             <a href="../website/productsClick.php?loaisanpham=but">
-                                <img src="../Assets/img/index/cutter.png" alt="Hóa đơn">
+                                <img src="../Assets/img/index/but.png" alt="Bút bi">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hóa đơn</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bút bi</a></h3>
                         </div>
                     </div>
                 </div>
@@ -169,11 +169,221 @@
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
                             <a href="../website/productsClick.php?loaisanpham=but">
-                                <img src="../Assets/img/index/file.png" alt="Hóa đơn">
+                                <img src="../Assets/img/index/invoice.png" alt="Hoá đơn">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hóa đơn</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hoá đơn</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/papers.png" alt="Giấy các loại">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Giấy các loại</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/stapler.png" alt="Bấm kim">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bấm kim</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=maytinh">
+                                <img src="../Assets/img/index/calculations.png" alt="Máy tính">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=maytinh">Máy tính</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/ruler.png" alt="Thước">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Thước</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=biakep">
+                                <img src="../Assets/img/index/file.png" alt="Kẹp giấy">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=biakep">Kẹp giấy</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/stationery-2.png" alt="Bút lông">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bút lông</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/branding.png" alt="Kệ tài liệu">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Kệ tài liệu</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/toys.png" alt="Đồ chơi trẻ em">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Đồ chơi trẻ em</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=nhandan">
+                                <img src="../Assets/img/index/happy.png" alt="Hình dãn (sticker)">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=nhandan">Nhãn dán (sticker)</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/stamp.png" alt="Hộp dấu - Mực dấu">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hộp dấu - Mực dấu</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/desk-lamp.png" alt="Đèn bàn">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Đèn bàn</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=vo">
+                                <img src="../Assets/img/index/notebook-1.png" alt="Tập vở">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=vo">Tập vở</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/cutter.png" alt="Dao rọc giấy">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Dao rọc giấy</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/education.png" alt="Dụng cụ học sinh">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Dụng cụ học sinh</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=but">
+                                <img src="../Assets/img/index/post-it.png" alt="Giấy ghi nhớ">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Giấy ghi nhớ</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="elementor-column">
+                    <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                            <a href="../website/productsClick.php?loaisanpham=hop">
+                                <img src="../Assets/img/index/office-desk.png" alt="Dụng cụ khác">
+                            </a>
+                        </figure>
+                        <div class="elementor-image-box-content">
+                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=hop">Dụng cụ khác</a></h3>
                         </div>
                     </div>
                 </div>

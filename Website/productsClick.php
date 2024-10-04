@@ -26,7 +26,7 @@
         .sidebar {
             position: sticky;
             top: 0;
-            height: calc(133vh - 0px);
+            height: calc(133vh -0px);
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 20px;
@@ -71,7 +71,7 @@
 <?php
 include('../sources/FE/top_header.php');
 include('../sources/FE/header.php');
-include('../sources/FE/menu.php');
+// include('../sources/FE/menu.php');
 include('../sources/FE/nav.php');
 ?>
 
@@ -90,6 +90,12 @@ include('../sources/FE/nav.php');
                     <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=nhandan">Nhãn dán</a></li>
                     <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=sotay">Sổ tay</a></li>
                     <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=vo">Vở</a></li>
+                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
+                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
+                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
+                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
+                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
+                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
                     <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
                   
                     <li class="list-group-item"><a href="?discount=true">Sản phẩm giảm giá</a></li>

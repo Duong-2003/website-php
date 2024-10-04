@@ -32,7 +32,7 @@
         .sidebar {
             position: sticky;
             top: 0;
-            height: calc(134vh - 20px);
+            height: calc(133vh -0px);
             padding: 20px;
             border-radius: 20px;
             background-color: #ffffff;
@@ -129,6 +129,24 @@
                     </a>
                     <a href="../website/productsClick.php?loaisanpham=tui">
                         <li class="list-group-item">Túi</li>
+                    </a>
+                    <a href="../website/productsClick.php?loaisanpham=tui">
+                        <li class="list-group-item">Dao rọc giấy</li>
+                    </a>
+                    <a href="../website/productsClick.php?loaisanpham=tui">
+                        <li class="list-group-item">Hoá đơn</li>
+                    </a>
+                    <a href="../website/productsClick.php?loaisanpham=tui">
+                        <li class="list-group-item">Bấm kim</li>
+                    </a>
+                    <a href="../website/productsClick.php?loaisanpham=tui">
+                        <li class="list-group-item">Bìa hồ sơ</li>
+                    </a>
+                    <a href="../website/productsClick.php?loaisanpham=tui">
+                        <li class="list-group-item">Bút kí</li>
+                    </a>
+                    <a href="../website/productsClick.php?loaisanpham=tui">
+                        <li class="list-group-item">Băng keo</li>
                     </a>
                     <a href="?discount=true" class="list-group-item">Sản phẩm giảm giá</a>
                 </ul>
