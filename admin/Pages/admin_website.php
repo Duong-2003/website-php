@@ -22,7 +22,7 @@
     <?php
 
 
-    include('../Includes/FE/Menu.php');
+    include('../Includes/FE/menu.php');
     ?>
 
 </body>

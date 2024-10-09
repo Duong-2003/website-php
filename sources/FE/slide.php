@@ -28,10 +28,10 @@
    
     </div>
     <div class="carousel-item">
-   <a href="../website/List.php"> <img id="slide"  src="../Assets/img/index/slider_3.webp" class="d-block w-100" alt="..."></a>
+   <a href="../website/list.php"> <img id="slide"  src="../Assets/img/index/slider_3.webp" class="d-block w-100" alt="..."></a>
     </div>
     <div class="carousel-item">
-    <a href="../website/List.php"><img id="slide"   src="../Assets/img/index/slider_20.webp" class="d-block w-100" alt="..."></a>
+    <a href="../website/list.php"><img id="slide"   src="../Assets/img/index/slider_20.webp" class="d-block w-100" alt="..."></a>
     </div>
     
   </div>

@@ -29,9 +29,9 @@
 
 <?php
 
-$linkFE = '../sources/FE/'; 
-include($linkFE . 'top_header.php');
-include($linkFE . 'header.php');
+
+include( '../Sources/FE/top_header.php');
+include( '../Sources/FE/header.php');
 
 // Giả lập dữ liệu người dùng
 
@@ -74,8 +74,8 @@ include($linkFE . 'header.php');
 </body>
 
 <?php
-include($linkFE . 'footer_save.php');
-include($linkFE . 'footer.php');
+include( '../Sources/FE/footer_save.php');
+include( '../Sources/FE/footer.php');
 ?>
 
 </html>

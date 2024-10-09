@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Tech of World Shop</title>
 
-    <?php
-    include('../sources/linkFIle.php');
-    ?>
+  
 
 </head>
 <style>
@@ -47,18 +45,18 @@ a{
 <body>
     <?php
     session_start();
-    include($linkFE.'iconnofi.php');
-    include($linkFE.'top_header.php');
-    include($linkFE.'header.php');
-    // include($linkFE.'header_menu.php');
-    include($linkFE.'slide.php');
+    include('../Sources/FE/iconnofi.php');
+    include('../Sources/FE/top_header.php');
+    include('../Sources/FE/header.php');
+    // include('../Sources/FE/header_menu.php');
+    include('../Sources/FE/slide.php');
     
-    include($linkFE.'menu.php');
-    include($linkFE.'sales.php');
-    include($linkFE.'content.php');
+    include('../Sources/FE/menu.php');
+    include('../Sources/FE/sale.php');
+    include('../Sources/FE/content.php');
   
-    include($linkFE.'footer_save.php');
-    include($linkFE.'footer.php');
+    include('../Sources/FE/footer_save.php');
+    include('../Sources/FE/footer.php');
     
 
     

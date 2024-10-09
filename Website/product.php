@@ -1,7 +1,7 @@
 <?php
 ob_start(); // Bắt đầu bộ đệm đầu ra
 session_start();
-include_once('../sources/linkFIle.php'); // Bao gồm kết nối đến cơ sở dữ liệu
+
 
 // Kiểm tra xem người dùng đã đăng nhập chưa
 if (!isset($_SESSION['username'])) {
@@ -11,18 +11,18 @@ if (!isset($_SESSION['username'])) {
 
 $username = $_SESSION['username']; // Get the username from session
 
-include($linkFE . 'top_header.php');
-include($linkFE . 'header.php');
-include_once($linkconnWebsite);
+include('../Sources/FE/top_header.php');
+include('../Sources/FE/header.php');
+include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu
 
 if (isset($_GET['sp_ma']) && $_GET['sp_ma'] != '') {
     $id = intval($_GET['sp_ma']);
-    $sql = "SELECT * FROM sanpham WHERE sp_ma = ?";
+    $sql = "SELECT * FROM product WHERE product_id = ?";
     $stmt = $connect->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
-    $duongdanimg = $linkImgSp;
+    $duongdanimg = '../Assets/img/sanpham/';
     $sp = $result->fetch_assoc();
     if (!$sp) {
         echo "ERROR: Không tìm thấy sản phẩm";
@@ -36,10 +36,10 @@ if (isset($_GET['sp_ma']) && $_GET['sp_ma'] != '') {
 // Handle order submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $soluong = intval($_POST['donhang_soluongsp']);
-    $gia = $sp['sp_gia'] * $soluong;
+    $gia = $sp['product__price'] * $soluong;
 
     // Insert order into the database
-    $sqlInsert = "INSERT INTO donhang (sp_ma, name, donhang_soluongsp, donhang_gia, timeorder, donhang_trangthai) 
+    $sqlInsert = "INSERT INTO order (sp_ma, name, donhang_soluongsp, donhang_gia, timeorder, donhang_trangthai) 
                   VALUES (?, ?, ?, ?, NOW(), 'Đang chờ')";
     $stmt = $connect->prepare($sqlInsert);
     $stmt->bind_param("isii", $sp['sp_ma'], $username, $soluong, $gia);
@@ -123,26 +123,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         <div class="container py-4">
             <div class="row">
                 <div class="col-lg-6 col-md-6  rounded shadow-sm p-4" style="background: linear-gradient(135deg, #f8f9fa, #e2e6ea);">
-                    <img src="<?= $duongdanimg . $sp['sp_img'] ?>" width = "100%"  height = "100% " class="img-fluid rounded product-image">
+                    <img src="<?= $duongdanimg . $sp['product_images'] ?>" width = "100%"  height = "100% " class="img-fluid rounded product-image">
              
                 </div>
                 <div class="col-lg-6 col-md-6 bg-light rounded shadow-sm p-4">
-                    <h2 id="item-head"><?= htmlspecialchars($sp['sp_ten']) ?></h2>
-                    <h4 class="text-secondary">Mã sản phẩm: <?= htmlspecialchars($sp['sp_ma']) ?></h4>
+                    <h2 id="item-head"><?= htmlspecialchars($sp['product_name']) ?></h2>
+                    <h4 class="text-secondary">Mã sản phẩm: <?= htmlspecialchars($sp['product_id']) ?></h4>
                     <strong class="text-danger" style="font-size: 25px;">
-                        <?= number_format($sp['sp_gia'], 0, '.', ',') ?><sup>đ</sup>
+                        <?= number_format($sp['product_price'], 0, '.', ',') ?><sup>đ</sup>
                     </strong>
                     <hr>
-                    <strong id="item">Tên loại sản phẩm: <?= htmlspecialchars($sp['loaisp_ten']) ?></strong>
-                    <strong id="item">Số lượng còn lại: <?= $sp['sp_soluong'] > 0 ? $sp['sp_soluong'] : '<span class="text-danger">Hết hàng</span>' ?></strong>
+                    <strong id="item">Tên loại sản phẩm: <?= htmlspecialchars($sp['product_type_name']) ?></strong>
+                    <strong id="item">Số lượng còn lại: <?= $sp['product_quantity'] > 0 ? $sp['product_quantity'] : '<span class="text-danger">Hết hàng</span>' ?></strong>
                     <div class="input-group my-2">
                         <span class="input-group-text"><strong>Số lượng mua:</strong></span>
-                        <input id='value_buy' name="donhang_soluongsp" type="number" max='<?= $sp['sp_soluong'] ?>' min='1' value="1" class="form-control">
+                        <input id='value_buy' name="donhang_soluongsp" type="number" max='<?= $sp['product_quantity'] ?>' min='1' value="1" class="form-control">
                     </div>
-                    <strong id="item">Chi tiết: <?= htmlspecialchars($sp['sp_motachitiet']) ?></strong>
+                    <strong id="item">Chi tiết: <?= htmlspecialchars($sp['product_details']) ?></strong>
 
                     <div class="text-center my-3" id='pay'>
-                        <strong style="color:red">Giá: <?= number_format($sp['sp_gia'], 0, '.', ',') ?><sup>đ</sup></strong>
+                        <strong style="color:red">Giá: <?= number_format($sp['product_price'], 0, '.', ',') ?><sup>đ</sup></strong>
                     </div>
 
                     <script>
@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                     </script>
 
                     <div class="text-center">
-                        <?php if ($sp['sp_soluong'] > 0) : ?>
+                        <?php if ($sp['product_quantity'] > 0) : ?>
                             <button id="btnModal" type="button" class="btn btn-lg btn-gray btn_buy btn-buy-now" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fa-solid fa-cart-shopping"></i>Mua ngay
                             </button>
@@ -194,8 +194,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     </form>
 
     <?php
-    include($linkFE . 'footer_save.php'); 
-     include($linkFE . 'footer.php'); 
+     include('../Website/comments.php');
+      include('../Sources/FE/product_generation.php');
+    include('../Sources/FE/footer_save.php'); 
+     include('../Sources/FE/footer.php'); 
      ?>
 </body>
 </html>

@@ -1,19 +1,20 @@
 <?php
-include('../linkFile.php');
-include($linkconnSources);
+
 
 session_start();
 ob_start();
 
-$username = $_POST['account'] ?? '';
-$passwordReset = $_POST['passwordReset'] ?? '';
+include('../../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu
+
+$username = $_POST['username'] ?? '';
+$resetpassword = $_POST['resetpassword'] ?? '';
 $email = $_POST['email'] ?? '';
 $error = null;
 $notifi = null;
 
-if(isset($_POST['submit']) && !empty($username) && !empty($passwordReset) && !empty($email)){
+if(isset($_POST['submit']) && !empty($username) && !empty($resetpassword) && !empty($email)){
     // Truy vấn để lấy thông tin người dùng
-    $select_sql = "SELECT * FROM users WHERE name = ?";
+    $select_sql = "SELECT * FROM user WHERE username = ?";
     $stmt = $connect->prepare($select_sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -25,41 +26,41 @@ if(isset($_POST['submit']) && !empty($username) && !empty($passwordReset) && !em
 
         if (empty($stored_hashed_email)) {
             $error = "Tài khoản không có email không thể lấy lại";
-            header("Location: " . $linkWebsite . "resetpass.php?error=" . urlencode($error));
+            header("Location: ../../Website/reset_password.php?error=" . urlencode($error));
             exit();
         }
 
         // Kiểm tra email
         if (!hash_equals($stored_hashed_email, $email)) {
             $error = "Nhập sai email";
-            header("Location: " . $linkWebsite . "resetpass.php?error=" . urlencode($error));
+            header("Location: ../../Website/reset_password.php?error=" . urlencode($error));
             exit();
         }
 
         // Mã hóa mật khẩu mới
-        $hashed_password = password_hash($passwordReset, PASSWORD_DEFAULT);
-        $update_sql = "UPDATE users SET pass = ? WHERE name = ?";
+        $hashed_password = password_hash($resetpassword, PASSWORD_DEFAULT);
+        $update_sql = "UPDATE user SET password = ? WHERE username = ?";
         $stmt_update = $connect->prepare($update_sql);
         $stmt_update->bind_param("ss", $hashed_password, $username);
 
         if ($stmt_update->execute()) {
             $notifi = "Thay đổi mật khẩu thành công";
-            header("Location: " . $linkWebsite . "login.php?notifi=" . urlencode($notifi));
+            header("Location:../../Website/login.php?notifi=" . urlencode($notifi));
             exit();
         } else {
             $error = "Thay đổi mật khẩu không thành công: " . $connect->error;
-            header("Location: " . $linkWebsite . "resetpass.php?error=" . urlencode($error));
+            header("Location: ../../Website/reset_password.php?error=" . urlencode($error));
             exit();
         }
 
     } else {
         $error = "Tài khoản đã nhập chưa đăng ký.";
-        header("Location: " . $linkWebsite . "resetpass.php?error=" . urlencode($error));
+        header("Location: ../../Website/reset_password.php?error=" . urlencode($error));
         exit();
     }
 } else {
     $error = 'Chưa nhập toàn bộ thông tin bắt buộc';
-    header("Location: " . $linkWebsite . "resetpass.php?error=" . urlencode($error));
+    header("Location: ../../Website/reset_password.php?error=" . urlencode($error));
     exit();
 }
 

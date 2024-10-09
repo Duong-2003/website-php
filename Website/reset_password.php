@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <title>Quên Mật Khẩu</title>
 
-  <?php include_once('../sources/linkFIle.php'); ?>
+
 
   <style>
     
@@ -120,8 +120,8 @@
 </head>
 
 <body>
-  <?php include($linkFE . 'top_header.php'); ?>
-  <?php include($linkFE . 'header.php'); ?>
+  <?php include('../Sources/FE/top_header.php'); ?>
+  <?php include('../Sources/FE/header.php'); ?>
 
   
  <div class="container py-5" id="ctn">
@@ -140,19 +140,19 @@
             <div class="col-lg-12 col-md-12 account-content">
               <ul class="auth-block__menu-list">
                 <li class="active">
-                  <a href="../Website/resetpass.php" title="Quên mật khẩu">Quên mật khẩu</a>
+                  <a href="../Website/reset_password.php" title="Quên mật khẩu">Quên mật khẩu</a>
                 </li>
                
               </ul>
               <div id="nd-resetpass">
-              <form action="<?= $linkBE . 'resetpass_process.php' ?>" method="post">
+              <form action="<?='../Sources/BE/reset_pass_process.php' ?>" method="post">
                   <input name="FormType" type="hidden" value="customer_login">
                   <input name="utf8" type="hidden" value="true">
-                  <input name="ReturnUrl" type="hidden" value="/account">
+                  <input name="ReturnUrl" type="hidden" value="username">
 
                   <fieldset class="form-group margin-bottom-10">
                     <label>Tài khoản<span style="color: red;">*</span></label>
-                    <input placeholder="Tài khoản của bạn" id="account" type="text" class="form-control" name="account" required>
+                    <input placeholder="Tài khoản của bạn" id="username" type="text" class="form-control" name="username" required>
                   </fieldset>
 
                   <fieldset class="form-group margin-bottom-0">
@@ -162,7 +162,7 @@
 
                   <fieldset class="form-group margin-bottom-0">
                     <label>Mật khẩu mới<span style="color: red;">*</span></label>
-                    <input type="password" placeholder="Mật khẩu mới" id="passwordReset" class="form-control" name="passwordReset" required>
+                    <input type="password" placeholder="Mật khẩu mới" id="resetpassword" class="form-control" name="resetpassword" required>
                   </fieldset>
 
                  
@@ -216,8 +216,8 @@
     </div>
   </div>
   <?php 
-  include($linkFE.'footer_save.php');
-  include($linkFE . "footer.php");  
+  include('../Sources/FE/footer_save.php');
+  include("../Sources/FE/footer.php");  
   ?>
 </body>
 

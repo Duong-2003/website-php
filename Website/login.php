@@ -12,7 +12,7 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <title>Login</title>
-  <?php include('../sources/linkFIle.php'); ?>
+  
 
   <style>
     .error>p {
@@ -124,8 +124,13 @@
 
 <body>
 
-  <?php include($linkFE . 'top_header.php'); ?>
-  <?php include($linkFE . 'header.php'); ?>
+  <?php
+   session_start();
+   
+    include('../Sources/FE/top_header.php');
+    include('../Sources/FE/header.php');
+
+    ?>
 
   <div class="container py-5 " id="ctn">
     <div class="row justify-content-md-center">
@@ -150,15 +155,15 @@
                 </li>
               </ul>
               <div id="nd-login">
-                <form action="<?= $linkBE . 'login_process.php' ?>" method="post" id="customer_login"
+                <form action="<?= '../Sources/BE/login_process.php' ?>" method="post" id="customer_login"
                   accept-charset="UTF-8" class="has-validation-callback">
                   <input name="FormType" type="hidden" value="customer_login">
                   <input name="utf8" type="hidden" value="true">
-                  <input name="ReturnUrl" type="hidden" value="/account">
+                  <input name="ReturnUrl" type="hidden" value="/username">
 
                   <fieldset class="form-group margin-bottom-10">
                     <label>Tài khoản<span style="color: red;">*</span></label>
-                    <input id="account" placeholder="Nhập tài khoản" type="text" class="form-control" name="account"
+                    <input id="username" placeholder="Nhập tài khoản" type="text" class="form-control" name="username"
                       required>
                   </fieldset>
 
@@ -209,8 +214,8 @@
   </div>
 
   <?php 
-  include($linkFE.'footer_save.php');
-  include($linkFE . "footer.php"); 
+  include('../Sources/FE/footer_save.php');
+  include("../Sources/FE/footer.php"); 
   
   ?>
 

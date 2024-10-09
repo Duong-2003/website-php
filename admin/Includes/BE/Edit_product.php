@@ -1,6 +1,6 @@
 <?php
-include('../conn/connect.php');
-include('./CheckImg.php');
+ include('../../connect_SQL/connect.php');
+include('./check_images.php');
 session_start();
 ob_start();
 

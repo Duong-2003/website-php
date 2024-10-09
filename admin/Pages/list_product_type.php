@@ -1,5 +1,4 @@
 <!doctype html>
-<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -54,18 +53,19 @@
 <body>
 
     <?php
-    include('./MenuAdmin.php');    
-    include('../Includes/conn/connect.php');
+  include('./admin_website.php');    
+  include('../../connect_SQL/connect.php');
+  
 
     // Lấy danh sách loại sản phẩm
-    $sql = "SELECT * FROM loaisp";
+    $sql = "SELECT * FROM product_type";
     $result = $connect->query($sql);
 
     $danhsachLSP = [];
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $danhsachLSP[] = array(
-            'loaisp_ten' => $row['loaisp_ten'],
-            'loaisanpham' => $row['loaisanpham'],
+            'product_type_name' => $row['product_type_name'],
+            'product_type_id' => $row['product_type_id'],
         );
     }
     ?>
@@ -89,8 +89,8 @@
             <tbody>
                 <?php foreach ($danhsachLSP as $lsp) : ?>
                     <tr>
-                        <td><?= htmlspecialchars($lsp['loaisp_ten']) ?></td>
-                        <td><?= htmlspecialchars($lsp['loaisanpham']) ?></td>
+                        <td><?= htmlspecialchars($lsp['product_type_name']) ?></td>
+                        <td><?= htmlspecialchars($lsp['product_type_id']) ?></td>
                         <td>
                             <div class="d-flex justify-content-center">
                                 <a href='../Includes/BE/DeleteSQL.php?key=loaisp_ten&table=loaisp&datakey=<?= urlencode($lsp['loaisp_ten']) ?>' class="btn btn-danger mx-1">Xóa</a>

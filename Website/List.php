@@ -13,9 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Danh sách sản phẩm</title>
 
-    <?php
-    include('../sources/linkFIle.php');
-    ?>
+    
     <style>
         * {
             margin: 0;
@@ -46,15 +44,15 @@
 <body>
     <?php
     session_start();
-    include($linkFE . 'top_header.php');
-    include($linkFE . 'header.php');
-    // include($linkFE.'slide.php');
-    // include($linkFE . 'menu.php');
-    include($linkFE . 'nav.php');
-    include($linkFE . 'listProduct.php');
-    include($linkFE . 'product_generation.php');
-    include($linkFE . 'footer_save.php');
-    include($linkFE . 'footer.php');
+    include( '../Sources/FE/top_header.php');
+    include( '../Sources/FE/header.php');
+    // include('../Sources/FE/slide.php');
+    // include( '../Sources/FE/menu.php');
+    include( '../Sources/FE/nav.php');
+    include( '../Sources/FE/list_product.php');
+    include( '../Sources/FE/product_generation.php');
+    include( '../Sources/FE/footer_save.php');
+    include( '../Sources/FE/footer.php');
 
 
     ?>

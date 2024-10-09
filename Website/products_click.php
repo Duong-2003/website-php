@@ -68,7 +68,8 @@
     </style>
 </head>
 
-<?php
+<?php 
+session_start();
 include('../sources/FE/top_header.php');
 include('../sources/FE/header.php');
 // include('../sources/FE/menu.php');
@@ -82,29 +83,25 @@ include('../sources/FE/nav.php');
             <div class="col-lg-3 col-md-4 sidebar">
                 <h5 class="text-center">Danh mục sản phẩm</h5>
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="../website/List.php">Tất cả sản phẩm</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=but">Bút</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=hop">Hộp</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=biakep">Bìa kẹp</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=maytinh">Máy tính</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=nhandan">Nhãn dán</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=sotay">Sổ tay</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=vo">Vở</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
-                    <li class="list-group-item"><a href="../website/productsClick.php?loaisanpham=tui">Túi</a></li>
-                  
+                <li class="list-group-item"><a href="../website/List.php">Tất cả sản phẩm</a></li>
+                    <li class="list-group-item"><a href="../website/products_click.php?product_type_id=but">Bút</a></li>
+                    <li class="list-group-item"><a href="../website/products_click.php?product_type_id=hop">Hộp</a></li>
+                    <li class="list-group-item"><a href="../website/products_click.php?product_type_id=biakep">Bìa kẹp</a></li>
+                    <li class="list-group-item"><a href="../website/products_click.php?product_type_id=maytinh">Máy tính</a></li>
+                    <li class="list-group-item"><a href="../website/products_click.php?product_type_id=nhandan">Nhãn dán</a></li>
+                    <li class="list-group-item"><a href="../website/products_click.php?product_type_id=sotay">Sổ tay</a></li>
+                    <li class="list-group-item"><a href="../website/products_click.php?product_type_id=vo">Vở</a></li>
+                    <li class="list-group-item"><a href="../website/products_click.php?product_type_id=tui">Túi</a></li>
                     <li class="list-group-item"><a href="?discount=true">Sản phẩm giảm giá</a></li>
+                    
+                  
+                   
                 </ul>
                 <hr>
                 <h5 class="text-center">Sắp xếp theo giá</h5>
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="?sort=price-asc&loaisanpham=<?= $_GET['loaisanpham'] ?? '' ?>">Giá thấp đến cao</a></li>
-                    <li class="list-group-item"><a href="?sort=price-desc&loaisanpham=<?= $_GET['loaisanpham'] ?? '' ?>">Giá cao xuống thấp</a></li>
+                    <li class="list-group-item"><a href="?sort=price-asc&$product_type_id=<?= $_GET['$product_type_id'] ?? '' ?>">Giá thấp đến cao</a></li>
+                    <li class="list-group-item"><a href="?sort=price-desc&$product_type_id=<?= $_GET['$product_type_id'] ?? '' ?>">Giá cao xuống thấp</a></li>
                 </ul>
                 <hr>
                 <img src="../Assets/img/index/img_aside_banner.webp" alt="" class="img-fluid">
@@ -117,16 +114,16 @@ include('../sources/FE/nav.php');
                             <hr style="color: #ad850c">
                             <div class="text-center py-2">
                                 <div class="row">
-                                    <?php
-                                    include_once('../sources/connect.php');
+                                <?php
+                                    include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu
 
                                     $valueCart = 9; // Số sản phẩm trên mỗi trang
                                     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Trang hiện tại
                                     $offset = ($page - 1) * $valueCart; // Tính toán offset
 
                                     // Lấy loại sản phẩm từ URL
-                                    $loaisanpham = $_GET['loaisanpham'] ?? ''; // Sửa đổi tên biến
-                                    $whereClause = !empty($loaisanpham) ? "WHERE sp.loaisanpham = '$loaisanpham'" : "";
+                                    $product_type_id = $_GET['product_type_id'] ?? ''; // Sử dụng đúng tên biến
+                                    $whereClause = !empty($product_type_id) ? "WHERE sp.product_type_id = '$product_type_id'" : "";
 
                                     // Kiểm tra nếu lọc theo sản phẩm giảm giá
                                     if (isset($_GET['discount']) && $_GET['discount'] == 'true') {
@@ -137,15 +134,15 @@ include('../sources/FE/nav.php');
                                     $sort = $_GET['sort'] ?? 'normal';
                                     $orderBy = '';
                                     if ($sort == 'price-asc') {
-                                        $orderBy = 'ORDER BY sp.sp_gia ASC';
+                                        $orderBy = 'ORDER BY sp.product_price ASC';
                                     } elseif ($sort == 'price-desc') {
-                                        $orderBy = 'ORDER BY sp.sp_gia DESC';
+                                        $orderBy = 'ORDER BY sp.product_price DESC';
                                     }
 
                                     // Truy vấn sản phẩm theo loại
                                     $sql = "SELECT sp.*, s.discount_percent 
-                                            FROM sanpham sp 
-                                            LEFT JOIN sales s ON sp.sp_ma = s.sp_ma AND s.is_expired = 1 
+                                            FROM product sp 
+                                            LEFT JOIN sale s ON sp.product_id = s.product_id AND s.is_expired = 1 
                                             $whereClause 
                                             $orderBy 
                                             LIMIT $offset, $valueCart"; // Thêm LIMIT để phân trang
@@ -158,26 +155,24 @@ include('../sources/FE/nav.php');
                                         while ($data = $result->fetch_assoc()) {
                                             ?>
                                             <div class="col-lg-4 col-md-6 col-sm-9 py-2">
-                                                <a href="./product.php?sp_ma=<?= $data['sp_ma'] ?>">
+                                                <a href="./product.php?product_id=<?= $data['product_id'] ?>">
                                                     <div class="card">
-                                                        <img src="<?= $duongdanimg . $data['sp_img'] ?>" class="card-img-top" alt="<?= $data['sp_ten'] ?>">
+                                                        <img src="<?= $duongdanimg . $data['product_images'] ?>" class="card-img-top" alt="<?= $data['product_name'] ?>">
                                                         <div class="card-body">
-                                                            <p class="card-title"><strong><?= $data['sp_ten'] ?></strong></p>
+                                                            <p class="card-title"><strong><?= $data['product_name'] ?></strong></p>
                                                             <?php if (!empty($data['discount_percent'])): 
-                                                                $discountedPrice = $data['sp_gia'] * (1 - $data['discount_percent'] / 100); ?>
+                                                                $discountedPrice = $data['product_price'] * (1 - $data['discount_percent'] / 100); ?>
                                                                 <p class="card-text">
                                                                     <strong style="color:#f30; font-size:25px"><?= number_format($discountedPrice, 0, '.', '.') ?> <sup>đ</sup></strong>
-                                                                    <span style="text-decoration: line-through; color: #888;"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></span>
+                                                                    <span style="text-decoration: line-through; color: #888;"><?= number_format($data['product_price'], 0, '.', '.') ?> <sup>đ</sup></span>
                                                                 </p>
                                                             <?php else: ?>
                                                                 <p class="card-text">
-                                                                    <strong style="color:#f30; font-size:25px"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></strong>
+                                                                    <strong style="color:#f30; font-size:25px"><?= number_format($data['product_price'], 0, '.', '.') ?> <sup>đ</sup></strong>
                                                                 </p>
                                                             <?php endif; ?>
-                                                            <div class="action-cart group-buttons d-flex align-items-center justify-content-center">
-                                                                <button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">
-                                                                    <a id="buy" href="./product.php?sp_ma=<?= $data['sp_ma'] ?>">Thêm vào giỏ</a>
-                                                                </button>
+                                                            <div class="action-cart d-flex align-items-center justify-content-center">
+                                                                <a class="cart-button btn-buy" href="./product.php?product_id=<?= $data['product_id'] ?>">Thêm vào giỏ</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -188,13 +183,12 @@ include('../sources/FE/nav.php');
                                     } else {
                                         echo '<p class="text-center">Không có sản phẩm nào</p>';
                                     }
-
-                                    // $connect->close();
                                     ?>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

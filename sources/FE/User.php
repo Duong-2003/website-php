@@ -1,5 +1,5 @@
 <?php
-include_once($linkconnWebsite);
+include("../connect_SQL/connect.php"); // Kết nối cơ sở dữ liệu
 
 $user = null; // Khởi tạo biến người dùng
 

@@ -144,7 +144,7 @@
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    z-index: 10000;
+    z-index: 10000000000;
     width: 25%;
 
     transition: right 0.3s ease; /* Hiệu ứng chuyển động */

@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <title>Register</title>
 
-  <?php include_once('../sources/linkFIle.php'); ?>
+ 
 
   <style>
     .error>p {
@@ -123,8 +123,8 @@ a.btn-link-style {
 
 <body>
 
-  <?php include($linkFE . 'top_header.php'); ?>
-  <?php include($linkFE . 'header.php'); ?>
+  <?php include( '../Sources/FE/top_header.php'); ?>
+  <?php include( '../Sources/FE/header.php'); ?>
 
   <div class="container py-5" id="ctn">
     <div class="row justify-content-md-center">
@@ -149,7 +149,7 @@ a.btn-link-style {
                 </li>
               </ul>
               <div id="nd-register">
-                <form action="<?= $linkBE . 'register_process.php' ?>" method="post" id="customer_register" accept-charset="UTF-8" class="has-validation-callback">
+                <form action="<?= '../Sources/BE/register_process.php' ?>" method="post" id="customer_register" accept-charset="UTF-8" class="has-validation-callback">
                   <input name="FormType" type="hidden" value="customer_register">
                   <input name="utf8" type="hidden" value="true">
 
@@ -160,7 +160,11 @@ a.btn-link-style {
                     </fieldset>
                     <fieldset class="form-group margin-bottom-10">
                       <label>Tài khoản<span style="color: red;">*</span></label>
-                      <input id="account" placeholder="Tài khoản bạn muốn đăng ký" type="text" class="form-control" name="username" required>
+                      <input id="username" placeholder="Tài khoản bạn muốn đăng ký" type="text" class="form-control" name="username" required>
+                    </fieldset>
+                    <fieldset class="form-group margin-bottom-10">
+                      <label>Họ và tên của bạn<span style="color: red;">*</span></label>
+                      <input id="name" placeholder="Tài khoản bạn muốn đăng ký" type="text" class="form-control" name="name" required>
                     </fieldset>
                     <fieldset class="form-group margin-bottom-0">
                       <label>Mật khẩu<span style="color: red;">*</span></label>
@@ -168,7 +172,7 @@ a.btn-link-style {
                     </fieldset>
                     <fieldset class="form-group margin-bottom-0">
                       <label>Nhập lại mật khẩu<span style="color: red;">*</span></label>
-                      <input name="rePass" placeholder="Nhập lại mật khẩu" id="rePass" type="password" class="form-control" required>
+                      <input name="resetpass" placeholder="Nhập lại mật khẩu" id="resetpass" type="password" class="form-control" required>
                     </fieldset>
                     <fieldset class="form-group margin-bottom-0">
                       <label>Địa chỉ<span style="color: red;">*</span></label>
@@ -243,8 +247,8 @@ a.btn-link-style {
   </div>
 
   <?php 
-  include($linkFE.'footer_save.php');
-  include($linkFE . "footer.php"); 
+  include('../Sources/FE/footer_save.php');
+  include( "../Sources/FE/footer.php"); 
    ?>
 
 </body>

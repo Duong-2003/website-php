@@ -172,28 +172,28 @@
                                 <a href="../website/website.php"><span title="Tất cả sản phẩm">Tất cả sản phẩm</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-1">
-                                <a href="../website/contentClick.php?loaisanpham=but"><span title="Bút">Bút</span></a>
+                                <a href="../website/content__click.php?product_type_id=but"><span title="Bút">Bút</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-2">
-                                <a href="../website/contentClick.php?loaisanpham=hop"><span title="Hộp">Hộp</span></a>
+                                <a href="../website/content_click.php?product_type_id=hop"><span title="Hộp">Hộp</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-3">
-                                <a href="../website/contentClick.php?loaisanpham=biakep"><span title="Bìa kẹp">Bìa kẹp</span></a>
+                                <a href="../website/content_click.php?product_type_id=biakep"><span title="Bìa kẹp">Bìa kẹp</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-4">
-                                <a href="../website/contentClick.php?loaisanpham=maytinh"><span title="Máy tính">Máy tính</span></a>
+                                <a href="../website/content_click.php?product_type_id=maytinh"><span title="Máy tính">Máy tính</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-5">
-                                <a href="../website/contentClick.php?loaisanpham=nhandan"><span title="Nhãn dán">Nhãn dán</span></a>
+                                <a href="../website/content_click.php?product_type_id=nhandan"><span title="Nhãn dán">Nhãn dán</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-6">
-                                <a href="../website/contentClick.php?loaisanpham=sotay"><span title="Sổ tay">Sổ tay</span></a>
+                                <a href="../website/content_click.php?product_type_id=sotay"><span title="Sổ tay">Sổ tay</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-7">
-                                <a href="../website/contentClick.php?loaisanpham=vo"><span title="Vở">Vở</span></a>
+                                <a href="../website/content_click.php?product_type_id=vo"><span title="Vở">Vở</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-7">
-                                <a href="../website/contentClick.php?loaisanpham=tui"><span title="Túi">Túi</span></a>
+                                <a href="../website/content_click.php?product_type_id=tui"><span title="Túi">Túi</span></a>
                             </li>
                         </ul>
                     </div>
@@ -202,19 +202,19 @@
         </div>
 
         <?php
-        include_once("../sources/connect.php");
+        include("../connect_SQL/connect.php"); // Kết nối cơ sở dữ liệu
         $valueCart = 8;
 
         // Câu truy vấn để lấy sản phẩm không có giảm giá
         $sql = "
             SELECT * 
-            FROM sanpham 
-            WHERE sp_ma NOT IN (SELECT sp_ma FROM sales WHERE is_expired = 1) 
+            FROM product 
+            WHERE product_id NOT IN (SELECT product_id FROM sale WHERE is_expired = 1) 
             LIMIT $valueCart
         ";
 
         $result = $connect->query($sql);
-        $duongdanimg = $linkImgSp;
+        $duongdanimg = '../Assets/img/sanpham/';
 
         $dataArray = [];
         if ($result->num_rows > 0) {
@@ -231,16 +231,16 @@
             <div class="row">
                 <?php foreach ($dataArray as $data): ?>
                     <div class="col-lg-3 col-md-4 col-sm-6 py-2" id="font-card">
-                        <a href="./product.php?sp_ma=<?= $data['sp_ma'] ?>">
+                        <a href="./product.php?sp_ma=<?= $data['product_id'] ?>">
                             <div class="card">
-                                <img src="<?= $duongdanimg . $data['sp_img'] ?>" class="card-img-top" alt="<?= $data['sp_ten'] ?>">
+                                <img src="<?= $duongdanimg . $data['product_images'] ?>" class="card-img-top" alt="<?= $data['product_name'] ?>">
                                 <div class="card-body">
                                     <p class="card-title">
-                                        <strong><?= $data['sp_ten'] ?></strong>
+                                        <strong><?= $data['product_name'] ?></strong>
                                     </p>
                                     <p class="card-text">
                                         <strong style="color:#f30;font-size:25px">
-                                            <?= number_format($data['sp_gia'], 0, '.', ',') ?> <sup>đ</sup>
+                                            <?= number_format($data['product_price'], 0, '.', ',') ?> <sup>đ</sup>
                                         </strong>
                                     </p>
                                     <div class="action-cart">

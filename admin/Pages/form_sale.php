@@ -12,7 +12,9 @@
 <body>
 
     <?php
-    include('../Includes/conn/connect.php');
+      
+      include('../../connect_SQL/connect.php');
+      
 
     // Kiểm tra xem sale_id có được truyền vào không
     if (isset($_GET['datakey'])) {

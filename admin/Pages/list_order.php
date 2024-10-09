@@ -28,7 +28,13 @@
         }
     </style>
 </head>
-<?php include('./MenuAdmin.php'); ?>
+<?php 
+include('./admin_website.php');    
+
+
+
+
+?>
 
 <body>
 
@@ -66,44 +72,45 @@
                 </thead>
                 <tbody>
                     <?php
-                    include('../Includes/conn/connect.php');
-                    $sql = "SELECT * FROM donhang";
+                 include('../../connect_SQL/connect.php');
+                    $sql = "SELECT * FROM order";
                     $result = $connect->query($sql);
 
                     $danhsachdonhang = [];
                     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                         $danhsachdonhang[] = array(
-                            'donhang_ma' => $row['donhang_ma'],
-                            'sp_ma' => $row['sp_ma'],
+                            'order_id' => $row['order_id'],
+                            'user_id' => $row['user_id'],
+                            'product_id' => $row['product_id'],
                             'name' => $row['name'],
                             'timeorder' => $row['timeorder'],
-                            'donhang_trangthai' => $row['donhang_trangthai'],
-                            'donhang_gia' => $row['donhang_gia'],
-                            'donhang_soluongsp' => $row['donhang_soluongsp'],
+                            'order_status' => $row['order_status'],
+                            'order_price' => $row['order_price'],
+                            'order_quantity' => $row['order_quantity'],
                         );
                     }
 
                     foreach ($danhsachdonhang as $donhang):
                         $donhanggia = number_format($donhang['donhang_gia'], 0, '.', ','); ?>
                         <tr>
-                            <td><?= $donhang['donhang_ma'] ?></td>
-                            <td><?= $donhang['sp_ma'] ?></td>
-                            <td><?= $donhang['name'] ?></td>
+                            <td><?= $donhang['order_id'] ?></td>
+                            <td><?= $donhang['product_id'] ?></td>
+                            <td><?= $donhang['user_id'] ?></td>
                             <td><?= $donhang['timeorder'] ?></td>
                             <td
-                                class="text-center <?= ($donhang['donhang_trangthai'] == "Đã hủy") ? 'text-danger' : ''; ?>">
-                                <?= $donhang['donhang_trangthai'] ?>
+                                class="text-center <?= ($donhang['order_status'] == "Đã hủy") ? 'text-danger' : ''; ?>">
+                                <?= $donhang['order_status'] ?>
                             </td>
                             <td><?= $donhanggia ?> đ</td>
-                            <td><?= $donhang['donhang_soluongsp'] ?></td>
+                            <td><?= $donhang['order_quantity'] ?></td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a data-bs-toggle="modal" data-bs-target="#infoOrder<?= $donhang['donhang_ma'] ?>"
+                                    <a data-bs-toggle="modal" data-bs-target="#infoOrder<?= $donhang['order_id'] ?>"
                                         class="btn btn-info btn-sm mx-1">Thông tin</a>
-                                    <a href="./Edit_Order.php?datakey=<?= $donhang['donhang_ma'] ?>"
+                                    <a href="./Edit_Order.php?datakey=<?= $donhang['order_id'] ?>"
                                         class="btn btn-warning btn-sm mx-1">Sửa</a>
-                                    <?php if ($donhang['donhang_trangthai'] != "Đã hủy"): ?>
-                                        <a href="../Includes/BE/OrderCancel.php?datakey=<?= $donhang['donhang_ma'] ?>"
+                                    <?php if ($donhang['order_status'] != "Đã hủy"): ?>
+                                        <a href="../Includes/BE/OrderCancel.php?datakey=<?= $donhang['order_id'] ?>"
                                             class="btn btn-danger btn-sm mx-1">Huỷ đơn</a>
                                     <?php endif; ?>
                                 </div>

@@ -1,6 +1,6 @@
 <?php
 // Kết nối cơ sở dữ liệu
-include('../conn/connect.php');
+include('../../connect_SQL/connect.php');
 
 // Kiểm tra kết nối
 if ($connect->connect_error) {

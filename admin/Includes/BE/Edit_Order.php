@@ -1,5 +1,5 @@
 <?php
-include('../conn/connect.php');
+ include('../../connect_SQL/connect.php');
 session_start();
 ob_start();
 

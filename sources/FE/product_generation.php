@@ -160,21 +160,21 @@
                 <div class="flash-sale-swiper swiper-container">
                     <div class="swiper-wrapper">
                         <?php
-                        include_once("../sources/connect.php");
+                      include("../connect_SQL/connect.php"); // Kết nối cơ sở dữ liệu
 
                         $valueCart = 4; // Số sản phẩm trên mỗi trang
                         $page = isset($_GET['page']) ? (int) $_GET['page'] : 1; // Trang hiện tại
                         $offset = ($page - 1) * $valueCart; // Tính toán offset
                         
                         // Lọc sản phẩm không hết hạn
-                        $totalSql = "SELECT COUNT(*) as total FROM sanpham sp JOIN sales s ON sp.sp_ma = s.sp_ma WHERE s.is_expired = 0";
+                        $totalSql = "SELECT COUNT(*) as total FROM product sp JOIN sale s ON sp.product_id = s.product_id WHERE s.is_expired = 0";
                         $totalResult = $connect->query($totalSql);
                         $totalRow = $totalResult->fetch_assoc();
                         $totalProducts = $totalRow['total'];
                         $totalPages = ceil($totalProducts / $valueCart); // Tính tổng số trang
                         
                         // Truy vấn sản phẩm với offset
-                        $sql = "SELECT sp.*, s.discount_percent FROM sanpham sp JOIN sales s ON sp.sp_ma = s.sp_ma WHERE s.is_expired = 1 ORDER BY RAND() LIMIT $valueCart";
+                        $sql = "SELECT sp.*, s.discount_percent FROM product sp JOIN sale s ON sp.product_id = s.product_id WHERE s.is_expired = 1 ORDER BY RAND() LIMIT $valueCart";
                         $result = $connect->query($sql);
                         $duongdanimg = '../Assets/img/sanpham/';
                         
@@ -182,11 +182,11 @@
                             while ($data = $result->fetch_assoc()) {
                                 ?>
                                 <div class="swiper-slide product-block-item">
-                                    <a href="./product.php?sp_ma=<?= $data['sp_ma']; ?>">
-                                        <img src="<?= $duongdanimg . $data['sp_img']; ?>" alt="<?= $data['sp_ten']; ?>">
+                                    <a href="./product.php?product_id=<?= $data['product_id']; ?>">
+                                        <img src="<?= $duongdanimg . $data['product_images']; ?>" alt="<?= $data['product_name']; ?>">
                                         <div class="product-info">
-                                            <p class="item-product-name"><strong><?= $data['sp_ten']; ?></strong></p>
-                                            <p class="product__price"><strong style="color:#f30; font-size:20px"><?= number_format($data['sp_gia'], 0, '.', '.'); ?> <sup>đ</sup></strong></p>
+                                            <p class="item-product-name"><strong><?= $data['product_name']; ?></strong></p>
+                                            <p class="product_price"><strong style="color:#f30; font-size:20px"><?= number_format($data['product_price'], 0, '.', '.'); ?> <sup>đ</sup></strong></p>
                                         </div>
                                         <button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">Thêm vào giỏ</button>
                                     </a>

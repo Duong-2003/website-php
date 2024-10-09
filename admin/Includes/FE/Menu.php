@@ -3,7 +3,7 @@ session_start();
 ob_start();
 
 if (!isset($_SESSION['username'])) {
-    header('Location: ../Pages/Admin_Login.php');
+    header('Location: ../Pages/admin_login.php');
     exit();
 }
 ?>
@@ -112,28 +112,28 @@ if (!isset($_SESSION['username'])) {
         <div class="modal-body">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a href="../Pages/Ecom.php" class="nav-link"><i class="fa-solid fa-sign-out-alt"></i> Xem trang</a>
+                    <a href="../Pages/ecom.php" class="nav-link"><i class="fa-solid fa-sign-out-alt"></i> Xem trang</a>
                 </li>
                 <li class="nav-item">
-                    <a href="./Ecom.php" class="nav-link"><i class="fa-solid fa-chart-line"></i> Thống kê</a>
+                    <a href="../Pages/ecom.php" class="nav-link"><i class="fa-solid fa-chart-line"></i> Thống kê</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Pages/ListProductType.php" class="nav-link"><i class="fa-solid fa-tags"></i> Danh mục loại sản phẩm</a>
+                    <a href="../Pages/list_product_type.php" class="nav-link"><i class="fa-solid fa-tags"></i> Danh mục loại sản phẩm</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Pages/ListProduct.php" class="nav-link"><i class="fa-solid fa-box"></i> Danh mục sản phẩm</a>
+                    <a href="../Pages/list_product.php" class="nav-link"><i class="fa-solid fa-box"></i> Danh mục sản phẩm</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Pages/ListSales.php" class="nav-link"><i class="fa-solid fa-box"></i> Danh mục sản phẩm giảm </a>
+                    <a href="../Pages/list_sale.php" class="nav-link"><i class="fa-solid fa-box"></i> Danh mục sản phẩm giảm </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Pages/ListUsers.php" class="nav-link"><i class="fa-solid fa-users"></i> Danh mục tài khoản</a>
+                    <a href="../Pages/list_user.php" class="nav-link"><i class="fa-solid fa-users"></i> Danh mục tài khoản</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Pages/ListOrder.php" class="nav-link"><i class="fa-solid fa-shopping-cart"></i> Danh mục đơn hàng</a>
+                    <a href="../Pages/list_order.php" class="nav-link"><i class="fa-solid fa-shopping-cart"></i> Danh mục đơn hàng</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Includes/BE/LogoutProcess.php" class="nav-link"><i class="fa-solid fa-sign-out-alt"></i> Đăng xuất</a>
+                    <a href="../Includes/BE/admin_logout_process.php" class="nav-link"><i class="fa-solid fa-sign-out-alt"></i> Đăng xuất</a>
                 </li>
             </ul>
         </div>

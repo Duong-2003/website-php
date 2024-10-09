@@ -64,8 +64,9 @@
   <div class="content">
     <?php
     
-     include('./MenuAdmin.php');    
-     include('../Includes/conn/connect.php');
+    include('./admin_website.php');    
+include('../../connect_SQL/connect.php');
+
     $sqlLSP = "SELECT * FROM loaisp";
     $resultLSP = $connect->query($sqlLSP);
    

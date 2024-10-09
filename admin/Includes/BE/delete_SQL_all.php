@@ -1,5 +1,5 @@
 <?php
-include('../conn/connect.php');
+ include('../../connect_SQL/connect.php');
 session_start();
 
 // Lấy dữ liệu từ GET và kiểm tra

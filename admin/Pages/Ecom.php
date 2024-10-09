@@ -1,6 +1,4 @@
-<?php
-include('./MenuAdmin.php')?>
-?>
+
 <style>
     .widget-flat {
         position: relative;
@@ -70,7 +68,7 @@ include('./MenuAdmin.php')?>
 
 <script>
    
-    var myDiv = document.getElementById("Ecom");
+    var myDiv = document.getElementById("ecom");
     myDiv.classList.add("active");
 </script>
 

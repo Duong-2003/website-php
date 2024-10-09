@@ -44,7 +44,7 @@
         .elementor-image-box-img img {
             width: 100%; /* Đặt chiều rộng ảnh 100% */
             height: auto; /* Chiều cao tự động */
-            max-width: 80px; /* Chiều rộng tối đa cho ảnh */
+            max-width: 90px; /* Chiều rộng tối đa cho ảnh */
         }
 
         .elementor-image-box-content {
@@ -77,12 +77,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/folders.png" alt="Bìa hồ sơ">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bìa hồ sơ</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Bìa hồ sơ</a></h3>
                         </div>
                     </div>
                 </div>
@@ -90,12 +90,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/stationery.png" alt="Bút kí">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bút kí</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Bút kí</a></h3>
                         </div>
                     </div>
                 </div>
@@ -103,12 +103,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=sotay">
+                            <a href="../website/products_click.php?loaisanpham=sotay">
                                 <img src="../Assets/img/index/notebook.png" alt="Sổ">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=sotay">Sổ</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=sotay">Sổ</a></h3>
                         </div>
                     </div>
                 </div>
@@ -116,12 +116,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/tape.png" alt="Băng keo">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Băng keo</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Băng keo</a></h3>
                         </div>
                     </div>
                 </div>
@@ -129,12 +129,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/employee.png" alt="Bảng tên, dây đeo">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bảng tên, dây đeo</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Bảng tên, dây đeo</a></h3>
                         </div>
                     </div>
                 </div>
@@ -142,12 +142,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/color-pencil.png" alt="Bút chì gỗ">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bút chì gỗ</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Bút chì gỗ</a></h3>
                         </div>
                     </div>
                 </div>
@@ -155,12 +155,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/but.png" alt="Bút bi">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bút bi</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Bút bi</a></h3>
                         </div>
                     </div>
                 </div>
@@ -168,12 +168,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/invoice.png" alt="Hoá đơn">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hoá đơn</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Hoá đơn</a></h3>
                         </div>
                     </div>
                 </div>
@@ -182,12 +182,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/papers.png" alt="Giấy các loại">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Giấy các loại</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Giấy các loại</a></h3>
                         </div>
                     </div>
                 </div>
@@ -195,12 +195,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/stapler.png" alt="Bấm kim">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bấm kim</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Bấm kim</a></h3>
                         </div>
                     </div>
                 </div>
@@ -208,12 +208,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=maytinh">
+                            <a href="../website/products_click.php?loaisanpham=maytinh">
                                 <img src="../Assets/img/index/calculations.png" alt="Máy tính">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=maytinh">Máy tính</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=maytinh">Máy tính</a></h3>
                         </div>
                     </div>
                 </div>
@@ -221,12 +221,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/ruler.png" alt="Thước">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Thước</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Thước</a></h3>
                         </div>
                     </div>
                 </div>
@@ -234,12 +234,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=biakep">
+                            <a href="../website/products_click.php?loaisanpham=biakep">
                                 <img src="../Assets/img/index/file.png" alt="Kẹp giấy">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=biakep">Kẹp giấy</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=biakep">Kẹp giấy</a></h3>
                         </div>
                     </div>
                 </div>
@@ -247,12 +247,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/stationery-2.png" alt="Bút lông">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Bút lông</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Bút lông</a></h3>
                         </div>
                     </div>
                 </div>
@@ -260,12 +260,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/branding.png" alt="Kệ tài liệu">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Kệ tài liệu</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Kệ tài liệu</a></h3>
                         </div>
                     </div>
                 </div>
@@ -273,12 +273,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/toys.png" alt="Đồ chơi trẻ em">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Đồ chơi trẻ em</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Đồ chơi trẻ em</a></h3>
                         </div>
                     </div>
                 </div>
@@ -286,12 +286,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=nhandan">
+                            <a href="../website/products_click.php?loaisanpham=nhandan">
                                 <img src="../Assets/img/index/happy.png" alt="Hình dãn (sticker)">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=nhandan">Nhãn dán (sticker)</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=nhandan">Nhãn dán (sticker)</a></h3>
                         </div>
                     </div>
                 </div>
@@ -299,12 +299,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
-                                <img src="../Assets/img/index/stamp.png" alt="Hộp dấu - Mực dấu">
+                            <a href="../website/products_click.php?loaisanpham=but">
+                                <img src="../Assets/img/index/images.png" alt="Túi-Balo">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Hộp dấu - Mực dấu</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Túi-Balo</a></h3>
                         </div>
                     </div>
                 </div>
@@ -312,12 +312,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/desk-lamp.png" alt="Đèn bàn">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Đèn bàn</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Đèn bàn</a></h3>
                         </div>
                     </div>
                 </div>
@@ -325,12 +325,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=vo">
+                            <a href="../website/products_click.php?loaisanpham=vo">
                                 <img src="../Assets/img/index/notebook-1.png" alt="Tập vở">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=vo">Tập vở</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=vo">Tập vở</a></h3>
                         </div>
                     </div>
                 </div>
@@ -338,12 +338,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/cutter.png" alt="Dao rọc giấy">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Dao rọc giấy</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Dao rọc giấy</a></h3>
                         </div>
                     </div>
                 </div>
@@ -351,12 +351,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/education.png" alt="Dụng cụ học sinh">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Dụng cụ học sinh</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Dụng cụ học sinh</a></h3>
                         </div>
                     </div>
                 </div>
@@ -364,12 +364,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=but">
+                            <a href="../website/products_click.php?loaisanpham=but">
                                 <img src="../Assets/img/index/post-it.png" alt="Giấy ghi nhớ">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=but">Giấy ghi nhớ</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=but">Giấy ghi nhớ</a></h3>
                         </div>
                     </div>
                 </div>
@@ -378,12 +378,12 @@
                 <div class="elementor-column">
                     <div class="elementor-image-box-wrapper">
                         <figure class="elementor-image-box-img">
-                            <a href="../website/productsClick.php?loaisanpham=hop">
+                            <a href="../website/products_click.php?loaisanpham=hop">
                                 <img src="../Assets/img/index/office-desk.png" alt="Dụng cụ khác">
                             </a>
                         </figure>
                         <div class="elementor-image-box-content">
-                            <h3 class="elementor-image-box-title"><a href="../website/productsClick.php?loaisanpham=hop">Dụng cụ khác</a></h3>
+                            <h3 class="elementor-image-box-title"><a href="../website/products_click.php?loaisanpham=hop">Dụng cụ khác</a></h3>
                         </div>
                     </div>
                 </div>

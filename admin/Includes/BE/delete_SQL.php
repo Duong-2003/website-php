@@ -1,5 +1,5 @@
 <?php
-   include('../conn/connect.php');
+   include('../../../connect_SQL/connect.php');
     
     $privateKey = $_GET['key'];
     $dataKey = $_GET['datakey'];

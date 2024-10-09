@@ -9,19 +9,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Danh sách tìm kiếm</title>
 
-    <?php
-    include('../sources/linkFIle.php');
-    ?>
+   
 
 </head>
 
 <body>
     <?php
    session_start();
-    include($linkFE.'top_header.php');
-    include($linkFE.'header.php');
-    include($linkFE.'search.php');
-    include($linkFE.'footer.php');
+    include('../Sources/FE/top_header.php');
+    include('../Sources/FE/header.php');
+    include('../Sources/FE/search.php');
+    include('../Sources/FE/footer.php');
 
     
     ?>

@@ -1,8 +1,7 @@
 <?php
-include('../linkFIle.php');
-include($linkconnSources);
-session_start();
 
+session_start();
+include('../../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu
 if (isset($_POST['submit']) && !empty($_POST['donhang_soluongsp']) && !empty($_POST['sp_ma'])) {
     
     // Kiểm tra xem người dùng đã đăng nhập chưa

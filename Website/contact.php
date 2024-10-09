@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <title>Liên hệ</title>
 
-  <?php include_once('../sources/linkFile.php'); ?>
+ 
 
   <style>
     body {
@@ -64,8 +64,8 @@
 
   <?php 
       session_start();
-  include($linkFE . 'top_header.php'); 
-  include($linkFE . 'header.php'); 
+  include( '../Sources/FE/top_header.php'); 
+  include( '../Sources/FE/header.php'); 
   ?>
 
   <div class="container contact page-contacts" style="padding-top: 50px;">
@@ -128,8 +128,8 @@
   </div>
 
   <?php 
-  include($linkFE.'footer_save.php');
-  include($linkFE . "footer.php"); 
+  include('../Sources/FE/footer_save.php');
+  include( "../Sources/FE/footer.php"); 
   ?>
 
 </body>

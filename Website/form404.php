@@ -9,9 +9,9 @@
     <title>Document</title> 
 
 <?php
-include('../sources/linkFIle.php');
-include($linkFE.'top_header.php');
-include($linkFE.'header.php');
+
+include('../Sources/FE/top_header.php');
+include('../Sources/FE/header.php');
 
     
 ?>

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Giỏ hàng</title>
 
-    <?php include('../sources/linkFIle.php'); ?>
+ 
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -74,8 +74,8 @@
     <?php
     session_start();
     ob_start();
-    include($linkFE . 'top_header.php');
-    include($linkFE . 'header.php');
+    include( '../Sources/FE/top_header.php');
+    include( '../Sources/FE/header.php');
 
     // đặt hàng
     if (isset($_GET['notifi'])) {

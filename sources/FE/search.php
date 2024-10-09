@@ -102,12 +102,12 @@
 <body>
 
 <?php
-include($linkconnWebsite);
+include("../connect_SQL/connect.php"); // Kết nối cơ sở dữ liệu
 $search = strtolower(trim($_GET['search']));
 $arrange = isset($_GET['arrange']) ? $_GET['arrange'] : "";
 
 // Sử dụng Prepared Statements để tránh lỗ hổng SQL Injection
-$query = "SELECT * FROM sanpham WHERE LOWER(sp_ten) LIKE ? OR LOWER(loaisp_ten) LIKE ?";
+$query = "SELECT * FROM product WHERE LOWER(product_name) LIKE ? OR LOWER(product_type_name) LIKE ?";
 if ($arrange == "price") {
     $query .= " ORDER BY sp_gia DESC";
 }
@@ -152,7 +152,7 @@ $dataArray = $result->fetch_all(MYSQLI_ASSOC);
         }
 
         document.getElementById("menu-dr-price").addEventListener("click", function() {
-            window.location.href = "./ListSearch.php?search=<?= urlencode($search) ?>&page=1&arrange=price";
+            window.location.href = "./list_search.php?search=<?= urlencode($search) ?>&page=1&arrange=price";
         });
     </script>
 </div>
@@ -162,11 +162,11 @@ $dataArray = $result->fetch_all(MYSQLI_ASSOC);
     <?php foreach ($dataArray as $data): ?>
     <div class="col-lg-3 col-md-4 col-sm-6 py-2">
         <div class="card">
-            <a href="./product.php?sp_ma=<?= htmlspecialchars($data['sp_ma']) ?>">
-                <img src="<?= htmlspecialchars($duongdanimg . $data['sp_img']) ?>" class="card-img-top" alt="<?= htmlspecialchars($data['sp_ten']) ?>">
+            <a href="./product.php?sp_ma=<?= htmlspecialchars($data['product_id']) ?>">
+                <img src="<?= htmlspecialchars($duongdanimg . $data['product_images']) ?>" class="card-img-top" alt="<?= htmlspecialchars($data['sp_ten']) ?>">
                 <div class="card-body">
-                    <p class="card-title"><strong><?= htmlspecialchars($data['sp_ten']) ?></strong></p>
-                    <p class="card-text"><strong style="color:#f30; font-size:25px"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></strong></p>
+                    <p class="card-title"><strong><?= htmlspecialchars($data['product_name']) ?></strong></p>
+                    <p class="card-text"><strong style="color:#f30; font-size:25px"><?= number_format($data['product_price'], 0, '.', '.') ?> <sup>đ</sup></strong></p>
                 </div>
             </a>
             <div class="action-cart group-buttons d-flex align-items-center justify-content-center">
@@ -183,7 +183,7 @@ $dataArray = $result->fetch_all(MYSQLI_ASSOC);
 
 <div>
     <?php
-    $sql = "SELECT COUNT(*) as total FROM sanpham";
+    $sql = "SELECT COUNT(*) as total FROM product";
     $result = $connect->query($sql);
     $total = $result->fetch_assoc()['total'] ?? 0;
     $pagination = ceil($total / 20);

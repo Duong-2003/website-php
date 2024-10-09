@@ -1,3 +1,9 @@
+
+<?php 
+
+ session_start();
+
+include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -162,25 +168,26 @@
 
 <body>
     <?php
-    include('../sources/FE/iconnofi.php');
-    include('../sources/FE/top_header.php');
-    include('../sources/FE/header.php');
-    include('../sources/FE/slide.php');
-    include('../sources/FE/sales.php');
 
-    include_once("../sources/connect.php"); // Kết nối cơ sở dữ liệu
+    include('../Sources/FE/iconnofi.php');
+    include('../Sources/FE/top_header.php');
+    include('../Sources/FE/header.php');
+    include('../Sources/FE/slide.php');
+    include('../Sources/FE/sale.php');
+
+  
 
     // Định nghĩa đường dẫn hình ảnh
     $duongdanimg = '../Assets/img/sanpham/';
     
     // Lấy loại sản phẩm từ tham số URL
-    $productType = isset($_GET['loaisanpham']) ? $_GET['loaisanpham'] : '';
+    $productType = isset($_GET['product_type_id']) ? $_GET['product_type_id'] : '';
     $valueCart = 6; // Số sản phẩm tối đa hiển thị
     $sql = "SELECT * 
-    FROM sanpham 
-    LEFT JOIN sales ON sanpham.sp_ma = sales.sp_ma 
-    WHERE loaisanpham = '$productType' 
-    AND (sales.is_expired IS NULL OR sales.is_expired = 0) 
+    FROM product 
+    LEFT JOIN sale ON product.product_id = sale.product_id 
+    WHERE product_type_id = '$productType' 
+    AND (sale.is_expired IS NULL OR sale.is_expired = 0) 
     LIMIT $valueCart";
     $result = $connect->query($sql);
     ?>
@@ -196,28 +203,28 @@
                                 <a href="../website/website.php"><span title="Tất cả sản phẩm">Tất cả sản phẩm</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-1">
-                                <a href="../website/contentClick.php?loaisanpham=but"><span title="Bút">Bút</span></a>
+                                <a href="../website/content_click.php?product_type_id=but"><span title="Bút">Bút</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-2">
-                                <a href="../website/contentClick.php?loaisanpham=hop"><span title="Hộp">Hộp</span></a>
+                                <a href="../website/content_click.php?product_type_id=hop"><span title="Hộp">Hộp</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-3">
-                                <a href="../website/contentClick.php?loaisanpham=biakep"><span title="Bìa kẹp">Bìa kẹp</span></a>
+                                <a href="../website/content_click.php?product_type_id=biakep"><span title="Bìa kẹp">Bìa kẹp</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-4">
-                                <a href="../website/contentClick.php?loaisanpham=maytinh"><span title="Máy tính">Máy tính</span></a>
+                                <a href="../website/content_click.php?product_type_id=maytinh"><span title="Máy tính">Máy tính</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-5">
-                                <a href="../website/contentClick.php?loaisanpham=nhandan"><span title="Nhãn dán">Nhãn dán</span></a>
+                                <a href="../website/content_click.php?product_type_id=nhandan"><span title="Nhãn dán">Nhãn dán</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-6">
-                                <a href="../website/contentClick.php?loaisanpham=sotay"><span title="Sổ tay">Sổ tay</span></a>
+                                <a href="../website/content_click.php?product_type_id=sotay"><span title="Sổ tay">Sổ tay</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-7">
-                                <a href="../website/contentClick.php?loaisanpham=vo"><span title="Vở">Vở</span></a>
+                                <a href="../website/content_click.php?product_type_id=vo"><span title="Vở">Vở</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-8">
-                                <a href="../website/contentClick.php?loaisanpham=tui"><span title="Túi">Túi</span></a>
+                                <a href="../website/content_click.php?product_type_id=tui"><span title="Túi">Túi</span></a>
                             </li>
                         </ul>
                     </div>
@@ -230,20 +237,20 @@
                 <?php if ($result && $result->num_rows > 0): ?>
                     <?php while ($data = $result->fetch_assoc()): ?>
                         <div class="col-lg-3 col-md-4 col-sm-6 py-2">
-                            <a href="./product.php?sp_ma=<?= $data['sp_ma'] ?>">
+                            <a href="./product.php?product_id=<?= $data['product_id'] ?>">
                                 <div class="card">
-                                    <img src="<?= $duongdanimg . $data['sp_img'] ?>" class="card-img-top" alt="<?= $data['sp_ten'] ?>">
+                                    <img src="<?= $duongdanimg . $data['product_images'] ?>" class="card-img-top" alt="<?= $data['product_name'] ?>">
                                     <div class="card-body">
-                                        <p class="card-title"><?= $data['sp_ten'] ?></p>
+                                        <p class="card-title"><?= $data['product_name'] ?></p>
                                         <?php if (!empty($data['discount_percent'])): 
-                                            $discountedPrice = $data['sp_gia'] * (1 - $data['discount_percent'] / 100); ?>
+                                            $discountedPrice = $data['product_price'] * (1 - $data['discount_percent'] / 100); ?>
                                             <p class="card-text">
                                                 <strong style="color:#f30; font-size:25px"><?= number_format($discountedPrice, 0, '.', '.') ?> <sup>đ</sup></strong>
-                                                <span style="text-decoration: line-through; color: #888;"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></span>
+                                                <span style="text-decoration: line-through; color: #888;"><?= number_format($data['product_price'], 0, '.', '.') ?> <sup>đ</sup></span>
                                             </p>
                                         <?php else: ?>
                                             <p class="card-text">
-                                                <strong style="color:#f30; font-size:25px"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></strong>
+                                                <strong style="color:#f30; font-size:25px"><?= number_format($data['product_price'], 0, '.', '.') ?> <sup>đ</sup></strong>
                                             </p>
                                         <?php endif; ?>
                                         <div class="action-cart">
@@ -267,9 +274,9 @@
 
     <?php
     // Đóng kết nối sau khi hoàn tất tất cả các thao tác
-    // $connect->close();
-    include('../sources/FE/footer_save.php');
-    include('../sources/FE/footer.php');
+    $connect->close();
+    include('../Sources/FE/footer_save.php');
+    include('../Sources/FE/footer.php');
     ?>
 </body>
 </html>

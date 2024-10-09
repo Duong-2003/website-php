@@ -13,8 +13,9 @@
 
     <?php
 
-  include('./MenuAdmin.php');    
-    include('../Includes/conn/connect.php');
+include('./admin_website.php');    
+include('../../connect_SQL/connect.php');
+
     $dataKey = $_GET['datakey'];
     $sqldonhang = "SELECT * FROM donhang WHERE donhang_ma = '$dataKey'";
     $result = $connect->query($sqldonhang);

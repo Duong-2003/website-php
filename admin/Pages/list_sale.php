@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -34,25 +32,26 @@
 <body>
 
     <?php
-    include('./MenuAdmin.php');    
-    include('../Includes/conn/connect.php');
+ include('./admin_website.php');    
+ include('../../connect_SQL/connect.php');
+ 
 
     // Lấy danh sách giảm giá
-    $sqlSales = "SELECT s.sale_id, s.sp_ma, s.discount_percent, s.start_date, s.end_date, s.sale_description, s.is_expired, sp.sp_ten
-                 FROM sales s
-                 JOIN sanpham sp ON s.sp_ma = sp.sp_ma";
+    $sqlSales = "SELECT s.sale_id, s.product_id, s.discount_percent, s.start_date, s.end_date, s.sale_description, s.is_expired, sp.product_name
+                 FROM sale s
+                 JOIN product sp ON s.product_id = sp.product_id";
     $resultSales = $connect->query($sqlSales);
     $danhsachSales = [];
     while ($row = mysqli_fetch_array($resultSales, MYSQLI_ASSOC)) {
         $danhsachSales[] = array(
             'sale_id' => $row['sale_id'],
-            'sp_ma' => $row['sp_ma'],
+            'product_id' => $row['product_id'],
             'discount_percent' => $row['discount_percent'],
             'start_date' => $row['start_date'],
             'end_date' => $row['end_date'],
             'sale_description' => $row['sale_description'],
             'is_expired' => $row['is_expired'],
-            'sp_ten' => $row['sp_ten']
+            'product_name' => $row['product_name']
         );
     }
     ?>
@@ -85,8 +84,8 @@
         if ($row['is_expired'] == 1) {
             echo "<tr>
                 <td>{$row['sale_id']}</td>
-                <td>{$row['sp_ma']}</td>
-                <td>{$row['sp_ten']}</td>
+                <td>{$row['product_id']}</td>
+                <td>{$row['product_name']}</td>
                 <td>{$row['discount_percent']}%</td>
                 <td>{$row['start_date']}</td>
                 <td>{$row['end_date']}</td>
@@ -105,7 +104,7 @@
             </tbody>
         </table>
     </div>
-    <?php include('../Includes/FE/ModalSales.php');?>
+    <?php include('../Includes/FE/modal_sale.php');?>
     
     <script>
         $(document).ready(function () {

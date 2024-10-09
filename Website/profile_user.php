@@ -37,9 +37,9 @@
 
 <?php
 session_start();
-$linkFE = '../sources/FE/'; 
-include($linkFE . 'top_header.php');
-include($linkFE . 'header.php');
+
+include( '../Sources/FE/top_header.php');
+include( '../Sources/FE/header.php');
 
 include_once('../sources/connect.php');
 
@@ -77,8 +77,8 @@ include_once('../sources/connect.php');
 </body>
 
 <?php
-include($linkFE . 'footer_save.php');
-include($linkFE . 'footer.php');
+include( '../Sources/FE/footer_save.php');
+include( '../Sources/FE/footer.php');
 ?>
 
 </html>

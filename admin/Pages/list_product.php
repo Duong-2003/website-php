@@ -46,41 +46,42 @@
 <body>
 
     <?php
-    include('./MenuAdmin.php');    
-    include('../Includes/conn/connect.php');
+include('./admin_website.php');    
+include('../../connect_SQL/connect.php');
+
 
     // Lấy danh sách loại sản phẩm
-    $sqlLSP = "SELECT * FROM loaisp";
+    $sqlLSP = "SELECT * FROM product_type";
     $resultLSP = $connect->query($sqlLSP);
     $danhsachLSP = [];
     while ($row = mysqli_fetch_array($resultLSP, MYSQLI_ASSOC)) {
         $danhsachLSP[] = array(
-            'loaisanpham' => $row['loaisanpham'],
-            'loaisp_ten' => $row['loaisp_ten'],
+            'product_type_name' => $row['product_type_name'],
+            'product_type_id' => $row['product_type_id'],
         );
     }
 
     // Lấy danh sách sản phẩm
-    $sqlSP = "SELECT * FROM sanpham";
+    $sqlSP = "SELECT * FROM product";
     $resultSP = $connect->query($sqlSP);
     $danhsachSP = [];
     while ($row = mysqli_fetch_array($resultSP, MYSQLI_ASSOC)) {
         $danhsachSP[] = array(
-            'sp_ma' => $row['sp_ma'],
-            'sp_ten' => $row['sp_ten'],
-            'loaisanpham' => $row['loaisanpham'],
-            'loaisp_ten' => $row['loaisp_ten'],
-            'sp_gia' => $row['sp_gia'],
-            'sp_mota' => $row['sp_mota'],
-            'sp_motachitiet' => $row['sp_motachitiet'],
-            'sp_img' => $row['sp_img'],
-            'sp_soluong' => $row['sp_soluong']
+            'product_id' => $row['product_id'],
+            'product_name' => $row['product_name'],
+            'product_type_id' => $row['product_type_id'],
+            'product_type_name' => $row['product_type_name'],
+            'product_price' => $row['product_price'],
+            'product_description' => $row['product_description'],
+            'product_details' => $row['product_details'],
+            'product_images' => $row['product_images'],
+            'product_quantity' => $row['product_quantity']
         );
     }
     ?>
 
     <div class="container">
-        <h1 class="text-center mb-4">Danh Sách Sản Phẩm</h1>
+        <h1 class="text-center mb-4">Danh sách sản phẩm</h1>
         <div class="text-end mb-3">
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddProduct">
                 Thêm 
@@ -92,6 +93,7 @@
                     <th>Mã sản phẩm</th>
                     <th>Tên sản phẩm</th>
                     <th>Loại sản phẩm</th>
+                   
                     <th>Giá sản phẩm</th>
                     <th>Mô tả</th>
                     <th>Mô tả chi tiết</th>
@@ -103,24 +105,24 @@
             <tbody>
     <?php
     foreach ($danhsachSP as $row) {
-        $imgPath = '../../Assets/img/SanPham/' . htmlspecialchars($row['sp_img']);
+        $imgPath = '../../Assets/img/sanpham/' . htmlspecialchars($row['product_images']);
         
         // Chuyển đổi giá về dạng số (bỏ dấu phẩy nếu có)
-        $price = floatval(str_replace(',', '', $row['sp_gia']));
+        $price = floatval(str_replace(',', '', $row['product_price']));
         
         echo "<tr>
-            <td>{$row['sp_ma']}</td>
-            <td>{$row['sp_ten']}</td>
-            <td>{$row['loaisp_ten']}</td>
+            <td>{$row['product_id']}</td>
+            <td>{$row['product_name']}</td>
+            <td>{$row['product_type_name']}</td>
             <td>" . number_format($price, 0, ',', '.') . " VNĐ</td>
-            <td>{$row['sp_mota']}</td>
-            <td>{$row['sp_motachitiet']}</td>
+            <td>{$row['product_description']}</td>
+            <td>{$row['product_details']}</td>
             <td><img src='{$imgPath}' alt='Hình ảnh sản phẩm'></td>
-            <td>{$row['sp_soluong']}</td>
+            <td>{$row['product_quantity']}</td>
             <td>
                 <div class='d-flex justify-content-center'>
-                    <a href='../Includes/BE/DeleteSQL.php?key=sp_ma&table=sanpham&datakey={$row['sp_ma']}' class='btn btn-danger mx-1'>Xóa</a>
-                    <a href='../Pages/Form_product.php?datakey={$row['sp_ma']}' class='btn btn-warning mx-1'>Sửa</a>
+                    <a href='../Includes/BE/delete_SQL.php?key=product_id&table=sanpham&datakey={$row['product_id']}' class='btn btn-danger mx-1'>Xóa</a>
+                    <a href='../Pages/form_product.php?datakey={$row['product_id']}' class='btn btn-warning mx-1'>Sửa</a>
                 </div>
             </td>
         </tr>";
@@ -130,8 +132,8 @@
         </table>
     </div>
 
-    <!-- Modal for Adding Product -->
-    <?php include('../Includes/FE/ModalAddProduct.php');?>
+  
+    <?php include('../Includes/FE/modal_add_product.php');?>
 
     <script>
         $(document).ready(function () {

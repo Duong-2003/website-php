@@ -103,49 +103,49 @@
             <div class="col-lg-3 col-md-4 sidebar">
                 <h5>Danh mục sản phẩm</h5>
                 <ul class="list-group">
-                    <a href="../website/List.php">
+                    <a href="../website/list.php">
                         <li class="list-group-item">Tất cả sản phẩm</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=but">
+                    <a href="../website/products_click.php?product_type_id=but">
                         <li class="list-group-item">Bút</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=hop">
+                    <a href="../website/products_click.php?product_type_id=hop">
                         <li class="list-group-item">Hộp</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=biakep">
+                    <a href="../website/products_click.php?product_type_id=biakep">
                         <li class="list-group-item">Bìa kẹp</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=maytinh">
+                    <a href="../website/products_click.php?product_type_id=maytinh">
                         <li class="list-group-item">Máy tính</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=nhandan">
+                    <a href="../website/products_click.php?product_type_id=nhandan">
                         <li class="list-group-item">Nhãn dán</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=sotay">
+                    <a href="../website/products_click.php?product_type_id=sotay">
                         <li class="list-group-item">Sổ tay</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=vo">
+                    <a href="../website/products_click.php?product_type_id=vo">
                         <li class="list-group-item">Vở</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=tui">
+                    <a href="../website/products_click.php?product_type_id=tui">
                         <li class="list-group-item">Túi</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=tui">
+                    <a href="../website/products_click.php?product_type_id=tui">
                         <li class="list-group-item">Dao rọc giấy</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=tui">
+                    <a href="../website/products_click.php?product_type_id=tui">
                         <li class="list-group-item">Hoá đơn</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=tui">
+                    <a href="../website/products_click.php?product_type_id=tui">
                         <li class="list-group-item">Bấm kim</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=tui">
+                    <a href="../website/products_click.php?product_type_id=tui">
                         <li class="list-group-item">Bìa hồ sơ</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=tui">
+                    <a href="../website/products_click.php?product_type_id=tui">
                         <li class="list-group-item">Bút kí</li>
                     </a>
-                    <a href="../website/productsClick.php?loaisanpham=tui">
+                    <a href="../website/products_click.php?product_type_id=tui">
                         <li class="list-group-item">Băng keo</li>
                     </a>
                     <a href="?discount=true" class="list-group-item">Sản phẩm giảm giá</a>
@@ -168,7 +168,7 @@
                             <div class="text-center py-2">
                                 <div class="row">
                                     <?php
-                                    include_once("../sources/connect.php");
+                                  include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu
 
                                     $valueCart = 9; 
                                     $page = isset($_GET['page']) ? (int) $_GET['page'] : 1; 
@@ -184,20 +184,20 @@
                                     $sort = isset($_GET['sort']) ? $_GET['sort'] : 'normal';
                                     $orderBy = '';
                                     if ($sort == 'price-asc') {
-                                        $orderBy = 'ORDER BY sp_gia ASC';
+                                        $orderBy = 'ORDER BY product_price ASC';
                                     } elseif ($sort == 'price-desc') {
-                                        $orderBy = 'ORDER BY sp_gia DESC';
+                                        $orderBy = 'ORDER BY product_price DESC';
                                     }
 
-                                    $totalSql = "SELECT COUNT(*) as total FROM sanpham sp LEFT JOIN sales s ON sp.sp_ma = s.sp_ma $whereClause";
+                                    $totalSql = "SELECT COUNT(*) as total FROM product sp LEFT JOIN sale s ON sp.product_id = s.product_id $whereClause";
                                     $totalResult = $connect->query($totalSql);
                                     $totalRow = $totalResult->fetch_assoc();
                                     $totalProducts = $totalRow['total'];
                                     $totalPages = ceil($totalProducts / $valueCart); 
                                     
                                     $sql = "SELECT sp.*, s.discount_percent 
-                                            FROM sanpham sp 
-                                            LEFT JOIN sales s ON sp.sp_ma = s.sp_ma $whereClause $orderBy LIMIT $offset, $valueCart";
+                                            FROM product sp 
+                                            LEFT JOIN sale s ON sp.product_id = s.product_id $whereClause $orderBy LIMIT $offset, $valueCart";
                                     $result = $connect->query($sql);
                                     $duongdanimg = '../Assets/img/sanpham/';
 
@@ -205,31 +205,31 @@
                                         while ($data = $result->fetch_assoc()) {
                                             ?>
                                             <div class="col-lg-4 col-md-6 col-sm-9 py-2">
-                                                <a href="./product.php?sp_ma=<?= $data['sp_ma'] ?>">
+                                                <a href="./product.php?product_id=<?= $data['product_id'] ?>">
                                                     <div class="card">
-                                                        <img src="<?= $duongdanimg . $data['sp_img'] ?>" class="card-img-top" alt="<?= $data['sp_ten'] ?>">
+                                                        <img src="<?= $duongdanimg . $data['product_images'] ?>" class="card-img-top" alt="<?= $data['product_name'] ?>">
                                                         <div class="card-body">
-                                                            <p class="card-title"><strong><?= $data['sp_ten'] ?></strong></p>
+                                                            <p class="card-title"><strong><?= $data['product_name'] ?></strong></p>
                                                             <?php
                                                             if (!empty($data['discount_percent'])) {
-                                                                $discountedPrice = $data['sp_gia'] * (1 - $data['discount_percent'] / 100);
+                                                                $discountedPrice = $data['product_price'] * (1 - $data['discount_percent'] / 100);
                                                                 ?>
                                                                 <p class="card-text">
                                                                     <strong style="color:#f30; font-size:25px"><?= number_format($discountedPrice, 0, '.', '.') ?> <sup>đ</sup></strong>
-                                                                    <span style="text-decoration: line-through; color: #888;"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></span>
+                                                                    <span style="text-decoration: line-through; color: #888;"><?= number_format($data['product_price'], 0, '.', '.') ?> <sup>đ</sup></span>
                                                                 </p>
                                                                 <?php
                                                             } else {
                                                                 ?>
                                                                 <p class="card-text">
-                                                                    <strong style="color:#f30; font-size:25px"><?= number_format($data['sp_gia'], 0, '.', '.') ?> <sup>đ</sup></strong>
+                                                                    <strong style="color:#f30; font-size:25px"><?= number_format($data['product_price'], 0, '.', '.') ?> <sup>đ</sup></strong>
                                                                 </p>
                                                                 <?php
                                                             }
                                                             ?>
                                                             <div class="action-cart group-buttons d-flex align-items-center justify-content-center">
                                                                 <button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">
-                                                                    <a id="buy" href="./product.php?sp_ma=<?= $data['sp_ma'] ?>">Thêm vào giỏ</a>
+                                                                    <a id="buy" href="./product.php?product_id=<?= $data['product_id'] ?>">Thêm vào giỏ</a>
                                                                 </button>
                                                             </div>
                                                         </div>

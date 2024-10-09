@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../sources/linkFIle.php'); // Include your database connection
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get payment information from the form

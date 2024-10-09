@@ -1,19 +1,21 @@
 <?php
-// if (session_status() === PHP_SESSION_NONE) {
-//     session_start();
-// }
-include_once("../sources/connect.php"); // Kết nối cơ sở dữ liệu
+include("../connect_SQL/connect.php"); // Kết nối cơ sở dữ liệu
+
 
 $user = null; // Khởi tạo biến người dùng
 
 if (isset($_SESSION['username'])) {
     $loggedInUsername = $_SESSION['username'];
-    $sql = "SELECT * FROM users WHERE name = '$loggedInUsername'";
-    $result = $connect->query($sql);
+    $sql = "SELECT * FROM user WHERE username = ?"; // Sửa đổi để sử dụng username thay vì name
+    $stmt = $connect->prepare($sql);
+    $stmt->bind_param("s", $loggedInUsername);
+    $stmt->execute();
+    $result = $stmt->get_result();
     
     if ($result && $result->num_rows > 0) {
-        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        $user = $result->fetch_assoc(); // Lấy dữ liệu người dùng
     }
+    $stmt->close(); // Đóng câu lệnh
 }
 ?>
 
@@ -30,8 +32,7 @@ if (isset($_SESSION['username'])) {
     <title>Document</title>
 
     <style>
-       
-       #navbar1 {
+        #navbar {
             color: #8ab0d5;
             box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.3);
         }
@@ -42,7 +43,7 @@ if (isset($_SESSION['username'])) {
 
         .nav-link:focus,
         .nav-link:hover {
-            color: rgb(173 114 114 / 80%);
+            color: rgba(173, 114, 114, 0.8);
         }
 
         a.nav-link {
@@ -59,13 +60,13 @@ if (isset($_SESSION['username'])) {
         a.nav-link.user {
             border: 1px solid;
             background: aliceblue;
-            border-radius: 10px
+            border-radius: 10px;
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg" id="navbar1">
+    <nav class="navbar navbar-expand-lg" id="navbar">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,13 +81,13 @@ if (isset($_SESSION['username'])) {
                         <a class="nav-link home" href="../Website/website.php"><i class="fas fa-home"></i> Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link login" href="./login.php"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                        <a class="nav-link login" href="../Website/login.php"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link register" href="./register.php"><i class="fas fa-user-plus"></i> Đăng ký</a>
+                        <a class="nav-link register" href="../Website/register.php"><i class="fas fa-user-plus"></i> Đăng ký</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link forgot-password" href="../Website/resetpass.php"><i class="fas fa-key"></i> Quên mật khẩu</a>
+                        <a class="nav-link forgot-password" href="../Website/reset_password.php"><i class="fas fa-key"></i> Quên mật khẩu</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link contact" href="../Website/contact.php"><i class="fas fa-envelope"></i> Liên hệ</a>
@@ -95,9 +96,9 @@ if (isset($_SESSION['username'])) {
                 
                 <ul class="navbar-nav ms-auto" id="ic-user" style="display: none;">
                     <li class="nav-item">
-                        <a class="nav-link home" id="navbar" href="../Website/website.php"><i class="fas fa-home"></i> Trang chủ</a>
+                        <a class="nav-link home" href="../Website/website.php"><i class="fas fa-home"></i> Trang chủ</a>
                     </li>
-                    <li class="navbar-nav ms-auto">
+                    <li class="nav-item">
                         <a class="nav-link contact" href="../Website/contact.php"><i class="fas fa-envelope"></i> Liên hệ</a>
                     </li>
                     <li class="nav-item">
@@ -106,10 +107,9 @@ if (isset($_SESSION['username'])) {
                     <li class="nav-item">
                         <a class="nav-link" href="../sources/BE/logout_process.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link user" id="navbar1">
-                            <span id="username-display"><?= isset($user['name']) ? htmlspecialchars($user['name']) : 'Khách' ?></span>
+                        <a class="nav-link user" id="navbar">
+                            <span id="username-display"><?= isset($user['username']) ? htmlspecialchars($user['username']) : 'Khách' ?></span>
                         </a>
                     </li>
                 </ul>
@@ -118,7 +118,7 @@ if (isset($_SESSION['username'])) {
     </nav>
 
     <script>
-        var username = <?php echo isset($loggedInUsername) ? json_encode($loggedInUsername) : 'null'; ?>;
+        var username = <?= json_encode(isset($loggedInUsername) ? $loggedInUsername : null); ?>;
 
         // Xử lý hiển thị thông tin người dùng
         function myFunction() {
@@ -130,6 +130,7 @@ if (isset($_SESSION['username'])) {
                 document.getElementById("ic-notuser").style.display = 'flex';
             }
         }
+
         document.addEventListener("DOMContentLoaded", myFunction);
     </script>
 </body>

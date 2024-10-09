@@ -70,7 +70,7 @@
                     </a>
                 </div>
 
-                <form action="./listSearch.php" method="GET" class="d-flex flex-grow-1 mx-5">
+                <form action="./list_search.php" method="GET" class="d-flex flex-grow-1 mx-5">
                     <input id="searchInput" type="text" class="form-control me-1"
                         placeholder="Vui lòng nhập từ khóa để tìm kiếm!" name="search" required>
                     <button style="background-color:#8095b3" type="button" id="searchClick" class="btn">

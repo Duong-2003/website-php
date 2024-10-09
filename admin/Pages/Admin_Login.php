@@ -126,10 +126,10 @@
                 </li>
               </ul>
               <div id="nd-login">
-                <form action="../Includes/BE/LoginProcess.php" method="post" id="customer_login" accept-charset="UTF-8">
+                <form action="../Includes/BE/admin_login_process.php" method="post" id="customer_login" accept-charset="UTF-8">
                   <fieldset class="form-group margin-bottom-10">
-                    <label for="account">Tài khoản<span style="color: red;">*</span></label>
-                    <input id="account" placeholder="Nhập tài khoản" type="text" class="form-control" name="account"
+                    <label for="username">Tài khoản<span style="color: red;">*</span></label>
+                    <input id="username" placeholder="Nhập tài khoản" type="text" class="form-control" name="username"
                       required>
                   </fieldset>
 
