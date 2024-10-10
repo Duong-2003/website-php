@@ -87,17 +87,7 @@
             text-align: center;
             text-transform: uppercase;
             color: #494949;
-            position: relative;
             margin-bottom: 20px;
-        }
-
-        h2:after {
-            content: "";
-            background: url(//bizweb.dktcdn.net/100/434/558/themes/894884/assets/icon_after_title.png?1651395726340) no-repeat;
-            width: 257px;
-            height: 57px;
-            display: block;
-            margin: auto;
         }
 
         ul.tabs {
@@ -130,23 +120,10 @@
         .text-center {
             text-align: center;
         }
-
-        .btn-warning {
-            padding: 10px 10px;
-            background-color: #ffc107;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-
-        .btn-warning:hover {
-            background-color: #ffc107;
-            color: white;
-            cursor: pointer;
-        }
+        a.btn.btn-warning {
+    color: #fff;
+}
+       
 
         @media (max-width: 768px) {
             .product-list {
@@ -165,38 +142,36 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <div class="block-title clearfix">
-                        <h2>Văn phòng phẩm cho bạn</h2>
-                        <ul class="tabs tabs-title tab-desktop ajax clearfix">
-                            <li class="tab-link has-content current">
-                                <a href="../website/website.php"><span title="Tất cả sản phẩm">Tất cả sản phẩm</span></a>
-                            </li>
-                            <li class="tab-link" data-tab="tab-1">
-                                <a href="../website/content__click.php?product_type_id=but"><span title="Bút">Bút</span></a>
-                            </li>
-                            <li class="tab-link" data-tab="tab-2">
-                                <a href="../website/content_click.php?product_type_id=hop"><span title="Hộp">Hộp</span></a>
-                            </li>
-                            <li class="tab-link" data-tab="tab-3">
-                                <a href="../website/content_click.php?product_type_id=biakep"><span title="Bìa kẹp">Bìa kẹp</span></a>
-                            </li>
-                            <li class="tab-link" data-tab="tab-4">
-                                <a href="../website/content_click.php?product_type_id=maytinh"><span title="Máy tính">Máy tính</span></a>
-                            </li>
-                            <li class="tab-link" data-tab="tab-5">
-                                <a href="../website/content_click.php?product_type_id=nhandan"><span title="Nhãn dán">Nhãn dán</span></a>
-                            </li>
-                            <li class="tab-link" data-tab="tab-6">
-                                <a href="../website/content_click.php?product_type_id=sotay"><span title="Sổ tay">Sổ tay</span></a>
-                            </li>
-                            <li class="tab-link" data-tab="tab-7">
-                                <a href="../website/content_click.php?product_type_id=vo"><span title="Vở">Vở</span></a>
-                            </li>
-                            <li class="tab-link" data-tab="tab-7">
-                                <a href="../website/content_click.php?product_type_id=tui"><span title="Túi">Túi</span></a>
-                            </li>
-                        </ul>
-                    </div>
+                    <h2>Văn phòng phẩm cho bạn</h2>
+                    <ul class="tabs tabs-title tab-desktop ajax clearfix">
+                        <li class="tab-link has-content current">
+                            <a href="../website/website.php"><span title="Tất cả sản phẩm">Tất cả sản phẩm</span></a>
+                        </li>
+                        <li class="tab-link" data-tab="tab-1">
+                            <a href="../website/content_click.php?product_type_id=but"><span title="Bút">Bút</span></a>
+                        </li>
+                        <li class="tab-link" data-tab="tab-2">
+                            <a href="../website/content_click.php?product_type_id=hop"><span title="Hộp">Hộp</span></a>
+                        </li>
+                        <li class="tab-link" data-tab="tab-3">
+                            <a href="../website/content_click.php?product_type_id=biakep"><span title="Bìa kẹp">Bìa kẹp</span></a>
+                        </li>
+                        <li class="tab-link" data-tab="tab-4">
+                            <a href="../website/content_click.php?product_type_id=maytinh"><span title="Máy tính">Máy tính</span></a>
+                        </li>
+                        <li class="tab-link" data-tab="tab-5">
+                            <a href="../website/content_click.php?product_type_id=nhandan"><span title="Nhãn dán">Nhãn dán</span></a>
+                        </li>
+                        <li class="tab-link" data-tab="tab-6">
+                            <a href="../website/content_click.php?product_type_id=sotay"><span title="Sổ tay">Sổ tay</span></a>
+                        </li>
+                        <li class="tab-link" data-tab="tab-7">
+                            <a href="../website/content_click.php?product_type_id=vo"><span title="Vở">Vở</span></a>
+                        </li>
+                        <li class="tab-link" data-tab="tab-8">
+                            <a href="../website/content_click.php?product_type_id=tui"><span title="Túi">Túi</span></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -231,7 +206,7 @@
             <div class="row">
                 <?php foreach ($dataArray as $data): ?>
                     <div class="col-lg-3 col-md-4 col-sm-6 py-2" id="font-card">
-                        <a href="./product.php?sp_ma=<?= $data['product_id'] ?>">
+                        <a href="./product.php?product_id=<?= $data['product_id'] ?>">
                             <div class="card">
                                 <img src="<?= $duongdanimg . $data['product_images'] ?>" class="card-img-top" alt="<?= $data['product_name'] ?>">
                                 <div class="card-body">
@@ -246,7 +221,7 @@
                                     <div class="action-cart">
                                        <button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">
                                        <i class="fas fa-shopping-circle"></i>Thêm vào giỏ
-</button>
+                                       </button>
                                     </div>
                                 </div>
                             </div>
@@ -257,7 +232,7 @@
         </div>
 
         <div class="text-center">
-            <a class="btn btn-warning" href="./List.php?page=1">Xem thêm</a>
+            <a class="btn btn-warning" href="./list.php?page=1">Xem thêm</a>
         </div>
     </div>
 </body>

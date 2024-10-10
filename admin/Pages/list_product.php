@@ -51,7 +51,7 @@ include('../../connect_SQL/connect.php');
 
 
     // Lấy danh sách loại sản phẩm
-    $sqlLSP = "SELECT * FROM product_type";
+    $sqlLSP = "SELECT * FROM product";
     $resultLSP = $connect->query($sqlLSP);
     $danhsachLSP = [];
     while ($row = mysqli_fetch_array($resultLSP, MYSQLI_ASSOC)) {
@@ -69,8 +69,9 @@ include('../../connect_SQL/connect.php');
         $danhsachSP[] = array(
             'product_id' => $row['product_id'],
             'product_name' => $row['product_name'],
-            'product_type_id' => $row['product_type_id'],
             'product_type_name' => $row['product_type_name'],
+            'product_type_id' => $row['product_type_id'],
+           
             'product_price' => $row['product_price'],
             'product_description' => $row['product_description'],
             'product_details' => $row['product_details'],
@@ -114,6 +115,7 @@ include('../../connect_SQL/connect.php');
             <td>{$row['product_id']}</td>
             <td>{$row['product_name']}</td>
             <td>{$row['product_type_name']}</td>
+            <td>{$row['product_type_id']}</td>
             <td>" . number_format($price, 0, ',', '.') . " VNĐ</td>
             <td>{$row['product_description']}</td>
             <td>{$row['product_details']}</td>

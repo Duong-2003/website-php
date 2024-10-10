@@ -15,12 +15,21 @@
 
 <body>
     <?php
-   session_start();
+ 
+    session_start();
+    include('../Sources/FE/iconnofi.php');
     include('../Sources/FE/top_header.php');
     include('../Sources/FE/header.php');
-    include('../Sources/FE/search.php');
-    include('../Sources/FE/footer.php');
-
+   
     
+
+    include('../Sources/FE/menu.php');
+    include('../Sources/FE/search.php');
+    
+  
+    include('../Sources/FE/footer_save.php');
+    include('../Sources/FE/footer.php');
+    
+  
     ?>
 </body>

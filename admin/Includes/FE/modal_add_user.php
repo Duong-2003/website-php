@@ -28,10 +28,10 @@
                         <label for="address" class="form-label">Địa Chỉ <span class="text-danger">*</span></label>
                         <input name="address" type="text" class="form-control" id="address" required placeholder="Nhập địa chỉ">
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="phone" class="form-label">Số Điện Thoại <span class="text-danger">*</span></label>
                         <input name="phone" type="text" class="form-control" id="phone" required placeholder="Nhập số điện thoại">
-                    </div>
+                    </div> -->
                     <!-- <div class="mb-3">
                         <label for="avatar" class="form-label">Ảnh <span class="text-danger">*</span></label>
                         <input name="avatar" type="file" class="form-control" id="avatar" accept="image/*" required>

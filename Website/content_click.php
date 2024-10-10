@@ -1,9 +1,8 @@
+<?php
 
-<?php 
+session_start();
 
- session_start();
-
-include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
+include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu ?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -15,7 +14,8 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa; /* Light background for contrast */
+            background-color: #f8f9fa;
+            /* Light background for contrast */
             margin: 0;
             padding: 0;
         }
@@ -27,8 +27,10 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
         .product-list {
             margin: 3rem auto;
             padding: 2rem;
-            max-width: 1200px; /* Center the content */
-            background-color: #ffffff; /* White background for product list */
+            max-width: 1200px;
+            /* Center the content */
+            background-color: #ffffff;
+            /* White background for product list */
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
@@ -36,9 +38,11 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
         .card {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            border-radius: 8px; /* Rounded corners */
+            border-radius: 8px;
+            /* Rounded corners */
             transition: transform 0.3s, box-shadow 0.3s;
-            overflow: hidden; /* Ensure content doesn't overflow */
+            overflow: hidden;
+            /* Ensure content doesn't overflow */
         }
 
         .card:hover {
@@ -48,8 +52,10 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
 
         .card-img-top {
             width: 100%;
-            height: 200px; /* Fixed height for uniformity */
-            object-fit: cover; /* Maintain aspect ratio */
+            height: 200px;
+            /* Fixed height for uniformity */
+            object-fit: cover;
+            /* Maintain aspect ratio */
         }
 
         .card-body {
@@ -59,13 +65,15 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
         .card-title {
             font-size: 18px;
             font-weight: bold;
-            color: #333; /* Darker text for better contrast */
+            color: #333;
+            /* Darker text for better contrast */
             margin-bottom: 10px;
         }
 
         .card-text {
             font-size: 16px;
-            color: #dc3545; /* Bootstrap danger color for price */
+            color: #dc3545;
+            /* Bootstrap danger color for price */
             margin: 0;
         }
 
@@ -84,7 +92,8 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
         }
 
         button.cart-button.btn-buy.add_to_cart:hover {
-            background: #c81d24; /* Darker red on hover */
+            background: #c81d24;
+            /* Darker red on hover */
         }
 
         h2 {
@@ -109,7 +118,8 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
         ul.tabs {
             list-style: none;
             padding: 0;
-            text-align: center; /* Center tabs */
+            text-align: center;
+            /* Center tabs */
             margin-bottom: 20px;
         }
 
@@ -139,7 +149,8 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
 
         .btn-warning {
             padding: 10px 10px;
-            background-color: #ffc107; /* Original background color */
+            background-color: #ffc107;
+            /* Original background color */
             color: white;
             border: none;
             border-radius: 5px;
@@ -149,18 +160,31 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
         }
 
         .btn-warning:hover {
-            background-color: #ffc107; /* Keep the same color on hover */
-            color: white; /* Keep text color white */
-            cursor: pointer; /* Change cursor to pointer */
+            background-color: #ffc107;
+            /* Keep the same color on hover */
+            color: white;
+            /* Keep text color white */
+            cursor: pointer;
+            /* Change cursor to pointer */
         }
+
+        
+
+        a.btn.btn-warning {
+            color: #fff;
+        }
+
+      
 
         @media (max-width: 768px) {
             .product-list {
-                padding: 1rem; /* Reduce padding on smaller screens */
+                padding: 1rem;
+                /* Reduce padding on smaller screens */
             }
 
             .card {
-                margin: 10px 0; /* Reduce margin on smaller screens */
+                margin: 10px 0;
+                /* Reduce margin on smaller screens */
             }
         }
     </style>
@@ -175,11 +199,11 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
     include('../Sources/FE/slide.php');
     include('../Sources/FE/sale.php');
 
-  
+
 
     // Định nghĩa đường dẫn hình ảnh
     $duongdanimg = '../Assets/img/sanpham/';
-    
+
     // Lấy loại sản phẩm từ tham số URL
     $productType = isset($_GET['product_type_id']) ? $_GET['product_type_id'] : '';
     $valueCart = 6; // Số sản phẩm tối đa hiển thị
@@ -191,7 +215,7 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
     LIMIT $valueCart";
     $result = $connect->query($sql);
     ?>
-    
+
     <div class="product-list">
         <div class="container">
             <div class="row">
@@ -200,31 +224,39 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
                         <h2>Văn phòng phẩm cho bạn</h2>
                         <ul class="tabs tabs-title tab-desktop ajax clearfix">
                             <li class="tab-link has-content current">
-                                <a href="../website/website.php"><span title="Tất cả sản phẩm">Tất cả sản phẩm</span></a>
+                                <a href="../website/website.php"><span title="Tất cả sản phẩm">Tất cả sản
+                                        phẩm</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-1">
-                                <a href="../website/content_click.php?product_type_id=but"><span title="Bút">Bút</span></a>
+                                <a href="../website/content_click.php?product_type_id=but"><span
+                                        title="Bút">Bút</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-2">
-                                <a href="../website/content_click.php?product_type_id=hop"><span title="Hộp">Hộp</span></a>
+                                <a href="../website/content_click.php?product_type_id=hop"><span
+                                        title="Hộp">Hộp</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-3">
-                                <a href="../website/content_click.php?product_type_id=biakep"><span title="Bìa kẹp">Bìa kẹp</span></a>
+                                <a href="../website/content_click.php?product_type_id=biakep"><span title="Bìa kẹp">Bìa
+                                        kẹp</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-4">
-                                <a href="../website/content_click.php?product_type_id=maytinh"><span title="Máy tính">Máy tính</span></a>
+                                <a href="../website/content_click.php?product_type_id=maytinh"><span
+                                        title="Máy tính">Máy tính</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-5">
-                                <a href="../website/content_click.php?product_type_id=nhandan"><span title="Nhãn dán">Nhãn dán</span></a>
+                                <a href="../website/content_click.php?product_type_id=nhandan"><span
+                                        title="Nhãn dán">Nhãn dán</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-6">
-                                <a href="../website/content_click.php?product_type_id=sotay"><span title="Sổ tay">Sổ tay</span></a>
+                                <a href="../website/content_click.php?product_type_id=sotay"><span title="Sổ tay">Sổ
+                                        tay</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-7">
                                 <a href="../website/content_click.php?product_type_id=vo"><span title="Vở">Vở</span></a>
                             </li>
                             <li class="tab-link" data-tab="tab-8">
-                                <a href="../website/content_click.php?product_type_id=tui"><span title="Túi">Túi</span></a>
+                                <a href="../website/content_click.php?product_type_id=tui"><span
+                                        title="Túi">Túi</span></a>
                             </li>
                         </ul>
                     </div>
@@ -239,22 +271,30 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
                         <div class="col-lg-3 col-md-4 col-sm-6 py-2">
                             <a href="./product.php?product_id=<?= $data['product_id'] ?>">
                                 <div class="card">
-                                    <img src="<?= $duongdanimg . $data['product_images'] ?>" class="card-img-top" alt="<?= $data['product_name'] ?>">
+                                    <img src="<?= $duongdanimg . $data['product_images'] ?>" class="card-img-top"
+                                        alt="<?= $data['product_name'] ?>">
                                     <div class="card-body">
                                         <p class="card-title"><?= $data['product_name'] ?></p>
-                                        <?php if (!empty($data['discount_percent'])): 
+                                        <?php if (!empty($data['discount_percent'])):
                                             $discountedPrice = $data['product_price'] * (1 - $data['discount_percent'] / 100); ?>
                                             <p class="card-text">
-                                                <strong style="color:#f30; font-size:25px"><?= number_format($discountedPrice, 0, '.', '.') ?> <sup>đ</sup></strong>
-                                                <span style="text-decoration: line-through; color: #888;"><?= number_format($data['product_price'], 0, '.', '.') ?> <sup>đ</sup></span>
+                                                <strong
+                                                    style="color:#f30; font-size:25px"><?= number_format($discountedPrice, 0, '.', '.') ?>
+                                                    <sup>đ</sup></strong>
+                                                <span
+                                                    style="text-decoration: line-through; color: #888;"><?= number_format($data['product_price'], 0, '.', '.') ?>
+                                                    <sup>đ</sup></span>
                                             </p>
                                         <?php else: ?>
                                             <p class="card-text">
-                                                <strong style="color:#f30; font-size:25px"><?= number_format($data['product_price'], 0, '.', '.') ?> <sup>đ</sup></strong>
+                                                <strong
+                                                    style="color:#f30; font-size:25px"><?= number_format($data['product_price'], 0, '.', '.') ?>
+                                                    <sup>đ</sup></strong>
                                             </p>
                                         <?php endif; ?>
                                         <div class="action-cart">
-                                            <button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">Thêm vào giỏ</button>
+                                            <button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">Thêm vào
+                                                giỏ</button>
                                         </div>
                                     </div>
                                 </div>
@@ -268,7 +308,7 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
         </div>
 
         <div class="text-center">
-            <a class="btn btn-primary" href="./List.php?page=1">Xem thêm</a>
+            <a class="btn btn-warning" href="./list.php?page=1">Xem thêm</a>
         </div>
     </div>
 
@@ -279,4 +319,5 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu?>
     include('../Sources/FE/footer.php');
     ?>
 </body>
+
 </html>

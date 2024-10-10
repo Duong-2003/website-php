@@ -29,23 +29,28 @@
         }
 
         .input-group-text {
-            min-width: 200px; /* Giữ chiều rộng tối thiểu cho nhãn */
+            min-width: 200px;
+            /* Giữ chiều rộng tối thiểu cho nhãn */
         }
 
         .form-control {
-            box-shadow: none; /* Bỏ bóng cho input */
+            box-shadow: none;
+            /* Bỏ bóng cho input */
         }
 
         .table {
             margin-top: 20px;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             vertical-align: middle;
         }
 
-        .btn-danger, .btn-success {
-            min-width: 80px; /* Chiều rộng tối thiểu cho nút */
+        .btn-danger,
+        .btn-success {
+            min-width: 80px;
+            /* Chiều rộng tối thiểu cho nút */
         }
     </style>
 </head>
@@ -53,9 +58,9 @@
 <body>
 
     <?php
-  include('./admin_website.php');    
-  include('../../connect_SQL/connect.php');
-  
+    include('./admin_website.php');
+    include('../../connect_SQL/connect.php');
+
 
     // Lấy danh sách loại sản phẩm
     $sql = "SELECT * FROM product_type";
@@ -71,11 +76,12 @@
     ?>
 
     <div class="content container mt-5">
-        <h1 class="text-center">Danh Sách Loại Sản Phẩm</h1>
+        <h1 class="text-center">Danh sách loại sản phẩm</h1>
         <hr style="color:red">
         <?php
         $notifi = isset($_GET["notifi"]) ? htmlspecialchars($_GET["notifi"]) : '';
         ?>
+        <p id="notifi_log" class="text-success"><?= $notifi ?></p>
         <p id="notifi_log" class="text-success"><?= $notifi ?></p>
 
         <table id="danhsach" class="table table-striped table-bordered table-hover">
@@ -87,13 +93,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($danhsachLSP as $lsp) : ?>
+                <?php foreach ($danhsachLSP as $lsp): ?>
                     <tr>
                         <td><?= htmlspecialchars($lsp['product_type_name']) ?></td>
                         <td><?= htmlspecialchars($lsp['product_type_id']) ?></td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <a href='../Includes/BE/DeleteSQL.php?key=loaisp_ten&table=loaisp&datakey=<?= urlencode($lsp['loaisp_ten']) ?>' class="btn btn-danger mx-1">Xóa</a>
+                                <a href='../Includes/BE/delete_SQL.php?key=product_type_id&table=product_type&datakey=<?= urlencode($lsp['product_type_id']) ?>'
+                                    class="btn btn-danger mx-1">Xóa</a>
                                 <!-- <a href="#" class="btn btn-warning mx-1">Sửa</a> -->
                             </div>
                         </td>
@@ -104,21 +111,21 @@
 
         <div class="mt-4">
             <h5 class="text-dark">Thêm loại sản phẩm</h5>
-            <form action='../Includes/BE/Add_productType.php' method="post">
+            <form action='../Includes/BE/add_product_type.php' method="post">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Tên loại sản phẩm<span class="text-danger">*</span></span>
-                    <input name="loaisp" type="text" class="form-control" required>
+                    <input name="product_type_name" type="text" class="form-control" required>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Loại sản phẩm<span class="text-danger">*</span></span>
-                    <input name="loaisanpham" type="text" class="form-control" required>
+                    <input name="product_type_id" type="text" class="form-control" required>
                 </div>
                 <button type="submit" name="submit" class="btn btn-success">Thêm</button>
             </form>
         </div>
     </div>
 
-    
+
 </body>
 
 </html>

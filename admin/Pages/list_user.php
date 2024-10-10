@@ -24,7 +24,7 @@ while ($row = $resultUsers->fetch_assoc()) {
         'name' => htmlspecialchars($row['name']),
         'email' => htmlspecialchars($row['email']),
         'address' => htmlspecialchars($row['address']),
-        'phone' => htmlspecialchars($row['phone']),
+       
         'avatar' => htmlspecialchars($row['avatar']),
         'role' => (int) $row['role'],
         'created_at' => htmlspecialchars($row['created_at']),
@@ -53,7 +53,7 @@ $stmt->close();
                 <th>Họ Tên</th>
                 <th>Email</th>
                 <th>Địa Chỉ</th>
-                <th>Số Điện Thoại</th>
+                
                 <th>Ảnh</th>
                 <th>Quyền</th>
                 <th>Ngày Tạo</th>
@@ -77,7 +77,7 @@ $stmt->close();
                     <td>{$user['name']}</td>
                     <td>{$user['email']}</td>
                     <td>{$user['address']}</td>
-                    <td>{$user['phone']}</td>
+                    
                     <td><img src='{$imgPath}' alt='Avatar' style='max-height: 50px; width: auto;'></td>
                     <td>" . ($user['role'] === 1 ? 'ADMIN' : 'USER') . "</td>
                     <td>{$user['created_at']}</td>

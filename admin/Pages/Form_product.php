@@ -40,13 +40,6 @@
     .table th, .table td {
       vertical-align: middle;
     }
-    .table th {
-        width: 1%; 
-    }
-
-    .table td {
-        width: 1%; 
-    }
     .btn-primary {
       background-color: #28a745;
       border: none;
@@ -59,15 +52,12 @@
 
 <body>
 
- 
-
   <div class="content">
     <?php
-    
     include('./admin_website.php');    
-include('../../connect_SQL/connect.php');
+    include('../../connect_SQL/connect.php');
 
-    $sqlLSP = "SELECT * FROM loaisp";
+    $sqlLSP = "SELECT * FROM product_type";
     $resultLSP = $connect->query($sqlLSP);
    
     if ($resultLSP === false) {
@@ -78,8 +68,8 @@ include('../../connect_SQL/connect.php');
     $danhsachLSP = [];
     while ($row = mysqli_fetch_array($resultLSP, MYSQLI_ASSOC)) {
       $danhsachLSP[] = array(
-        'loaisp_ten' => $row['loaisp_ten'],
-        'loaisanpham' => $row['loaisanpham']
+        'product_type_id' => $row['product_type_id'],
+        'product_type_name' => $row['product_type_name']
       );
     }
     
@@ -90,7 +80,7 @@ include('../../connect_SQL/connect.php');
         exit();
     }
 
-    $sqlSP = "SELECT * FROM sanpham WHERE sp_ma = '$dataKey'";
+    $sqlSP = "SELECT * FROM product WHERE product_id = '$dataKey'";
     $result = $connect->query($sqlSP);
     
     if ($result === false || $result->num_rows != 1) {
@@ -121,14 +111,15 @@ include('../../connect_SQL/connect.php');
           </thead>
           <tbody>
             <tr>
-              <td><?= htmlspecialchars($sp['sp_ma']) ?></td>
-              <td><?= htmlspecialchars($sp['sp_ten']) ?></td>
-              <td><?= htmlspecialchars($sp['loaisp_ten']) ?></td>
-              <td><?= number_format($sp['sp_gia'], 0, ',', '.') ?> VNĐ</td>
-              <td><?= htmlspecialchars($sp['sp_mota']) ?></td>
-              <td><?= htmlspecialchars($sp['sp_motachitiet']) ?></td>
-              <td><img src="<?= htmlspecialchars($sp['sp_img']) ?>" alt="Image" style="max-width: 100px;"></td>
-              <td><?= htmlspecialchars($sp['sp_soluong']) ?></td>
+              <td><?= htmlspecialchars($sp['product_id']) ?></td>
+              <td><?= htmlspecialchars($sp['product_name']) ?></td>
+              <td><?= htmlspecialchars($sp['product_type_name']) ?></td>
+              <td><?= htmlspecialchars($sp['product_type_id']) ?></td>
+              <td><?= number_format($sp['product_price'], 0, ',', '.') ?> VNĐ</td>
+              <td><?= htmlspecialchars($sp['product_description']) ?></td>
+              <td><?= htmlspecialchars($sp['product_details']) ?></td>
+              <td><img src="<?= htmlspecialchars($sp['product_images']) ?>" alt="Image" style="max-width: 100px;"></td>
+              <td><?= htmlspecialchars($sp['product_quantity']) ?></td>
             </tr>
           </tbody>
         </table>
@@ -139,45 +130,43 @@ include('../../connect_SQL/connect.php');
       <div class="card-header">Sửa sản phẩm</div>
       <div class="card-body">
         <div id="error-message" class="text-danger error-message"></div>
-        <form action="../Includes/BE/Edit_product.php" method="post" enctype="multipart/form-data">
-          <input type="hidden" name="sp_ma" value="<?= htmlspecialchars($sp['sp_ma']) ?>">
+        <form action="../Includes/BE/edit_product.php" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="product_id" value="<?= htmlspecialchars($sp['product_id']) ?>">
 
           <div class="mb-3">
             <label class="form-label">Tên sản phẩm <span class="text-danger">*</span></label>
-            <input value="<?= htmlspecialchars($sp['sp_ten']) ?>" name="sp_ten" type="text" class="form-control" required>
+            <input value="<?= htmlspecialchars($sp['product_name']) ?>" name="product_name" type="text" class="form-control" required>
           </div>
-
           <div class="mb-3">
-            <label class="form-label">Loại sản phẩm <span class="text-danger">*</span></label>
-            <select name="productType" class="form-select" required>
+            <label class="form-label">Tên loại sản phẩm <span class="text-danger">*</span></label>
+            <select name="product_type_name" class="form-select" required>
               <?php foreach ($danhsachLSP as $Lsp) : ?>
-                <option value="<?= htmlspecialchars($Lsp['loaisanpham']) ?>" <?= ($sp['loaisanpham'] == $Lsp['loaisanpham']) ? 'selected' : ''; ?>><?= htmlspecialchars($Lsp['loaisanpham']) ?></option>
+                <option value="<?= htmlspecialchars($Lsp['product_type_name']) ?>" <?= ($sp['product_type_name'] == $Lsp['product_type_id']) ? 'selected' : ''; ?>><?= htmlspecialchars($Lsp['product_type_name']) ?></option>
               <?php endforeach; ?>
             </select>
           </div>
-
           <div class="mb-3">
-            <label class="form-label">Tên loại sản phẩm <span class="text-danger">*</span></label>
-            <select name="productTypeName" class="form-select" required>
+            <label class="form-label">Loại sản phẩm <span class="text-danger">*</span></label>
+            <select name="product_type_id" class="form-select" required>
               <?php foreach ($danhsachLSP as $Lsp) : ?>
-                <option value="<?= htmlspecialchars($Lsp['loaisp_ten']) ?>" <?= ($sp['loaisp_ten'] == $Lsp['loaisp_ten']) ? 'selected' : ''; ?>><?= htmlspecialchars($Lsp['loaisp_ten']) ?></option>
+                <option value="<?= htmlspecialchars($Lsp['product_type_id']) ?>" <?= ($sp['product_type_id'] == $Lsp['product_type_id']) ? 'selected' : ''; ?>><?= htmlspecialchars($Lsp['product_type_id']) ?></option>
               <?php endforeach; ?>
             </select>
           </div>
          
           <div class="mb-3">
             <label class="form-label">Giá sản phẩm <span class="text-danger">*</span></label>
-            <input value="<?= htmlspecialchars($sp['sp_gia']) ?>" name="sp_gia" type="text" class="form-control" required>
+            <input value="<?= htmlspecialchars($sp['product_price']) ?>" name="product_price" type="text" class="form-control" required>
           </div>
 
           <div class="mb-3">
             <label class="form-label">Mô tả sản phẩm</label>
-            <textarea name="sp_mota" class="form-control" rows="6"><?= htmlspecialchars($sp['sp_mota']) ?></textarea>
+            <textarea name="product_description" class="form-control" rows="6"><?= htmlspecialchars($sp['product_description']) ?></textarea>
           </div>
 
           <div class="mb-3">
             <label class="form-label">Mô tả sản phẩm chi tiết <span class="text-danger">*</span></label>
-            <textarea name="sp_motachitiet" class="form-control" rows="6" required><?= htmlspecialchars($sp['sp_motachitiet']) ?></textarea>
+            <textarea name="product_details" class="form-control" rows="6" required><?= htmlspecialchars($sp['product_details']) ?></textarea>
           </div>
 
           <div class="form-check form-switch mb-3">
@@ -186,16 +175,17 @@ include('../../connect_SQL/connect.php');
           </div>
 
           <div class="mb-3" id="image-section" style="display:none;">
-            <input name="sp_img" type="file" class="form-control" accept="image/*" onchange="previewImage(event)">
+            <input name="product_images" type="file" class="form-control" accept="image/*" onchange="previewImage(event)">
             <img id="image-preview" src="" alt="Image Preview">
           </div>
 
           <div class="mb-3">
             <label class="form-label">Số lượng <span class="text-danger">*</span></label>
-            <input value="<?= htmlspecialchars($sp['sp_soluong']) ?>" name="sp_soluong" type="number" min='0' class="form-control" required>
+            <input value="<?= htmlspecialchars($sp['product_quantity']) ?>" name="product_quantity" type="number" min='0' class="form-control" required>
           </div>
 
           <button type="submit" name="submit" class="btn btn-primary">Sửa</button>
+          <a href="../Pages/list_user.php" class="btn btn-secondary">Quay Về</a>
         </form>
       </div>
     </div>
@@ -236,6 +226,6 @@ include('../../connect_SQL/connect.php');
       document.getElementById("error-message").textContent = "";
     });
   </script>
-</body>
 
+</body>
 </html>

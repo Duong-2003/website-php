@@ -229,7 +229,7 @@
                                                             ?>
                                                             <div class="action-cart group-buttons d-flex align-items-center justify-content-center">
                                                                 <button class="cart-button btn-buy add_to_cart" title="Thêm vào giỏ">
-                                                                    <a id="buy" href="./product.php?product_id=<?= $data['product_id'] ?>">Thêm vào giỏ</a>
+                                                                    <a id="buy" href="../Website/product.php?product_id=<?= $data['product_id'] ?>">Thêm vào giỏ</a>
                                                                 </button>
                                                             </div>
                                                         </div>

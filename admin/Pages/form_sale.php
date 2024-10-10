@@ -21,7 +21,7 @@
         $sale_id = $_GET['datakey'];
 
         // Lấy thông tin giảm giá từ cơ sở dữ liệu
-        $sql = "SELECT * FROM sales WHERE sale_id = ?";
+        $sql = "SELECT * FROM sale WHERE sale_id = ?";
         $stmt = $connect->prepare($sql);
         $stmt->bind_param("i", $sale_id);
         $stmt->execute();
@@ -40,12 +40,12 @@
 
     <div class="container">
         <h1 class="text-center mb-4">Sửa Giảm Giá</h1>
-        <form action="../Includes/BE/Edit_Sales.php" method="POST">
+        <form action="../Includes/BE/edit_sale.php" method="POST">
             <input type="hidden" name="sale_id" value="<?php echo htmlspecialchars($sale['sale_id']); ?>">
 
             <div class="mb-3">
-                <label for="sp_ma" class="form-label">Mã Sản Phẩm <span class="text-danger">*</span></label>
-                <input type="text" name="sp_ma" class="form-control" value="<?php echo htmlspecialchars($sale['sp_ma']); ?>" required>
+                <label for="product_id" class="form-label">Mã Sản Phẩm <span class="text-danger">*</span></label>
+                <input type="text" name="product_id" class="form-control" value="<?php echo htmlspecialchars($sale['product_id']); ?>" required>
             </div>
 
             <div class="mb-3">
@@ -78,6 +78,7 @@
 
             <button type="submit" class="btn btn-primary">Cập Nhật Giảm Giá</button>
             <a href="your_redirect_page.php" class="btn btn-secondary">Hủy</a>
+            <a href="../Pages/list_user.php" class="btn btn-secondary">Quay Về</a>
         </form>
     </div>
 

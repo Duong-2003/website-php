@@ -1,22 +1,22 @@
 <?php
-ob_start(); // Bắt đầu bộ đệm đầu ra
+ob_start(); // Start output buffering
 session_start();
 
-
-// Kiểm tra xem người dùng đã đăng nhập chưa
+// Check if the user is logged in
 if (!isset($_SESSION['username'])) {
-    header("Location: login.php"); // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+    header("Location: login.php"); // Redirect to login page if not logged in
     exit();
 }
 
-$username = $_SESSION['username']; // Get the username from session
+$username = $_SESSION['user_id']; // Get the username from session
 
 include('../Sources/FE/top_header.php');
 include('../Sources/FE/header.php');
-include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu
+include('../connect_SQL/connect.php'); // Connect to the database
 
-if (isset($_GET['sp_ma']) && $_GET['sp_ma'] != '') {
-    $id = intval($_GET['sp_ma']);
+// Kiểm tra xem product_id có được đặt và hợp lệ không
+if (isset($_GET['product_id']) && !empty($_GET['product_id'])) {
+    $id = intval($_GET['product_id']);
     $sql = "SELECT * FROM product WHERE product_id = ?";
     $stmt = $connect->prepare($sql);
     $stmt->bind_param("i", $id);
@@ -29,24 +29,38 @@ if (isset($_GET['sp_ma']) && $_GET['sp_ma'] != '') {
         exit();
     }
 } else {
-    echo "ERROR: Không nhận được id";
+    echo "ERROR: Không nhận được ID";
     exit();
 }
 
+// Get user_id from the database
+$sqlUser = "SELECT * FROM user WHERE user_id = ?";
+$stmtUser = $connect->prepare($sqlUser);
+$stmtUser->bind_param("s", $username);
+$stmtUser->execute();
+$resultUser = $stmtUser->get_result();
+$user = $resultUser->fetch_assoc();
+
+if (!$user) {
+    echo "ERROR: Không tìm thấy người dùng.";
+    exit();
+}
+$user_id = $user['user_id']; // Get the user_id for the order
+
 // Handle order submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
-    $soluong = intval($_POST['donhang_soluongsp']);
-    $gia = $sp['product__price'] * $soluong;
+    $soluong = intval($_POST['order_quantity']);
+    $gia = $sp['product_price'] * $soluong;
 
     // Insert order into the database
-    $sqlInsert = "INSERT INTO order (sp_ma, name, donhang_soluongsp, donhang_gia, timeorder, donhang_trangthai) 
+    $sqlInsert = "INSERT INTO `order` (product_id, user_id, order_quantity, order_price, timeorder, order_status) 
                   VALUES (?, ?, ?, ?, NOW(), 'Đang chờ')";
     $stmt = $connect->prepare($sqlInsert);
-    $stmt->bind_param("isii", $sp['sp_ma'], $username, $soluong, $gia);
+    $stmt->bind_param("isii", $sp['product_id'], $user_id, $soluong, $gia);
 
     if ($stmt->execute()) {
         $notifi = "Đặt hàng thành công!";
-        header("Location: ./cart.php?sp_ma=$id&notifi=" . urlencode($notifi));
+        header("Location: ./cart.php?product_id=$product_id&notifi=" . urlencode($notifi));
         exit();
     } else {
         $error = "Có lỗi xảy ra, vui lòng thử lại.";
@@ -56,7 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,13 +83,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
         }
-
         .notifi>p {
             font-size: 20px;
             text-align: center;
             font-weight: 600;
         }
-
         #item {
             display: inline-block;
             height: 40px;
@@ -88,31 +99,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             font-size: 16px;
             border-right: solid 1px #fff;
         }
-
         #item-head {
             font-family: 'Cursive';
             color: #cf5a51;
             font-size: 28px;
         }
-
         button#btnModal {
             margin-left: 10px;
             background-color: #9c8350;
             color: #fff;
             border-color: #9c8350;
         }
-
         .modal-header {
             background-color: #9c8350;
             color: white;
         }
-
-     
-
-        
     </style>
 </head>
-
 <body>
     <div class="notifi">
         <p class="text-primary"><?= isset($notifi) ? $notifi : '' ?></p>
@@ -122,9 +125,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     <form method="post" action="">
         <div class="container py-4">
             <div class="row">
-                <div class="col-lg-6 col-md-6  rounded shadow-sm p-4" style="background: linear-gradient(135deg, #f8f9fa, #e2e6ea);">
-                    <img src="<?= $duongdanimg . $sp['product_images'] ?>" width = "100%"  height = "100% " class="img-fluid rounded product-image">
-             
+                <div class="col-lg-6 col-md-6 rounded shadow-sm p-4" style="background: linear-gradient(135deg, #f8f9fa, #e2e6ea);">
+                    <img src="<?= $duongdanimg . htmlspecialchars($sp['product_images']) ?>" width="100%" height="100%" class="img-fluid rounded product-image">
                 </div>
                 <div class="col-lg-6 col-md-6 bg-light rounded shadow-sm p-4">
                     <h2 id="item-head"><?= htmlspecialchars($sp['product_name']) ?></h2>
@@ -137,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                     <strong id="item">Số lượng còn lại: <?= $sp['product_quantity'] > 0 ? $sp['product_quantity'] : '<span class="text-danger">Hết hàng</span>' ?></strong>
                     <div class="input-group my-2">
                         <span class="input-group-text"><strong>Số lượng mua:</strong></span>
-                        <input id='value_buy' name="donhang_soluongsp" type="number" max='<?= $sp['product_quantity'] ?>' min='1' value="1" class="form-control">
+                        <input id='value_buy' name="order_quantity" type="number" max='<?= $sp['product_quantity'] ?>' min='1' value="1" class="form-control">
                     </div>
                     <strong id="item">Chi tiết: <?= htmlspecialchars($sp['product_details']) ?></strong>
 
@@ -150,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         const outputElement = document.getElementById('pay');
                         inputElement.addEventListener('change', function(event) {
                             const quantity = event.target.value;
-                            const price = <?= $sp['sp_gia'] ?>;
+                            const price = <?= $sp['product_price'] ?>;
                             const totalPrice = quantity * price;
                             outputElement.innerHTML = "<strong>Giá phải trả: </strong>" + totalPrice.toLocaleString('en-US') + "<sup>đ</sup>";
                         });
@@ -183,8 +185,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                     <script>
                         const contentModal = document.getElementById('modal-content');
                         document.getElementById('btnModal').addEventListener("click", function() {
-                            const productName = "<?= htmlspecialchars($sp['sp_ten']) ?>";
-                            const totalPrice = document.getElementById('value_buy').value * <?= $sp['sp_gia'] ?>;
+                            const productName = "<?= htmlspecialchars($sp['product_name']) ?>";
+                            const totalPrice = document.getElementById('value_buy').value * <?= $sp['product_price'] ?>;
                             contentModal.innerHTML = `Bạn có chắc chắn mua ${productName}<br>Giá: ${totalPrice.toLocaleString('en-US')} <sup>đ</sup>`;
                         });
                     </script>
@@ -194,10 +196,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     </form>
 
     <?php
-     include('../Website/comments.php');
-      include('../Sources/FE/product_generation.php');
+    include('../Website/comments.php');
+    include('../Sources/FE/product_generation.php');
     include('../Sources/FE/footer_save.php'); 
-     include('../Sources/FE/footer.php'); 
-     ?>
+    include('../Sources/FE/footer.php'); 
+    ?>
 </body>
 </html>

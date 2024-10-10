@@ -181,7 +181,7 @@
                             while ($data = $result->fetch_assoc()) {
                                 ?>
                                 <div class="swiper-slide product-block-item">
-                                    <a href="./product.php?sp_ma=<?= $data['product_id'] ?>">
+                                    <a href="./product.php?product_id=<?= $data['product_id'] ?>">
                                         <img src="<?= $duongdanimg . $data['product_images'] ?>" alt="<?= $data['product_name'] ?>">
                                         <div class="product-info">
                                             <p class="item-product-name"><strong><?= $data['product_name'] ?></strong></p>

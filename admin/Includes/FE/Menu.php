@@ -111,9 +111,7 @@ if (!isset($_SESSION['username'])) {
         </div>
         <div class="modal-body">
             <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a href="../Pages/ecom.php" class="nav-link"><i class="fa-solid fa-sign-out-alt"></i> Xem trang</a>
-                </li>
+              
                 <li class="nav-item">
                     <a href="../Pages/ecom.php" class="nav-link"><i class="fa-solid fa-chart-line"></i> Thống kê</a>
                 </li>

@@ -93,8 +93,8 @@
                 <td>" . ($row['is_expired'] ? '1' : '0') . "</td>
                 <td>
                     <div class='d-flex justify-content-center'>
-                        <a href='../Includes/BE/DeleteSQL.php?key=sale_id&table=sales&datakey={$row['sale_id']}' class='btn btn-danger mx-1'>Xóa</a>
-                        <a href='../Pages/Form_Sales.php?datakey={$row['sale_id']}' class='btn btn-warning mx-1'>Sửa</a>
+                        <a href='../Includes/BE/delete_SQL.php?key=sale_id&table=sales&datakey={$row['sale_id']}' class='btn btn-danger mx-1'>Xóa</a>
+                        <a href='../Pages/form_sale.php?datakey={$row['sale_id']}' class='btn btn-warning mx-1'>Sửa</a>
                     </div>
                 </td>
             </tr>";

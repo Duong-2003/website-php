@@ -1,6 +1,6 @@
 <?php
-
 include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu
+
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +24,8 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu
                 <a href="#" title="Bình luận đánh giá sản phẩm">Bình luận đánh giá sản phẩm</a>
             </div>
 
-            <form action="comments_process.php" method="POST" class="mt-3">
-                <input type="hidden" name="sp_ma" value="1"> <!-- Mã sản phẩm -->
+            <form action="../Sources/BE/comments_process.php" method="POST" class="mt-3">
+                <input type="hidden" name="product_id" value="1"> <!-- Mã sản phẩm -->
                 <div class="mb-3">
                     <input type="text" class="form-control" name="username" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" readonly>
                 </div>
@@ -39,10 +39,10 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu
                 <h3>Các Bình Luận:</h3>
                 <?php
                 // Lấy các bình luận
-                $sp_ma = 1; // Thay đổi giá trị này theo mã sản phẩm
+                $product_id = 1; // Thay đổi giá trị này theo mã sản phẩm
                 $sql = "SELECT * FROM comments WHERE product_id = ? ORDER BY created_at DESC";
                 $stmt = $connect->prepare($sql);
-                $stmt->bind_param("i", $sp_ma);
+                $stmt->bind_param("i", $product_id);
                 $stmt->execute();
                 $result = $stmt->get_result();
 
@@ -51,12 +51,11 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu
                     echo '<div class="comment-author">';
                     echo '<img src="' . htmlspecialchars($row['avatar']) . '" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%;">';
                     echo htmlspecialchars($row['user_name']) . '</div>';
-                    echo '<div class="comment-text">' . htmlspecialchars($row['comment']) . '</div>';
+                    echo '<div class="comment-text">' . nl2br(htmlspecialchars($row['comment'])) . '</div>'; // Dùng nl2br để chuyển đổi dòng mới
                     echo '</div>';
                 }
 
-                // Giải phóng tài nguyên
-                $stmt->close();
+                
                 ?>
             </div>
         </div>
