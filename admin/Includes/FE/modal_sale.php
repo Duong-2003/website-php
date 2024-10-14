@@ -7,22 +7,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="../Includes/BE/Add_Sales.php" method="POST">
+                <form action="../Includes/BE/add_sale.php" method="POST">
                 <div class="mb-3">
-    <label for="sp_ma" class="form-label">Chọn Sản Phẩm <span class="text-danger">*</span></label>
+    <label for="product_id" class="form-label">Chọn Sản Phẩm <span class="text-danger">*</span></label>
     <input type="text" id="search_product" class="form-control" placeholder="Nhập tên sản phẩm hoặc chọn từ danh sách" oninput="filterProducts()" />
-    <select id="product_select" name="sp_ma" class="form-select mt-2" required>
+    <select id="product_select" name="product_id" class="form-select mt-2" required>
         <option value="">Chọn sản phẩm</option>
         <?php
         // Truy vấn sản phẩm từ cơ sở dữ liệu
-        $sqlProducts = "SELECT sp_ma, sp_ten FROM sanpham";
+        $sqlProducts = "SELECT product_id, product_name FROM product";
         $resultProducts = $connect->query($sqlProducts);
 
         // Lưu danh sách sản phẩm vào một biến để sử dụng trong JavaScript
         $products = [];
         while ($product = $resultProducts->fetch_assoc()) {
             $products[] = $product;
-            echo "<option value='" . htmlspecialchars($product['sp_ma']) . "'>" . htmlspecialchars($product['sp_ten']) . "</option>";
+            echo "<option value='" . htmlspecialchars($product['product_id']) . "'>" . htmlspecialchars($product['product_name']) . "</option>";
         }
         ?>
     </select>
@@ -66,10 +66,10 @@
 
         // Lọc và thêm các sản phẩm phù hợp vào select
         products.forEach(product => {
-            if (product.sp_ten.toLowerCase().includes(input)) {
+            if (product.product_name.toLowerCase().includes(input)) {
                 const option = document.createElement('option');
-                option.value = product.sp_ma;
-                option.textContent = product.sp_ten;
+                option.value = product.product_id;
+                option.textContent = product.product_name;
                 select.appendChild(option);
             }
         });

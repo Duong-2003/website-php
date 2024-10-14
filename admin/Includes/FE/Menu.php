@@ -28,7 +28,7 @@ if (!isset($_SESSION['username'])) {
 
         .sidebar {
             height: 100vh;
-            width: 300px;
+            width: 310px;
             position: fixed;
             top: 0;
             left: 0;
@@ -122,13 +122,16 @@ if (!isset($_SESSION['username'])) {
                     <a href="../Pages/list_product.php" class="nav-link"><i class="fa-solid fa-box"></i> Danh mục sản phẩm</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Pages/list_sale.php" class="nav-link"><i class="fa-solid fa-box"></i> Danh mục sản phẩm giảm </a>
+                    <a href="../Pages/list_sale.php" class="nav-link"><i class="fa-solid fa-box"></i> Danh mục sản phẩm giảm giá </a>
                 </li>
                 <li class="nav-item">
                     <a href="../Pages/list_user.php" class="nav-link"><i class="fa-solid fa-users"></i> Danh mục tài khoản</a>
                 </li>
                 <li class="nav-item">
                     <a href="../Pages/list_order.php" class="nav-link"><i class="fa-solid fa-shopping-cart"></i> Danh mục đơn hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../Pages/list_profile.php" class="nav-link"><i class="fa-solid fa-id-card"></i>Thông tin người dùng </a>
                 </li>
                 <li class="nav-item">
                     <a href="../Includes/BE/admin_logout_process.php" class="nav-link"><i class="fa-solid fa-sign-out-alt"></i> Đăng xuất</a>
