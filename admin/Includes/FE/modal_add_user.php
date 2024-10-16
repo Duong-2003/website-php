@@ -28,10 +28,7 @@
                         <label for="address" class="form-label">Địa Chỉ <span class="text-danger">*</span></label>
                         <input name="address" type="text" class="form-control" id="address" required placeholder="Nhập địa chỉ">
                     </div>
-                    <!-- <div class="mb-3">
-                        <label for="phone" class="form-label">Số Điện Thoại <span class="text-danger">*</span></label>
-                        <input name="phone" type="text" class="form-control" id="phone" required placeholder="Nhập số điện thoại">
-                    </div> -->
+                  
                     <!-- <div class="mb-3">
                         <label for="avatar" class="form-label">Ảnh <span class="text-danger">*</span></label>
                         <input name="avatar" type="file" class="form-control" id="avatar" accept="image/*" required>
@@ -53,7 +50,7 @@
             email: document.querySelector('input[name="email"]').value.trim(),
             password: document.querySelector('input[name="password"]').value.trim(),
             address: document.querySelector('input[name="address"]').value.trim(),
-            phone: document.querySelector('input[name="phone"]').value.trim(),
+         
             avatar: document.querySelector('input[name="avatar"]').value.trim(),
         };
 

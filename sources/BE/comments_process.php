@@ -5,7 +5,7 @@ include('../../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Lấy dữ liệu từ biểu mẫu
     $product_id = intval($_POST['product_id']); // Mã sản phẩm
-    $user_name = htmlspecialchars($_SESSION['user_name']); // Tên người dùng
+    $user_name = htmlspecialchars($_SESSION['username']); // Tên người dùng
     $comment = htmlspecialchars($_POST['comment']); // Nội dung bình luận
     $avatar = isset($_SESSION['avatar']) ? htmlspecialchars($_SESSION['avatar']) : null; // Đường dẫn đến ảnh đại diện
 

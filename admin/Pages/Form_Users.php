@@ -79,10 +79,10 @@ $user = $result->fetch_assoc();
         <input value="<?= htmlspecialchars($user['address']) ?>" name="address" type="text" class="form-control">
       </div>
 
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label class="form-label">Số Điện Thoại</label>
         <input value="<?= htmlspecialchars($user['phone']) ?>" name="phone" type="text" class="form-control">
-      </div>
+      </div> -->
 
       <div class="mb-3">
         <label class="form-label">Quyền <span class="text-danger">*</span></label>

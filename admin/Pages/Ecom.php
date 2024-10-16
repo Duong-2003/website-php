@@ -1,4 +1,7 @@
-
+<?php
+    include('./admin_website.php');
+    include('../../connect_SQL/connect.php');
+    ?>
 <style>
     .widget-flat {
         position: relative;

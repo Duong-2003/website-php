@@ -21,9 +21,9 @@ if (!isset($_SESSION['username'])) {
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
-            transition: margin-left 0.3s;
             display: flex;
             margin: 0;
+            transition: margin-left 0.3s;
         }
 
         .sidebar {
@@ -43,13 +43,18 @@ if (!isset($_SESSION['username'])) {
             color: #f8f9fa;
             font-size: 1.1rem;
             transition: background-color 0.3s;
-            white-space: nowrap;
             padding: 10px 15px;
             border-radius: 5px;
+            display: flex;
+            align-items: center;
         }
 
         .sidebar .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar .nav-link i {
+            margin-right: 10px;
         }
 
         .avatar {
@@ -66,15 +71,8 @@ if (!isset($_SESSION['username'])) {
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .dropdown-menu {
-            width: 250px;
-            position: absolute;
-            right: 0;
-            z-index: 1000;
-        }
-
         .content {
-            margin-left: 300px; /* Adjust based on sidebar width */
+            margin-left: 310px; /* Adjust based on sidebar width */
             padding: 20px;
             flex-grow: 1;
         }
@@ -82,20 +80,22 @@ if (!isset($_SESSION['username'])) {
         @media (max-width: 768px) {
             body {
                 flex-direction: column;
-                margin-left: 0;
             }
 
             .sidebar {
                 width: 100%;
                 height: auto;
                 position: relative;
+                padding-top: 10px;
             }
 
             .sidebar .nav-link {
                 font-size: 1rem;
             }
 
-         
+            .content {
+                margin-left: 0; /* Remove margin for mobile view */
+            }
         }
     </style>
 </head>
@@ -111,7 +111,6 @@ if (!isset($_SESSION['username'])) {
         </div>
         <div class="modal-body">
             <ul class="nav flex-column">
-              
                 <li class="nav-item">
                     <a href="../Pages/ecom.php" class="nav-link"><i class="fa-solid fa-chart-line"></i> Thống kê</a>
                 </li>
@@ -122,7 +121,7 @@ if (!isset($_SESSION['username'])) {
                     <a href="../Pages/list_product.php" class="nav-link"><i class="fa-solid fa-box"></i> Danh mục sản phẩm</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Pages/list_sale.php" class="nav-link"><i class="fa-solid fa-box"></i> Danh mục sản phẩm giảm giá </a>
+                    <a href="../Pages/list_sale.php" class="nav-link"><i class="fa-solid fa-tag"></i> Danh mục sản phẩm giảm giá</a>
                 </li>
                 <li class="nav-item">
                     <a href="../Pages/list_user.php" class="nav-link"><i class="fa-solid fa-users"></i> Danh mục tài khoản</a>
@@ -131,7 +130,7 @@ if (!isset($_SESSION['username'])) {
                     <a href="../Pages/list_order.php" class="nav-link"><i class="fa-solid fa-shopping-cart"></i> Danh mục đơn hàng</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Pages/list_profile.php" class="nav-link"><i class="fa-solid fa-id-card"></i>Thông tin người dùng </a>
+                    <a href="../Pages/list_profile.php" class="nav-link"><i class="fa-solid fa-id-card"></i> Thông tin người dùng</a>
                 </li>
                 <li class="nav-item">
                     <a href="../Includes/BE/admin_logout_process.php" class="nav-link"><i class="fa-solid fa-sign-out-alt"></i> Đăng xuất</a>
@@ -140,7 +139,12 @@ if (!isset($_SESSION['username'])) {
         </div>
     </div>
 
-  
+    <!-- Main Content -->
+    <div class="content">
+        <h1 class="text-center">Chào mừng đến Quản trị</h1>
+        <!-- Thêm nội dung chính tại đây -->
+    </div>
+
 </body>
 
 </html>

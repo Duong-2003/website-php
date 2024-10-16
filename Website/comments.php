@@ -50,7 +50,7 @@ include('../connect_SQL/connect.php'); // Kết nối cơ sở dữ liệu
                     echo '<div class="comment">';
                     echo '<div class="comment-author">';
                     echo '<img src="' . htmlspecialchars($row['avatar']) . '" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%;">';
-                    echo htmlspecialchars($row['user_name']) . '</div>';
+                    echo htmlspecialchars($row['name']) . '</div>';
                     echo '<div class="comment-text">' . nl2br(htmlspecialchars($row['comment'])) . '</div>'; // Dùng nl2br để chuyển đổi dòng mới
                     echo '</div>';
                 }

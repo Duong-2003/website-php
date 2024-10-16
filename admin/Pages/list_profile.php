@@ -1,117 +1,115 @@
 <?php
-include('../../connect_SQL/connect.php'); // Kết nối đến cơ sở dữ liệu
+include('./admin_website.php');
+include('../../connect_SQL/connect.php');
 
-session_start();
-$user_id = $_SESSION['user_id'] ?? null; // Lấy ID người dùng từ session
+// Lấy danh sách hồ sơ người dùng với phân trang
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Lấy số trang từ URL
+$limit = 10; // Số bản ghi trên mỗi trang
+$offset = ($page - 1) * $limit; // Tính toán offset
 
-if (!$user_id) {
-    echo "ERROR: Vui lòng đăng nhập.";
-    exit();
-}
-
-// Lấy thông tin người dùng từ bảng profile_user
-$sql = "SELECT * FROM profile_user WHERE user_id = ?";
-$stmt = $connect->prepare($sql);
-$stmt->bind_param("i", $user_id);
+// Lấy danh sách hồ sơ
+$sqlProfiles = "SELECT * FROM profile_user LIMIT ? OFFSET ?";
+$stmt = $connect->prepare($sqlProfiles);
+$stmt->bind_param("ii", $limit, $offset);
 $stmt->execute();
-$result = $stmt->get_result();
+$resultProfiles = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    $profile = $result->fetch_assoc();
-} else {
-    echo "ERROR: Không tìm thấy thông tin người dùng.";
-    exit();
+$danhsachProfiles = [];
+
+// Chuyển dữ liệu thành mảng
+while ($row = $resultProfiles->fetch_assoc()) {
+    $danhsachProfiles[] = array(
+        'profile_id' => (int) $row['profile_id'],
+        'user_id' => (int) $row['user_id'],
+        'date_of_birth' => htmlspecialchars($row['date_of_birth']),
+        'gender' => htmlspecialchars($row['gender']),
+        'bio' => htmlspecialchars($row['bio']),
+        'website' => htmlspecialchars($row['website']),
+        'location' => htmlspecialchars($row['location']),
+        'created_at' => htmlspecialchars($row['created_at']),
+        'updated_at' => htmlspecialchars($row['updated_at']),
+        'phone' => htmlspecialchars($row['phone']),
+    );
 }
 
-// Xử lý cập nhật thông tin
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $date_of_birth = $_POST['date_of_birth'] ?? '';
-    $gender = $_POST['gender'] ?? '';
-    $bio = $_POST['bio'] ?? '';
-    $website = $_POST['website'] ?? '';
-    $location = $_POST['location'] ?? '';
-    $phone = $_POST['phone'] ?? '';
-
-    // Cập nhật thông tin vào cơ sở dữ liệu
-    $update_sql = "UPDATE profile_user SET date_of_birth = ?, gender = ?, bio = ?, website = ?, location = ?, phone = ? WHERE user_id = ?";
-    $update_stmt = $connect->prepare($update_sql);
-    $update_stmt->bind_param("ssssssi", $date_of_birth, $gender, $bio, $website, $location, $phone, $user_id);
-
-    if ($update_stmt->execute()) {
-        header("Location: list_profile.php?notifi=Cập nhật thành công");
-        exit();
-    } else {
-        echo "ERROR: Không thể cập nhật thông tin.";
-    }
-}
-
-// Xử lý xóa tài khoản
-if (isset($_POST['delete'])) {
-    $delete_sql = "DELETE FROM profile_user WHERE user_id = ?";
-    $delete_stmt = $connect->prepare($delete_sql);
-    $delete_stmt->bind_param("i", $user_id);
-
-    if ($delete_stmt->execute()) {
-        session_destroy(); // Đăng xuất
-        header("Location: ../Pages/login.php?notifi=Tài khoản đã bị xóa");
-        exit();
-    } else {
-        echo "ERROR: Không thể xóa tài khoản.";
-    }
-}
+// Giải phóng biến không cần thiết
+$stmt->close();
 ?>
 
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin người dùng</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-<div class="container mt-5">
-    <h1 class="text-center">Quản lý thông tin người dùng</h1>
-    
-    <div>
-        <?= isset($_GET["notifi"]) ? htmlspecialchars($_GET["notifi"]) : '' ?>
+<div class="container">
+    <h1 class="text-center mb-4">Danh Sách Hồ Sơ Người Dùng</h1>
+    <div class="text-end mb-3">
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddProfile">
+            Thêm Hồ Sơ
+        </button>
     </div>
-
-    <form method="POST" action="">
-        <div class="mb-3">
-            <label for="date_of_birth" class="form-label">Ngày sinh:</label>
-            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="<?= htmlspecialchars($profile['date_of_birth']) ?>">
-        </div>
-        <div class="mb-3">
-            <label for="gender" class="form-label">Giới tính:</label>
-            <select class="form-select" id="gender" name="gender">
-                <option value="male" <?= ($profile['gender'] == 'male') ? 'selected' : '' ?>>Nam</option>
-                <option value="female" <?= ($profile['gender'] == 'female') ? 'selected' : '' ?>>Nữ</option>
-                <option value="other" <?= ($profile['gender'] == 'other') ? 'selected' : '' ?>>Khác</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="bio" class="form-label">Tiểu sử:</label>
-            <textarea class="form-control" id="bio" name="bio"><?= htmlspecialchars($profile['bio']) ?></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="website" class="form-label">Trang web:</label>
-            <input type="url" class="form-control" id="website" name="website" value="<?= htmlspecialchars($profile['website']) ?>">
-        </div>
-        <div class="mb-3">
-            <label for="location" class="form-label">Địa điểm:</label>
-            <input type="text" class="form-control" id="location" name="location" value="<?= htmlspecialchars($profile['location']) ?>">
-        </div>
-        <div class="mb-3">
-            <label for="phone" class="form-label">Số điện thoại:</label>
-            <input type="tel" class="form-control" id="phone" name="phone" value="<?= htmlspecialchars($profile['phone']) ?>">
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
-        <button type="submit" name="delete" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản?')">Xóa tài khoản</button>
-    </form>
+    <table id="danhsach" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr style="font-size: larger;">
+                <th>ID Hồ Sơ</th>
+                <th>ID Người Dùng</th>
+                <th>Ngày Sinh</th>
+                <th>Giới Tính</th>
+                <th>Tiểu Sử</th>
+                <th>Website</th>
+                <th>Địa Điểm</th>
+                <th>Số Điện Thoại</th>
+                <th>Ngày Tạo</th>
+                <th>Cập Nhật</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($danhsachProfiles as $profile) {
+                echo "<tr>
+                    <td>{$profile['profile_id']}</td>
+                    <td>{$profile['user_id']}</td>
+                    <td>{$profile['date_of_birth']}</td>
+                    <td>{$profile['gender']}</td>
+                    <td>{$profile['bio']}</td>
+                    <td>{$profile['website']}</td>
+                    <td>{$profile['location']}</td>
+                    <td>{$profile['phone']}</td>
+                    <td>{$profile['created_at']}</td>
+                    <td>{$profile['updated_at']}</td>
+                    <td>
+                        <div class='d-flex justify-content-center'>
+                            <a href='../Includes/BE/delete_SQL.php?key=profile_id&table=profile_user&datakey=" . urlencode($profile['profile_id']) . "' class='btn btn-danger mx-1'>Xóa</a>
+                            <a href='form_profiles.php?datakey=" . urlencode($profile['profile_id']) . "' class='btn btn-warning mx-1'>Sửa</a>
+                        </div>
+                    </td>
+                </tr>";
+            }
+            ?>
+        </tbody>
+    </table>
 </div>
-</body>
-</html>
+
+<!-- Modal for Adding Profile
+<?php include('../Includes/FE/modal_add_profile.php'); ?> -->
+
+<script>
+    $(document).ready(function () {
+        $('#danhsach').DataTable({
+            "language": {
+                "lengthMenu": "Hiện _MENU_ hồ sơ trên mỗi trang",
+                "zeroRecords": "Không tìm thấy hồ sơ nào",
+                "info": "Hiển thị trang _PAGE_ của _PAGES_",
+                "infoEmpty": "Không có hồ sơ",
+                "infoFiltered": "(lọc từ _MAX_ tổng số hồ sơ)",
+                "search": "Tìm kiếm:",
+                "paginate": {
+                    "next": "Tiếp",
+                    "previous": "Trước"
+                }
+            },
+            "paging": true, // Bật phân trang
+            "searching": true // Bật tìm kiếm
+        });
+    });
+
+    // Đánh dấu menu hiện tại
+    document.getElementById("profile").classList.add("active");
+    document.getElementById("profile-collapse").classList.add("show");
+</script>

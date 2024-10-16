@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-$username = $_SESSION['user_id']; // Get the username from session
+$username = $_SESSION['username']; // Get the username from session
 
 include('../Sources/FE/top_header.php');
 include('../Sources/FE/header.php');
@@ -34,7 +34,7 @@ if (isset($_GET['product_id']) && !empty($_GET['product_id'])) {
 }
 
 // Get user_id from the database
-$sqlUser = "SELECT * FROM user WHERE user_id = ?";
+$sqlUser = "SELECT * FROM user WHERE username = ?";
 $stmtUser = $connect->prepare($sqlUser);
 $stmtUser->bind_param("s", $username);
 $stmtUser->execute();
@@ -55,12 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     // Insert order into the database
     $sqlInsert = "INSERT INTO `order` (product_id, user_id, order_quantity, order_price, timeorder, order_status) 
                   VALUES (?, ?, ?, ?, NOW(), 'Đang chờ')";
-    $stmt = $connect->prepare($sqlInsert);
-    $stmt->bind_param("isii", $sp['product_id'], $user_id, $soluong, $gia);
+    $stmtInsert = $connect->prepare($sqlInsert);
+    $stmtInsert->bind_param("isii", $sp['product_id'], $user_id, $soluong, $gia);
 
-    if ($stmt->execute()) {
+    if ($stmtInsert->execute()) {
         $notifi = "Đặt hàng thành công!";
-        header("Location: ./cart.php?product_id=$product_id&notifi=" . urlencode($notifi));
+        header("Location: ./cart.php?product_id=$id&notifi=" . urlencode($notifi));
         exit();
     } else {
         $error = "Có lỗi xảy ra, vui lòng thử lại.";
