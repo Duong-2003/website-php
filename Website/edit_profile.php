@@ -33,59 +33,46 @@ include('../Sources/FE/top_header.php');
 include('../Sources/FE/header.php');
 include('../connect_SQL/connect.php'); // Kết nối đến cơ sở dữ liệu
 
-// Lấy ID người dùng từ session
-$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'] ?? null;
 
-// Kiểm tra nếu user_id tồn tại
-if (!isset($user_id)) {
-    echo "Vui lòng đăng nhập để chỉnh sửa hồ sơ.";
+if (!$username) {
+    echo "<p class='text-danger'>Vui lòng đăng nhập để xem hồ sơ.</p>";
     exit();
 }
 
-// Lấy thông tin người dùng từ bảng user
-$sqlUser = "SELECT * FROM `user` WHERE user_id = ?";
+// Lấy thông tin người dùng dựa trên username
+$sqlUser = "SELECT * FROM `user` WHERE username = ?";
 $stmtUser = $connect->prepare($sqlUser);
-$stmtUser->bind_param("i", $user_id);
+$stmtUser->bind_param("s", $username);
 $stmtUser->execute();
 $resultUser = $stmtUser->get_result();
 
-// Kiểm tra nếu có dữ liệu người dùng
 if ($resultUser->num_rows > 0) {
     $userData = $resultUser->fetch_assoc();
+    $user_id = $userData['user_id'];
     
-    // Lấy thông tin hồ sơ từ bảng profile_user
+    // Lấy thông tin hồ sơ dựa trên user_id
     $sqlProfile = "SELECT * FROM `profile_user` WHERE user_id = ?";
     $stmtProfile = $connect->prepare($sqlProfile);
     $stmtProfile->bind_param("i", $user_id);
     $stmtProfile->execute();
     $resultProfile = $stmtProfile->get_result();
 
-    // Kiểm tra nếu có dữ liệu hồ sơ
     if ($resultProfile->num_rows > 0) {
         $profileData = $resultProfile->fetch_assoc();
     } else {
-        // Nếu không tìm thấy hồ sơ, khởi tạo mảng mặc định
-        $profileData = [
-            'phone' => '',
-            'date_of_birth' => '',
-            'gender' => '',
-            'bio' => '',
-            'website' => '',
-            'location' => '',
-            'avatar' => 'default_avatar.png' // Hình đại diện mặc định
-        ];
+        $profileData = [];
     }
 } else {
-    echo "Không tìm thấy thông tin người dùng.";
+    echo "<p class='text-danger'>Không tìm thấy thông tin người dùng.</p>";
     exit();
 }
 ?>
 
 <body>
     <div class="container mt-5">
-    <div class="profile-header">
+        <div class="profile-header">
             <?php
-            // Kiểm tra xem hình đại diện có tồn tại không
             $avatarPath = htmlspecialchars($userData['avatar']);
             if (file_exists($avatarPath) && !empty($avatarPath)) {
                 echo '<img src="' . $avatarPath . '" alt="Avatar">';
@@ -99,48 +86,53 @@ if ($resultUser->num_rows > 0) {
             <div class="card-body">
                 <form action="../Sources/BE/update_profile.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
+                        <label for="user_id" class="form-label">ID người dùng</label>
+                        <input type="text" class="form-control" id="user_id"
+                            value="<?php echo htmlspecialchars($userData['user_id'] ?? ''); ?>" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Tên người dùng <span class="text-muted">(Bắt buộc)</span></label>
+                        <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($userData['name'] ?? ''); ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email <span class="text-muted">(Không thể thay đổi)</span></label>
+                        <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($userData['email'] ?? ''); ?>" readonly>
+                    </div>
+                    <div class="mb-3">
                         <label for="avatar" class="form-label">Ảnh đại diện</label>
                         <input type="file" class="form-control" id="avatar" name="avatar">
                     </div>
                     <div class="mb-3">
-                        <label for="username" class="form-label">Tên người dùng</label>
-                        <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($userData['name']); ?>" required>
+                        <label for="phone" class="form-label">Số điện thoại <span class="text-muted">(Tùy chọn)</span></label>
+                        <input type="text" class="form-control" id="phone" name="phone" value="<?php echo htmlspecialchars($profileData['phone'] ?? ''); ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($userData['email']); ?>" required>
+                        <label for="dob" class="form-label">Ngày sinh <span class="text-muted">(Tùy chọn)</span></label>
+                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo htmlspecialchars($profileData['date_of_birth'] ?? ''); ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Số điện thoại</label>
-                        <input type="text" class="form-control" id="phone" name="phone" value="<?php echo htmlspecialchars($profileData['phone']); ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="dob" class="form-label">Ngày sinh</label>
-                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo htmlspecialchars($profileData['date_of_birth']); ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="gender" class="form-label">Giới tính</label>
+                        <label for="gender" class="form-label">Giới tính <span class="text-muted">(Tùy chọn)</span></label>
                         <select class="form-select" id="gender" name="gender">
-                            <option value="male" <?php echo ($profileData['gender'] == 'male') ? 'selected' : ''; ?>>Nam</option>
-                            <option value="female" <?php echo ($profileData['gender'] == 'female') ? 'selected' : ''; ?>>Nữ</option>
-                            <option value="other" <?php echo ($profileData['gender'] == 'other') ? 'selected' : ''; ?>>Khác</option>
+                            <option value="" <?php echo empty($profileData['gender']) ? 'selected' : ''; ?>>Chọn giới tính</option>
+                            <option value="male" <?php echo (isset($profileData['gender']) && $profileData['gender'] == 'male') ? 'selected' : ''; ?>>Nam</option>
+                            <option value="female" <?php echo (isset($profileData['gender']) && $profileData['gender'] == 'female') ? 'selected' : ''; ?>>Nữ</option>
+                            <option value="other" <?php echo (isset($profileData['gender']) && $profileData['gender'] == 'other') ? 'selected' : ''; ?>>Khác</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="bio" class="form-label">Giới thiệu bản thân</label>
-                        <textarea class="form-control" id="bio" name="bio" rows="3"><?php echo htmlspecialchars($profileData['bio']); ?></textarea>
+                        <label for="bio" class="form-label">Giới thiệu bản thân <span class="text-muted">(Tùy chọn)</span></label>
+                        <textarea class="form-control" id="bio" name="bio" rows="3"><?php echo htmlspecialchars($profileData['bio'] ?? ''); ?></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="website" class="form-label">Website</label>
-                        <input type="url" class="form-control" id="website" name="website" value="<?php echo htmlspecialchars($profileData['website']); ?>">
+                        <label for="website" class="form-label">Website <span class="text-muted">(Tùy chọn)</span></label>
+                        <input type="url" class="form-control" id="website" name="website" value="<?php echo htmlspecialchars($profileData['website'] ?? ''); ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="location" class="form-label">Địa chỉ</label>
-                        <input type="text" class="form-control" id="location" name="location" value="<?php echo htmlspecialchars($profileData['location']); ?>">
+                        <label for="address" class="form-label">Địa chỉ <span class="text-muted">(Tùy chọn)</span></label>
+                        <input type="text" class="form-control" id="address" name="address" value="<?php echo htmlspecialchars($profileData['address'] ?? ''); ?>">
                     </div>
                     <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                    <a href="profile.php" class="btn btn-secondary">Hủy</a>
-                    <a href="./profile_user.php" class="btn btn-primary">Quay Ve</a>
+                    <a href="./profile_user.php" class="btn btn-secondary">Quay Về</a>
                 </form>
             </div>
         </div>

@@ -50,6 +50,7 @@ $page = max(1, min($pagination, $page)); // Limit valid page range
 $firstPage = ($page - 1) * $cartValueShow;
 $endPage = min($firstPage + $cartValueShow, count($list_order));
 ?>
+
 <div class="container">
     <hr style="color:red">
     <h1 class="text-center" style="color:red;">Giỏ hàng</h1>
@@ -76,7 +77,7 @@ $endPage = min($firstPage + $cartValueShow, count($list_order));
                         <div class="card shadow-sm">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                <img src="<?= $duongdanimg . htmlspecialchars($product['product_images']) ?>" width="100%" height="100%" class="img-fluid rounded product-image">
+                                    <img src="<?= $duongdanimg . htmlspecialchars($product['product_images']) ?>" width="100%" height="100%" class="img-fluid rounded product-image">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -157,5 +158,111 @@ $endPage = min($firstPage + $cartValueShow, count($list_order));
         </ul>
     </nav>
 </div>
-</body>
-</html>
+
+<!-- Biểu tượng giỏ hàng -->
+<div class="icon-cart" onclick="toggleModal()">
+    <a href="#" aria-label="Giỏ hàng" title="Giỏ hàng" class="SendEvent" data-category="action" data-action="click" data-label="cart_action">
+        <i class="fa fa-shopping-cart fa-lg" style="color: black;"></i>
+    </a>
+    <span id="woofc-count-number" class="woofc-count-number"><?= count($list_order) ?></span>
+</div>
+
+<!-- Modal Nội Dung -->
+<div id="cart-modal" class="cart-modal">
+    <div class="modal-content">
+        <span class="close" onclick="toggleModal()">&times;</span>
+        <h3>Sản phẩm đã thêm</h3>
+        <ul id="product-list" class="list-group">
+            <?php if (!empty($list_order)) : ?>
+                <?php foreach ($list_order as $order) : ?>
+                    <?php
+                    // Lấy thông tin sản phẩm
+                    $stmt = $connect->prepare("SELECT * FROM product WHERE product_id = ?");
+                    $stmt->bind_param("i", $order['product_id']);
+                    $stmt->execute();
+                    $product_result = $stmt->get_result();
+                    $product = $product_result->fetch_assoc();
+                    $stmt->close();
+
+                    if ($product):
+                    ?>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="../Assets/img/sanpham/<?= htmlspecialchars($product['product_images']) ?>" class="img-fluid rounded-start" alt="Product Image">
+                                </div>
+                                <div class="col-md-8">
+                                    <h5 class="mb-1"><?= htmlspecialchars($product['product_name']) ?></h5>
+                                    <p class="mb-1">Giá: <strong><?= number_format($order['order_price'], 0, '.', ',') ?> <sub>đ</sub></strong></p>
+                                    <p class="mb-1">Số lượng: <strong><?= htmlspecialchars($order['order_quantity']) ?></strong></p>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <li class="list-group-item">Không có sản phẩm nào trong giỏ hàng.</li>
+            <?php endif; ?>
+        </ul>
+        <div class="text-center mt-3">
+            <button class="btn btn-success" onclick="checkout()">Thanh toán</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleModal() {
+    const modal = document.getElementById("cart-modal");
+    modal.style.display = modal.style.display === "block" ? "none" : "block";
+}
+
+// Đóng modal khi người dùng nhấn ra ngoài modal
+window.onclick = function(event) {
+    const modal = document.getElementById("cart-modal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+
+function checkout() {
+    // Chuyển hướng tới trang thanh toán
+    window.location.href = './checkout.php'; // Thay đổi URL thanh toán nếu cần
+}
+</script>
+
+<style>
+.cart-modal {
+    display: none; /* Ẩn modal khi chưa sử dụng */
+    position: fixed; /* Đặt modal ở vị trí cố định */
+    z-index: 1000; /* Đảm bảo modal nằm trên cùng */
+    left: 0;
+    top: 0;
+    width: 100%; /* Chiều rộng 100% */
+    height: 100%; /* Chiều cao 100% */
+    overflow: auto; /* Thêm thanh cuộn nếu cần */
+    background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Tạo khoảng cách từ trên và căn giữa */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Chiều rộng modal */
+    max-width: 600px; /* Chiều rộng tối đa */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>

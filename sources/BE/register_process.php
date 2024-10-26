@@ -15,7 +15,7 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
     
     $resetpass = $_POST['resetpass'];
     
-    $address = htmlspecialchars($_POST['address']);
+    // $address = htmlspecialchars($_POST['address']);
     
     $role = 0; // Default role for all new users
     
@@ -25,7 +25,7 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
 
 
     // Kiểm tra xem tất cả thông tin bắt buộc có được nhập không
-    if (empty($username) || empty($password) || empty($resetpass) || empty($email) || empty($name) || empty($address)) {
+    if (empty($username) || empty($password) || empty($resetpass) || empty($email) || empty($name) ) {
         $error = 'Chưa nhập toàn bộ thông tin bắt buộc';
         redirectWithError($error);
     }
@@ -52,9 +52,9 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Chuẩn bị truy vấn chèn
-    $query = "INSERT INTO user (username, password, name,role, email, address) VALUES (?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO user (username, password, name,role, email) VALUES (?, ?, ?, ?, ?)";
     $stmt = $connect->prepare($query);
-    $stmt->bind_param("ssisss", $username,  $hashed_password, $name ,$role, $email, $address); // Sử dụng 's' cho tất cả các tham số là chuỗi
+    $stmt->bind_param("ssisss", $username,  $hashed_password, $name ,$role, $email, ); // Sử dụng 's' cho tất cả các tham số là chuỗi
 
     // Thực thi truy vấn
     if ($stmt->execute()) {

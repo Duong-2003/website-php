@@ -43,8 +43,6 @@
             height: 37px;
         }
 
-       
-
         .indicator__area {
             position: relative;
             display: block;
@@ -56,7 +54,23 @@
             font-size: 1.5rem;  /* Tăng kích thước icon */
         }
 
-       
+        .indicator_badge {
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            padding: 0;
+            border-radius: 50%;
+            top: -5px;
+            right: -10px;
+            background: red;
+            color: white;
+            font-weight: bold;
+            margin-left: -5px;
+        }
     </style>
 </head>
 
@@ -90,7 +104,8 @@
                                         <path d="M141.241,36.379a1.082,1.082,0,0,0-.822-.378h-21.4l-.51-2.629a1.081,1.081,0,0,0-1.062-.873h-4.865a1.077,1.077,0,1,0,0,2.155h3.973l1.272,6.558,1.525,9.5a1.081,1.081,0,0,0,1.068.907h17.838a1.081,1.081,0,0,0,1.068-.907l2.162-13.466A1.076,1.076,0,0,0,141.241,36.379Zm-3.906,13.088H121.341l-1.816-11.312h19.626Z" transform="translate(0)" fill="#fff"></path>
                                     </g>
                                 </svg>
-                             
+                                <span class="indicator_badge" id="cartCount">0</span>
+                                
                             </span>
                         </a>
                     </div>
@@ -110,7 +125,7 @@
         document.getElementById("searchClick").addEventListener("click", function () {
             var searchValue = document.getElementById('searchInput').value;
             if (searchValue) {
-                window.location.href = "./listSearch.php?search=" + searchValue;
+                window.location.href = "./listSearch.php?search=" + encodeURIComponent(searchValue);
             }
         });
 
@@ -124,6 +139,8 @@
             });
         }
         document.addEventListener('DOMContentLoaded', handleImageError);
+
+      
     </script>
 </body>
 

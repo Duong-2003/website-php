@@ -174,10 +174,10 @@ a.btn-link-style {
                       <label>Nhập lại mật khẩu<span style="color: red;">*</span></label>
                       <input name="resetpass" placeholder="Nhập lại mật khẩu" id="resetpass" type="password" class="form-control" required>
                     </fieldset>
-                    <fieldset class="form-group margin-bottom-0">
+                    <!-- <fieldset class="form-group margin-bottom-0">
                       <label>Địa chỉ<span style="color: red;">*</span></label>
                       <input id="address" placeholder="Địa chỉ của bạn" type="text" class="form-control" name="address" required>
-                    </fieldset>
+                    </fieldset> -->
                     <div class="clearfix"></div>
                     
                   <p class="text-right recover">
